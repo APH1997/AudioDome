@@ -30,6 +30,7 @@ class User(db.Model, UserMixin):
 
     user_likes = db.relationship(
         "Song",
+        overlaps="songs",
         back_populates="song_likes"
     )
 
