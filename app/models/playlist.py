@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .PlaylistSongs import playlist_songs
-
+from .song import Song
 
 class Playlist(db.Model):
     __tablename__ = 'playlists'
@@ -29,5 +29,6 @@ class Playlist(db.Model):
             'id': self.id,
             'userId': self.user_id,
             'name': self.name,
-            'playlistImage': self.playlist_image
+            'playlistImage': self.playlist_image,
+            'songs': [song.to_dict() for song in self.playlist_songs]
         }
