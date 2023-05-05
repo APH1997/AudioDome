@@ -13,13 +13,17 @@ class Playlist(db.Model):
     name = db.Column(db.String(40), nullable=False)
     playlist_image = db.Column(db.String(255), nullable=False)
 
-
     playlist_songs = db.relationship(
-        "Songs",
+        "Song",
         secondary=playlist_songs,
         back_populates='song_playlists'
     )
-    
+
+    user = db.relationship(
+        "User",
+        back_populates="playlists"
+    )
+
     def to_dict(self):
         return {
             'id': self.id,

@@ -2,7 +2,7 @@ from .db import db, add_prefix_for_prod, environment, SCHEMA
 from .user import User
 from .PlaylistSongs import playlist_songs
 
-class Songs(db.Model):
+class Song(db.Model):
     __tablename__ = 'songs'
 
     if environment == "production":
@@ -18,6 +18,16 @@ class Songs(db.Model):
         "Playlist",
         secondary=playlist_songs,
         back_populates='playlist_songs'
+    )
+
+    uploader = db.relationship(
+        "User",
+        back_populates="songs"
+    )
+
+    song_likes = db.relationship(
+        "User",
+        back_populates="user_likes"
     )
 
     def to_dict(self):
