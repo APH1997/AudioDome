@@ -18,6 +18,22 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(1000))
     profile_image = db.Column(db.String(255))
 
+    playlists = db.relationship(
+        "Playlist",
+        back_populates="user"
+    )
+
+    songs = db.relationship(
+        "Song",
+        back_populates="uploader"
+    )
+
+    user_likes = db.relationship(
+        "Song",
+        back_populates="song_likes"
+    )
+
+
     @property
     def password(self):
         return self.hashed_password
@@ -37,5 +53,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'bio': self.bio,
-            'profileImage': self.profile_image
+            'profileImage': self.profile_image,
+            'playlists': [playlist.to_dict() for playlist in self.playlists]
         }

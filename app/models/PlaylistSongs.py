@@ -1,8 +1,9 @@
-from .db import db
+from .db import db, add_prefix_for_prod
 
+playlist_songs = db.Table(
+    'playlist_songs',
+    db.Model.metadata,
+    db.Column("songs", db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), primary_key=True),
+    db.Column("playlists", db.Integer, db.ForeignKey(add_prefix_for_prod('playlists.id')), primary_key=True)
+)
 
-class Playlist_Song():
-    __tablename__= 'Playlist_Songs'
-
-    song_id = db.Column(db.Integer, db.ForeignKey('songs.id'))
-    playlist_id =db.Column(db.Integer, db.ForeignKey('playlists.id'))
