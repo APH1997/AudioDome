@@ -6,19 +6,19 @@ def seed_playlist(seeded_users, seeded_songs):
         user = seeded_users[0],
         name="Groove City",
         playlist_image="awsURLgoesHERE!!!!",
-        playlist_songs = [seeded_songs[0], seeded_songs[1]]
+        # playlist_songs = [seeded_songs[0], seeded_songs[1]]
     )
     Playlist2 = Playlist(
         user = seeded_users[1],
         name="Otaku Melodies",
         playlist_image="awsURLstillgoesHERE!!!!",
-        playlist_songs =[seeded_songs[0], seeded_songs[2]]
+        # playlist_songs =[seeded_songs[0], seeded_songs[2]]
     )
     Playlist3 = Playlist(
         user = seeded_users[2],
         name="Soulful Seduction",
         playlist_image="awsURLgoesHEREforsure!!!!",
-        playlist_songs = [seeded_songs[1], seeded_songs[2]]
+        # playlist_songs = [seeded_songs[1], seeded_songs[2]]
     )
 
 

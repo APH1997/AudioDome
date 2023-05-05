@@ -28,6 +28,7 @@ class Song(db.Model):
 
     song_likes = db.relationship(
         "User",
+        secondary='likes',
         overlaps="songs,uploader",
         back_populates="user_likes"
     )
