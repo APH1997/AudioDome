@@ -22,11 +22,13 @@ class Song(db.Model):
 
     uploader = db.relationship(
         "User",
+        overlaps="user_likes",
         back_populates="songs"
     )
 
     song_likes = db.relationship(
         "User",
+        overlaps="songs,uploader",
         back_populates="user_likes"
     )
 
