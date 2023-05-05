@@ -15,6 +15,6 @@ class Songs(db.Model):
             'id': self.id,
             'title' : self.title,
             'artist' : self.artist,
-            'aws_url' : self.aws_url,
-            'uploader_id': self.uploader_id
+            'awsUrl' : self.aws_url,
+            'uploaderId': self.uploader_id
         }
