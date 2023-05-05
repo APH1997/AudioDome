@@ -1,8 +1,9 @@
-from .db import db
+from .db import db, add_prefix_for_prod
 
 
-class Song_Like():
-    __tablename__= 'song_likes'
-
-    song_id = db.Column(db.Integer, db.ForeignKey('songs.id'))
-    user_id =db.Column(db.Integer, db.ForeignKey('user.id'))
+likes = db.Table(
+    'likes',
+    db.Model.metadata,
+    db.Column("songs", db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id')), primary_key=True),
+    db.Column("users", db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
+)
