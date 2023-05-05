@@ -1,6 +1,7 @@
 from .db import db, add_prefix_for_prod, environment, SCHEMA
 from .user import User
 from .PlaylistSongs import playlist_songs
+from .SongLikes import likes
 
 class Song(db.Model):
     __tablename__ = 'songs'
@@ -28,7 +29,7 @@ class Song(db.Model):
 
     song_likes = db.relationship(
         "User",
-        secondary='likes',
+        secondary=likes,
         overlaps="songs,uploader",
         back_populates="user_likes"
     )
