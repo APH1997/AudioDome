@@ -1,3 +1,3 @@
 from flask import Blueprint
 
-playlist_routes = Blueprint('auth',__name__)
+playlist_routes = Blueprint('playlist',__name__)

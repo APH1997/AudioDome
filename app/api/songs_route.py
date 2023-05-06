@@ -3,7 +3,7 @@ from app.models import Song, db, User
 from app.forms import SongForm
 from flask_login import login_required
 
-song_routes = Blueprint('auth',__name__)
+song_routes = Blueprint('song',__name__)
 
 @song_routes.route('/')
 def get_all_song():
@@ -36,4 +36,3 @@ def edit_song_by_id(id):
 @login_required
 def delete_song_by_id(id):
     song = Song.query.get(id)
-    
