@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, redirect
 from app.models import Song, db, User
 from app.forms import SongForm
 from flask_login import login_required
@@ -17,6 +17,22 @@ def get_song_by_id(id):
     song = Song.query.get(id)
     return song.to_dict()
 
+@song_routes.route('/new', methods=['POST'])
+@login_required
+def create_song_by_id():
+    form = SongForm()
+    if form.validate_on_submit:
+        new_song = Song(
+            title = form.data['title'],
+            artist = form.data['artist'],
+            aws_url = form.data['aws_url'],
+            uploader_id = form.data['uploader_id']
+        )
+        db.session.add(new_song)
+        db.session.commit()
+        redirect(f'/songs/{new_song.id}')
+    else:
+        return "Bad Data"
 
 @song_routes.route('/<int:id>', methods=['PUT'])
 def edit_song_by_id(id):
