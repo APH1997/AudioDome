@@ -7,6 +7,17 @@ const getSongs = (data) => ({
     type: GET_SONGS,
     payload: data
 });
+export const createSongThunk = (song) = async (dispatch) => {
+    const response = await fetch('/new', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json' },
+        body: JSON.stringify(song),
+    });
+    if (response.ok) {
+        const newSong = await response.json();
+        return newSong
+    }
+}
 
 export const getSongsThunk = () => async (dispatch) => {
     const response = await fetch("/songs/")
@@ -22,10 +33,10 @@ const songReducer = (state = initialState, action) => {
     switch (action.type){
         case GET_SONGS:
             newState = Object.assign({}, state.songs)
-            action.payload.Songs.forEach(song=> {newState[song.id] = song})
+            action.payload.forEach(song=> {newState[song.id] = song})
             return newState
         default:
             return state;
     }
 }
-export default SongReducer
+export default songReducer
