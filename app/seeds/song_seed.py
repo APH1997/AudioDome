@@ -4,23 +4,23 @@ from random import choice, sample, randint
 
 def seed_songs(seeded_users):
     song1 = Song(
-        title='Song One',
-        artist='Song Artist One',
-        aws_url='Amazon One',
+        title='Beat 140',
+        artist='T-Pain',
+        aws_url='https://audiodome-songs.s3.us-east-2.amazonaws.com/3f7003990c2f44ca9c9e5275e21afedc.mp3',
         uploader = seeded_users[0],
         song_likes = sample(seeded_users, randint(0, len(seeded_users)))
     )
     song2 = Song(
-        title='Song Two',
-        artist='Song Artist Two',
-        aws_url='Amazon Two',
+        title='The Floor is Lava',
+        artist='Jack Roybal',
+        aws_url='https://audiodome-songs.s3.us-east-2.amazonaws.com/a48141dc79af400d9e2e8837071d05a8.mp3',
         uploader = seeded_users[1],
         song_likes = sample(seeded_users, randint(0, len(seeded_users)))
     )
     song3 = Song(
-        title='Song Three',
-        artist='Song Artist Three',
-        aws_url='Amazon Three',
+        title='Sample',
+        artist='Dom',
+        aws_url='https://audiodome-songs.s3.us-east-2.amazonaws.com/d20c1dfd8246499c92689fa7af778411.mp3',
         uploader = seeded_users[2],
         song_likes = sample(seeded_users, randint(0, len(seeded_users)))
     )
