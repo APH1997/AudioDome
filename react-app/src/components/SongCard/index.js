@@ -2,7 +2,7 @@ import React from 'react'
 import "./songcards.css"
 
 function SongCard({song, number}){
-    
+
     return(
         <div className='song-card-container'>
             <div className='song-card-song-number'>
@@ -15,7 +15,7 @@ function SongCard({song, number}){
                 <div>{song?.artist}</div>
             </div>
             <div className='song-card-uploader'>
-                <div>{song?.uploaderId}</div>
+                <div>{song?.uploader}</div>
             </div>
         </div>
     )
