@@ -34,7 +34,7 @@ export const removeSongThunk = (songId) => async (dispatch) => {
     }
 }
 export const createSongThunk = (song) => async (dispatch) => {
-    const response = await fetch('/new', {
+    const response = await fetch('/songs/new', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(song),
