@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import GetAllSongs from "./components/GetAllSongs";
+import CreateSongForm from "./components/CreateSongForm";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import GetAllPlaylist from "./components/GetPlaylist";
@@ -28,8 +29,6 @@ function App() {
           </Route>
           <Route exact path="/">
             <GetAllSongs />
-          </Route>
-          <Route path='/playlists'>
             <GetAllPlaylist />
           </Route>
         </Switch>
