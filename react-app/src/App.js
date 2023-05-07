@@ -7,6 +7,7 @@ import GetAllSongs from "./components/GetAllSongs";
 import CreateSongForm from "./components/CreateSongForm";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import GetAllPlaylist from "./components/GetPlaylist";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,10 +21,16 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/login"><LoginFormPage /></Route>
-          <Route exact path="/signup"><SignupFormPage /></Route>
-          <Route exact path="/"><GetAllSongs /></Route>
-          <Route exact path="/new"><CreateSongForm /></Route>
+          <Route exact path="/login">
+            <LoginFormPage />
+          </Route>
+          <Route exact path="/signup">
+            <SignupFormPage />
+          </Route>
+          <Route exact path="/">
+            <GetAllSongs />
+            <GetAllPlaylist />
+          </Route>
         </Switch>
       )}
     </>
