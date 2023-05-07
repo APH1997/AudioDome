@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createSongThunk } from '../../store/songs'
 
 function CreateSongForm(){
+    const currentUser = useSelector(state => state.session.user);
+    console.log(currentUser)
     const history = useHistory()
     const dispatch = useDispatch()
     const [title , setTitle] = useState('');
@@ -16,7 +18,12 @@ function CreateSongForm(){
     /*----------------------ANY VALIDATION WOULD DO HERE AS WELL FOR THE FORM FOR HANDLESUBMIT-------------------- */
     const HandleSubmit = async (e) => {
         e.preventDefault()
-        const newSong = await dispatch(createSongThunk())
+        const formData = new FormData()
+        formData.append("title",title)
+        formData.append("artist",artist)
+        formData.append("aws_url", file)
+        formData.append("uploader_id", currentUser.id)
+        await dispatch(createSongThunk(formData))
         history.push("/")
     }
     return (

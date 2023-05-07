@@ -22,24 +22,31 @@ def get_song_by_id(id):
 @song_routes.route('/new', methods=['POST'])
 @login_required
 def create_song_by_id():
-    print('IN THE POST SONG ROUTE BEFORE FORM VALIDATE')
     form = SongForm()
     if form.validate_on_submit:
-        song = form.data["song"]
-        print('SONG IN BACKEND:', song)
-        return
-        # song.filename = get_unique_filename(song.filename)
-        # upload = upload_file_to_s3(song)
+        print("FORM.DATA IN /SONGS/NEW -------------",form.data)
+        song = form.data["aws_url"]
 
-        # new_song = Song(
-        #     title = form.data['title'],
-        #     artist = form.data['artist'],
-        #     aws_url = form.data['aws_url'],
-        #     uploader_id = form.data['uploader_id']
-        # )
-        # db.session.add(new_song)
-        # db.session.commit()
-        # redirect(f'/songs/{new_song.id}')
+        song.filename = get_unique_filename(song.filename)
+        upload = upload_file_to_s3(song)
+
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload["errors"]
+
+        aws_url = upload["url"]
+
+        new_song = Song(
+            title = form.data['title'],
+            artist = form.data['artist'],
+            aws_url = aws_url,
+            uploader_id = form.data['uploader_id']
+        )
+        db.session.add(new_song)
+        db.session.commit()
+        redirect(f'/songs/{new_song.id}')
     else:
         return "Bad Data"
 

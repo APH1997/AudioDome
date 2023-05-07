@@ -34,10 +34,10 @@ export const removeSongThunk = (songId) => async (dispatch) => {
     }
 }
 export const createSongThunk = (song) => async (dispatch) => {
+    console.log("HERE IS THE CONSOLE.LOG", song)
     const response = await fetch('/songs/new', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(song),
+        body: song,
     });
     if (response.ok) {
         const newSong = await response.json();
