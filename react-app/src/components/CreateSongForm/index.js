@@ -12,8 +12,14 @@ function CreateSongForm(){
     function handleFileUpload(){
         console.log("STUFF GOES HERE")
     }
+    /*----------------------ANY VALIDATION WOULD DO HERE AS WELL FOR THE FORM FOR HANDLESUBMIT-------------------- */
+    const HandleSubmit = async (e) => {
+        e.preventDefault()
+        const newSong = await dispatch(createSongThunk())
+        history.push("/")
+    }
     return (
-        <form>
+        <form onSubmit={HandleSubmit}>
             <label>
                 <div>Upload A Song</div>
                 <input id="song-upload" type="file" name="song" accept=".mp3,.wav,.mp4" onChange={handleFileUpload}/>
@@ -26,6 +32,9 @@ function CreateSongForm(){
                 <div>Artist</div>
                 <input id="artist-name" type="text" value={artist} placeholder='Artist Time' onChange={(e) => setArtist(e.target.value)} />
             </label>
+            <div className='SubmitSongBtn'>
+                    <button className="create-song-button" type="submit">Submit Song</button>
+            </div>
         </form>
     )
 }
