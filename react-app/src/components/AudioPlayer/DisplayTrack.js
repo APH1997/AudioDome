@@ -1,7 +1,7 @@
 const DisplayTrack = ({track, audioRef}) => {
     return (
     <div>
-        <audio src={currentSong} ></audio>
+        <audio src={track} ref={audioRef}></audio>
     </div>
     )
   };

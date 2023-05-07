@@ -14,12 +14,7 @@ const Controls = ({audioRef}) => {
             <button>
                 <IoPlaySkipBack />
             </button>
-            <button>
-                <IoPlay />
-            </button>
-            <button>
-                <IoPause />
-            </button>
+            {!isPlaying ? <button onClick={()=>setisPlaying(true)}><IoPlay /></button> : <button onClick={()=>setisPlaying(false)}><IoPause /></button> }
             <button>
                 <IoPlaySkipForward />
             </button>
