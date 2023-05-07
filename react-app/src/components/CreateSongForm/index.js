@@ -8,9 +8,10 @@ function CreateSongForm(){
     const dispatch = useDispatch()
     const [title , setTitle] = useState('');
     const [artist, setArtist] = useState('');
+    const [file, setFile] = useState(null)
 
-    function handleFileUpload(){
-        console.log("STUFF GOES HERE")
+    function handleFileUpload(e){
+        setFile(e.target.files[0])
     }
     /*----------------------ANY VALIDATION WOULD DO HERE AS WELL FOR THE FORM FOR HANDLESUBMIT-------------------- */
     const HandleSubmit = async (e) => {
@@ -22,7 +23,7 @@ function CreateSongForm(){
         <form onSubmit={HandleSubmit}>
             <label>
                 <div>Upload A Song</div>
-                <input id="song-upload" type="file" name="song" accept=".mp3,.wav,.mp4" onChange={handleFileUpload}/>
+                <input id="song-upload" type="file" name="song" accept="audio/*" onChange={handleFileUpload}/>
             </label>
             <label>
                 <div>Title</div>
