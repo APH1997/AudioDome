@@ -8,6 +8,7 @@ import CreateSongForm from "./components/CreateSongForm";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import GetAllPlaylist from "./components/GetPlaylist";
+import PlaylistShow from "./components/PlaylistShow";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,8 +29,11 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
-            <GetAllSongs />
             <GetAllPlaylist />
+            <GetAllSongs />
+          </Route>
+          <Route exact path='/playlist/:playlistId'>
+            <PlaylistShow />
           </Route>
         </Switch>
       )}

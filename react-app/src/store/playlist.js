@@ -1,4 +1,5 @@
 const GET_ALL_PLAYLIST = 'playlists/GetAllPlaylist';
+const GET_ONE_PLAYLIST = 'playlists/GetOnePlaylist';
 
 export const GetAllPlaylistAction = (playlist) => {
     return {
@@ -7,6 +8,24 @@ export const GetAllPlaylistAction = (playlist) => {
     }
 }
 
+export const GetOnePlaylistAction = (playlist) => {
+    return {
+        type: GET_ONE_PLAYLIST,
+        playlist
+    }
+}
+
+export const getOnePlaylistThunk = (id) => async dispatch => {
+
+    const res = await fetch (`/playlists/${id}`)
+
+    if (res.ok) {
+
+        const data = await res.json()
+
+        dispatch(GetOnePlaylistAction(data))
+    }
+}
 
 export const getAllPlaylistThunk = () => async dispatch => {
 
@@ -29,6 +48,11 @@ const playlistReducer = (state = initialState, action) =>{
             // console.log(action,'this is the action');
             // console.log(newState, 'this is the state');
             action.playlist.forEach(playlist => newState.allPlaylists[playlist.id] = playlist)
+            return newState
+        }
+        case GET_ONE_PLAYLIST: {
+            const newState  = { ...state, singlePlaylist: {...state.singlePlaylist}}
+            newState.singlePlaylist = action.playlist
             return newState
         }
         default:
