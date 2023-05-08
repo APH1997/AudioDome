@@ -56,14 +56,17 @@ def edit_song_by_id(id):
     song = Song.query.get(id)
     form = SongForm()
     print(form.data, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    song.title = form.data['title']
-    song.artist = form.data['artist']
-    song.aws_url = form.data['aws_url']
-    song.uploader_id = form.data['uploader_id']
+    if form.validate_on_submit:
+        print(form.data, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        song.title = form.data['title']
+        song.artist = form.data['artist']
+        song.aws_url = form.data['aws_url']
+        song.uploader_id = form.data['uploader_id']
+        db.session.commit()
+        return song.to_dict()
+    else:
+        return "Bad Data"
 
-    db.session.commit()
-
-    return song.to_dict()
 
 
 @song_routes.route('/<int:id>', methods=['DELETE'])
