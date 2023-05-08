@@ -1,6 +1,7 @@
 const GET_SONGS = "songs/GET_SONGS"
 const UPDATE_SONGS = "songs/UPDATE_SONGS"
 const DELETE_SONGS = "songs/DELETE_SONGS"
+const SOLO_SONG = "songs/SOLO_SONG"
 
 const getSongs = (data) => {
     return {
@@ -14,11 +15,25 @@ const deleteSong = (songId) => {
         payload: songId
     }
 }
+const soloSong = (data) => {
+    return {
+        type: SOLO_SONG,
+        payload: data
+    }
+}
+export const soloSongThunk = (songId) => async (dispatch) =>{
+    const response = await fetch(`/songs/${songId}`)
+    if (response.ok){
+        const data = await response.json()
+        await dispatch(soloSong(data))
+        return data
+    }
+}
 export const editSongThunk = (song) => async (dispatch) => {
-    const response = await fetch(`/${song.id}`, {
+    console.log("INSIDE THE EDIT THUNK", song)
+    const response = await fetch(`/songs/${song.id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(song),
+        body: song
     })
     if (response.ok) {
         const data = response.json()
@@ -53,7 +68,7 @@ export const getSongsThunk = () => async (dispatch) => {
         return data
     }
 }
-const initialState = { songs: null };
+const initialState = { songs: null , singleSong: null};
 const songReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
@@ -64,6 +79,10 @@ const songReducer = (state = initialState, action) => {
         case DELETE_SONGS:
             newState = Object.assign({}, state)
             delete newState[action.payload]
+            return newState
+        case SOLO_SONG:
+            newState = Object.assign({}, state.singleSong)
+            newState[action.payload.id] = action.payload
             return newState
         default:
             return state;

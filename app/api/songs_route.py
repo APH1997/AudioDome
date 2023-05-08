@@ -52,8 +52,10 @@ def create_song_by_id():
 
 @song_routes.route('/<int:id>', methods=['PUT'])
 def edit_song_by_id(id):
+    print("WE INSIDE THE ROUTE FOR UPDATE SONG")
     song = Song.query.get(id)
     form = SongForm()
+    print(form.data, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     song.title = form.data['title']
     song.artist = form.data['artist']
     song.aws_url = form.data['aws_url']

@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import GetAllSongs from "./components/GetAllSongs";
 import CreateSongForm from "./components/CreateSongForm";
+import UpdateSongForm from "./components/SongUpdate";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import GetAllPlaylist from "./components/GetPlaylist";
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route exact path='/playlist/:playlistId'>
             <PlaylistShow />
+          </Route>
+          <Route exact path='/song/:songId/edit'>
+            <UpdateSongForm />
           </Route>
         </Switch>
       )}
