@@ -1,8 +1,38 @@
 import React from 'react'
 import "./songcards.css"
 import { BsThreeDots } from 'react-icons/bs'
+import SongMenu from "../SongMenuModal"
+import OpenModalButton from "../OpenModalButton";
+import  {useState, useEffect, useRef } from "react"
+import { useDispatch } from "react-redux";
 
 function SongCard({song, number}){
+    const dispatch = useDispatch();
+    const [showMenu, setShowMenu] = useState(false);
+    const ulRef = useRef();
+    const openMenu = () => {
+        if (showMenu) return;
+        setShowMenu(true);
+    };
+
+    useEffect(() => {
+        if (!showMenu) return;
+
+        const closeMenu = (e) => {
+            e.stopPropagation()
+            if (!ulRef.current.contains(e.target)) {
+                setShowMenu(false);
+            }
+        };
+
+        document.addEventListener("click", closeMenu);
+
+        return () => document.removeEventListener("click", closeMenu);
+    }, [showMenu]);
+
+
+    const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+    const closeMenu = () => setShowMenu(false);
 
     return(
         <div className='song-card-container'>
@@ -19,7 +49,13 @@ function SongCard({song, number}){
                 <div>{song?.uploader}</div>
             </div>
             <div className='song-card-menu-dots'>
-                <BsThreeDots />
+                {/* <BsThreeDots /> */}
+                {/* <SongMenu /> */}
+                <OpenModalButton
+                buttonText= {< BsThreeDots />}
+                onItemClick={closeMenu}
+                modalComponent={<SongMenu song={song}/>}
+            />
             </div>
 
         </div>

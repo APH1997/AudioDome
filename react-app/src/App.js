@@ -36,8 +36,13 @@ function App() {
           <Route exact path='/playlist/:playlistId'>
             <PlaylistShow />
           </Route>
+<<<<<<< HEAD
           <Route exact path='/song/:songId/edit'>
             <UpdateSongForm />
+=======
+          <Route exact path='/songs/new'>
+            <CreateSongForm />
+>>>>>>> songMenuModal
           </Route>
         </Switch>
       )}
