@@ -1,6 +1,7 @@
 import React from 'react'
 import "./songcards.css"
 import { BsThreeDots } from 'react-icons/bs'
+import SongMenu from "../SongMenu"
 
 function SongCard({song, number}){
 
@@ -19,7 +20,8 @@ function SongCard({song, number}){
                 <div>{song?.uploader}</div>
             </div>
             <div className='song-card-menu-dots'>
-                <BsThreeDots />
+                {/* <BsThreeDots /> */}
+                <SongMenu />
             </div>
 
         </div>
