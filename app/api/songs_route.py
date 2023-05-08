@@ -54,7 +54,7 @@ def create_song_by_id():
 def edit_song_by_id(id):
     song = Song.query.get(id)
     form = EditSongForm()
-    print(form.data, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print(form.data, '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
     if form.validate_on_submit():
         song.title = form.data['title']
         song.artist = form.data['artist']

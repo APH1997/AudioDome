@@ -46,7 +46,7 @@ const UpdateSongForm = () => {
     if (!song[songId]) return null
 
     return (
-        <form method="PUT" encType="multipart/form-data" onSubmit={onSubmit}>
+        <form method="PUT" onSubmit={onSubmit}>
             <label>
                 <div>Title</div>
                 <input id="song-title" type="text" value={title} placeholder='Song Title' onChange={handleTitleChange} />
