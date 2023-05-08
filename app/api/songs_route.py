@@ -23,7 +23,7 @@ def get_song_by_id(id):
 @login_required
 def create_song_by_id():
     form = SongForm()
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         print("FORM.DATA IN /SONGS/NEW -------------",form.data)
         song = form.data["aws_url"]
 
@@ -55,13 +55,14 @@ def edit_song_by_id(id):
     song = Song.query.get(id)
     form = EditSongForm()
     print(form.data, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         song.title = form.data['title']
         song.artist = form.data['artist']
         db.session.commit()
         return song.to_dict()
     else:
-        return "Bad Data"
+        print(form.errors)
+        return form.errors
 
 
 
