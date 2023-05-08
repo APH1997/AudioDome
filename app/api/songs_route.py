@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, redirect
 from app.models import Song, db, User
-from app.forms import SongForm
+from app.forms import SongForm, EditSongForm
 from flask_login import login_required
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3
 
@@ -52,16 +52,12 @@ def create_song_by_id():
 
 @song_routes.route('/<int:id>', methods=['PUT'])
 def edit_song_by_id(id):
-    print("WE INSIDE THE ROUTE FOR UPDATE SONG")
     song = Song.query.get(id)
-    form = SongForm()
+    form = EditSongForm()
     print(form.data, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     if form.validate_on_submit:
-        print(form.data, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         song.title = form.data['title']
         song.artist = form.data['artist']
-        song.aws_url = form.data['aws_url']
-        song.uploader_id = form.data['uploader_id']
         db.session.commit()
         return song.to_dict()
     else:

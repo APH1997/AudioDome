@@ -35,19 +35,18 @@ const UpdateSongForm = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         const songInfo = {
-            id: songId,
             title: title,
             artist: artist,
         }
-        console.log(songInfo)
-        await dispatch(editSongThunk(songInfo))
+        console.log("REACT FORM SUBMIT SONGINFO", songInfo)
+        await dispatch(editSongThunk(songInfo, songId))
         history.push('/')
     }
 
     if (!song[songId]) return null
 
     return (
-        <form onSubmit={onSubmit}>
+        <form method="PUT" encType="multipart/form-data" onSubmit={onSubmit}>
             <label>
                 <div>Title</div>
                 <input id="song-title" type="text" value={title} placeholder='Song Title' onChange={handleTitleChange} />
