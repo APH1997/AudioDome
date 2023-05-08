@@ -10,6 +10,7 @@ import * as sessionActions from "./store/session";
 import App from "./App";
 
 import "./index.css";
+import Sidebar from "./components/Sidebar";
 
 const store = configureStore();
 
@@ -29,6 +30,7 @@ function Root() {
 					<App />
 					<Modal />
 					<AudioPlayer />
+					<Sidebar />
 				</BrowserRouter>
 			</Provider>
 		</ModalProvider>
