@@ -26,7 +26,7 @@ export const editSongThunk = (song) => async (dispatch) => {
     }
 }
 export const removeSongThunk = (songId) => async (dispatch) => {
-    const response = await fetch(`/${songId}`, { method: 'DELETE' })
+    const response = await fetch(`/songs/${songId}`, { method: 'DELETE' })
     if (response.ok) {
         const data = await response.json()
         await dispatch(deleteSong(songId))
@@ -62,8 +62,8 @@ const songReducer = (state = initialState, action) => {
             action.payload.forEach(song => { newState[song.id] = song })
             return newState
         case DELETE_SONGS:
-            newState = Object.assign({}, state)
-            delete newState[action.payload]
+            newState = Object.assign({}, state.songs)
+            delete newState.songs[action.payload]
             return newState
         default:
             return state;

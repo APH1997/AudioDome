@@ -35,6 +35,9 @@ function App() {
           <Route exact path='/playlist/:playlistId'>
             <PlaylistShow />
           </Route>
+          <Route exact path='/songs/new'>
+            <CreateSongForm />
+          </Route>
         </Switch>
       )}
     </>

@@ -68,9 +68,7 @@ def edit_song_by_id(id):
 @login_required
 def delete_song_by_id(id):
     song = Song.query.get(id)
-
     db.session.delete(song)
-
     db.session.commit()
 
     return jsonify({
