@@ -10,6 +10,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import GetAllPlaylist from "./components/GetPlaylist";
 import PlaylistShow from "./components/PlaylistShow";
+import PlaylistPage from "./components/PlaylistPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ function App() {
             <GetAllSongs />
           </Route>
           <Route exact path='/playlist/:playlistId'>
-            <PlaylistShow />
+            <PlaylistPage />
           </Route>
           <Route exact path='/song/:songId/edit'>
             <UpdateSongForm />
