@@ -33,11 +33,13 @@ export const editSongThunk = (song, id) => async (dispatch) => {
     console.log("INSIDE THE EDIT THUNK", song)
     const response = await fetch(`/songs/${id}`, {
         method: 'PUT',
-        body: song
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(song)
     })
-    console.log("EDIT SONG THUNK BODY:", song)
+    console.log("EDIT SONG THUNK BODY:", response)
     if (response.ok) {
         const data = response.json()
+        // await dispatch(getSongs())
         return song
     }
 }

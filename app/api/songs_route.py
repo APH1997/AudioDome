@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, redirect
+from flask import Blueprint, jsonify, redirect, request
 from app.models import Song, db, User
 from app.forms import SongForm, EditSongForm
 from flask_login import login_required
@@ -23,6 +23,7 @@ def get_song_by_id(id):
 @login_required
 def create_song_by_id():
     form = SongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit:
         print("FORM.DATA IN /SONGS/NEW -------------",form.data)
         song = form.data["aws_url"]
@@ -55,6 +56,7 @@ def edit_song_by_id(id):
     song = Song.query.get(id)
     form = EditSongForm()
     print(form.data, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit:
         song.title = form.data['title']
         song.artist = form.data['artist']

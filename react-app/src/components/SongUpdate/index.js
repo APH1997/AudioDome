@@ -2,12 +2,13 @@ import { useParams, useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import { soloSongThunk } from "../../store/songs";
 import { useEffect, useState } from "react";
-import { editSongThunk } from "../../store/songs";
+import { editSongThunk, getSongsThunk } from "../../store/songs";
 
 const UpdateSongForm = () => {
     const { songId } = useParams()
     const history = useHistory()
     const song = useSelector(state => state.singleSong)
+    const allSongs = useSelector(state => state.songs)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -40,13 +41,15 @@ const UpdateSongForm = () => {
         }
         console.log("REACT FORM SUBMIT SONGINFO", songInfo)
         await dispatch(editSongThunk(songInfo, songId))
+        await dispatch(getSongsThunk())
+        console.log("all songs ==================================>",allSongs)
         history.push('/')
     }
 
     if (!song[songId]) return null
 
     return (
-        <form method="PUT" encType="multipart/form-data" onSubmit={onSubmit}>
+        <form method="PUT" onSubmit={onSubmit}>
             <label>
                 <div>Title</div>
                 <input id="song-title" type="text" value={title} placeholder='Song Title' onChange={handleTitleChange} />

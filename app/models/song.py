@@ -35,7 +35,7 @@ class Song(db.Model):
     )
 
     def to_dict(self):
-        print("UPLOADER USERNAME", self.uploader.username)
+        print('UPLOADER =======================================================================>',self.uploader.username)
         return {
             'id': self.id,
             'title' : self.title,
