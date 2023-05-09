@@ -38,7 +38,7 @@ function SongMenu({ song }) {
 
     function handleUpdate(){
         closeModal()
-        history.push(`/${song.id}/new`)
+        history.push(`song/${song.id}/edit`)
     }
 
     return (
