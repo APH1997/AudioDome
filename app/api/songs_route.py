@@ -28,7 +28,7 @@ def create_song_by_id():
     if form.validate_on_submit():
         print("FORM.DATA IN /SONGS/NEW -------------",form.data)
         song = form.data["aws_url"]
-        print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=============>>>>>>>>>>>>>AAAAAAAAAAAAAAAAAAAAAAAA',song)
+
         song.filename = get_unique_filename(song.filename)
         upload = upload_file_to_s3(song)
 
@@ -39,6 +39,7 @@ def create_song_by_id():
             return upload["errors"]
 
         aws_url = upload["url"]
+        print("aws_url =====================>",aws_url)
 
         new_song = Song(
             title = form.data['title'],
@@ -46,6 +47,8 @@ def create_song_by_id():
             aws_url = aws_url,
             uploader_id = form.data['uploader_id']
         )
+
+        print('new song obj =============================>', new_song)
         db.session.add(new_song)
         db.session.commit()
         redirect(f'/songs/{new_song.id}')

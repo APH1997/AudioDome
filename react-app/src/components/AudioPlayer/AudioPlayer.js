@@ -16,7 +16,6 @@ const AudioPlayer = () => {
     }, [dispatch])
 
     const songId = 3
-    console.log('songs ==============>', songs)
 
     return (
       <div>
