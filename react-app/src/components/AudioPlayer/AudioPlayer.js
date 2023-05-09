@@ -27,7 +27,7 @@ const AudioPlayer = () => {
     audioRef.current.play()
   },[currentSong])
 
-  
+
 return (
   <div>
     <div>
@@ -36,10 +36,10 @@ return (
       </button>
       <DisplayTrack audioRef={audioRef} track={songs[currentSong]?.awsUrl} />
       <Controls audioRef={audioRef} />
-      <ProgressBar />
       <button onClick={skipBack}>
         <IoPlaySkipBack />
       </button>
+      <ProgressBar />
     </div>
   </div>
 );
