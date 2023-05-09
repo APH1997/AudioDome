@@ -14,10 +14,15 @@ function PlaylistMenu({playlistId}) {
         history.push('/')
     }
 
+    const handleUpdate = () => {
+        closeModal()
+        history.push(`/playlist/${playlistId}/edit`)
+    }
+
     return (
         <div>
             <h3>Manage your playlist</h3>
-            <button>Update Playlist</button>
+            <button onClick={handleUpdate}>Update Playlist</button>
             <button onClick={handleDelete}>Delete Playlist</button>
         </div>
     )
