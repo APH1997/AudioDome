@@ -13,6 +13,8 @@ import PlaylistShow from "./components/PlaylistShow";
 import PlaylistPage from "./components/PlaylistPage";
 import PlaylistForm from "./components/CreatePlaylistForm";
 import SearchBar from "./components/SearchBar";
+import EditPlaylistForm from "./components/EditPlaylistForm";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +30,9 @@ function App() {
         <Switch>
           <Route exact path='/playlist/new'>
             <PlaylistForm />
+          </Route>
+          <Route exact path ='/playlist/:playlistId/edit'>
+            <EditPlaylistForm />
           </Route>
           <Route exact path="/login">
             <LoginFormPage />
