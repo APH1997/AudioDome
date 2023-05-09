@@ -4,12 +4,14 @@ import session from './session'
 import songs from './songs'
 import playlistReducer from './playlist';
 import songReducer from './songs';
+import currentSongReducer from './currentSong';
 
 const rootReducer = combineReducers({
   session,
   // songs,
   playlist: playlistReducer,
-  songs: songReducer
+  songs: songReducer,
+  currentSong:currentSongReducer
 });
 
 
