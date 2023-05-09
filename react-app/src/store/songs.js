@@ -81,8 +81,10 @@ const songReducer = (state = initialState, action) => {
             action.payload.forEach(song => { newState[song.id] = song })
             return newState
         case DELETE_SONGS:
-            newState = Object.assign({}, state.songs)
-            delete newState.songs[action.payload]
+            newState = Object.assign({}, state)
+            console.log('AFTER OBJECT.ASSIGN BEFORE DELETE:',newState)
+            delete newState[action.payload]
+            console.log('AFTER DELETE', newState)
             return newState
         case SOLO_SONG:
             newState = Object.assign({}, state.singleSong)

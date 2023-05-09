@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, redirect, request
 from app.models import Song, db, User
 from app.forms import SongForm, EditSongForm
 from flask_login import login_required
-from app.api.aws_helpers import get_unique_filename, upload_file_to_s3
+from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 
 song_routes = Blueprint('song',__name__)
@@ -22,6 +22,7 @@ def get_song_by_id(id):
 @song_routes.route('/new', methods=['POST'])
 @login_required
 def create_song_by_id():
+    print('IM IN THE CREATE ROUTE HELP')
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit:
@@ -70,9 +71,17 @@ def edit_song_by_id(id):
 @song_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_song_by_id(id):
+    """Delete song from db as well as from
+    AWS bucket IF it is not a seeded song"""
+
     song = Song.query.get(id)
     db.session.delete(song)
     db.session.commit()
+
+    if not 1 <= song.id <= 3:
+        remove_file_from_s3(song.aws_url)
+        print('Song Deleted from AWS bucket')
+
 
     return jsonify({
         'message': 'Song deleted'

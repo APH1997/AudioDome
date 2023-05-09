@@ -7,9 +7,9 @@ import songReducer from './songs';
 
 const rootReducer = combineReducers({
   session,
-  songs,
+  // songs,
   playlist: playlistReducer,
-  singleSong: songReducer
+  songs: songReducer
 });
 
 

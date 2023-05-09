@@ -7,7 +7,7 @@ import { editSongThunk, getSongsThunk } from "../../store/songs";
 const UpdateSongForm = () => {
     const { songId } = useParams()
     const history = useHistory()
-    const song = useSelector(state => state.singleSong)
+    const song = useSelector(state => state.songs)
     const allSongs = useSelector(state => state.songs)
     const dispatch = useDispatch()
 
