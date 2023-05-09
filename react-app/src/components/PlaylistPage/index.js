@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { deletePlaylistThunk, getOnePlaylistThunk } from "../../store/playlist"
 import SongCard from "../SongCard"
 import { useHistory } from "react-router-dom"
+import OpenModalButton from "../OpenModalButton"
+import { BsThreeDots } from 'react-icons/bs'
+import PlaylistMenu from "../PlaylistMenuModal"
 
 function PlaylistPage() {
     const history = useHistory()
@@ -23,7 +26,6 @@ function PlaylistPage() {
     }
 
     const handleDelete = (e) => {
-
         dispatch(deletePlaylistThunk(playlistId))
         history.push('/')
     }
@@ -36,12 +38,20 @@ function PlaylistPage() {
             <div className="playlistName">
                 {singlePlaylistObj.name}
             </div>
+            
+            {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">
+                <OpenModalButton
+                buttonText={<BsThreeDots />}
+                modalComponent={<PlaylistMenu playlistId={playlistId}/>}
+                />
+            </div>}
+
             {singlePlaylistObj.songs.map((song, index) => (
                 <div>
                     <SongCard song={song} number={index + 1} />
                 </div>
             ))}
-            {singlePlaylistObj.userId === user.user.id && <button onClick={handleDelete}>Delete Playlist</button>}
+
         </div>
     )
 }

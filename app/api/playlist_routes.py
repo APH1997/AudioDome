@@ -62,10 +62,13 @@ def create_playlist():
 def edit_playlist_by_id(id):
     playlist = Playlist.query.get(id)
     form = PlaylistForm()
-    playlist.name = form.data['name']
-    playlist.playlist_image = form.data['playlist_image']
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
 
-    db.session.commit()
+        playlist.name = form.data['name']
+        playlist.playlist_image = form.data['playlist_image']
+
+        db.session.commit()
 
     return playlist.to_dict()
 
