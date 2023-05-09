@@ -1,6 +1,27 @@
 const GET_ALL_PLAYLIST = 'playlists/GetAllPlaylist';
 const GET_ONE_PLAYLIST = 'playlists/GetOnePlaylist';
-const CREATE_PLAYLIST = 'playlists/CreatePlaylist'
+const CREATE_PLAYLIST = 'playlists/CreatePlaylist';
+const DELETE_PLAYLIST = 'playlists/DeletePlaylist';
+
+
+export const DeletePlaylistAction = (playlistId) => {
+    return {
+        type: DELETE_PLAYLIST,
+        playlistId
+    }
+}
+
+export const deletePlaylistThunk = (playlistId) => async (dispatch) => {
+    const res = await fetch(`/playlists/${playlistId}`, {
+        method: 'DELETE',
+        headers: {'Content-type': 'application/json'}
+    })
+    if (res.ok){
+        await dispatch(DeletePlaylistAction(playlistId))
+    } else {
+        console.log('HELP! THE DELETE THUNK IS BROKEN!')
+    }
+}
 
 export const GetAllPlaylistAction = (playlist) => {
     return {
@@ -83,6 +104,11 @@ const playlistReducer = (state = initialState, action) =>{
         case CREATE_PLAYLIST: {
             const newState = {...state, allPlaylists: {...state.allPlaylists}}
             newState.allPlaylists[action.playlist.id] = action.playlist
+            return newState
+        }
+        case DELETE_PLAYLIST: {
+            const newState = {...state, allPlaylists: {...state.allPlaylists}}
+            delete newState.allPlaylists[action.playlistId]
             return newState
         }
         default:

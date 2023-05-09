@@ -78,6 +78,10 @@ def delete_playlist_by_id(id):
     db.session.delete(playlist)
     db.session.commit()
 
+    if not 1 <= playlist.id <= 3:
+        remove_file_from_s3(playlist.playlist_image)
+        print('Playlist Image Deleted from AWS bucket')
+
     return jsonify({
         'message': 'Playlist successfully deleted'
     })
