@@ -9,7 +9,8 @@ const Controls = ({audioRef, isDisabled}) => {
             audioRef.current.pause()
         }
     },[isPlaying, audioRef])
-    if(isDisabled) setisPlaying(false)
+
+
     return (
         <div>
             <button>
