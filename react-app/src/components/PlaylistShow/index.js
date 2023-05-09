@@ -25,7 +25,7 @@ function PlaylistShow() {
             {singlePlaylistObj.songs.map((song, index) => (
                 <div>
                     <SongCard song={song} number={index+1} />
-                </div>
+                </div>            
             ))}
         </div>
     )
