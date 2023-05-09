@@ -25,7 +25,7 @@ def create_song_by_id():
     print('IM IN THE CREATE ROUTE HELP')
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         print("FORM.DATA IN /SONGS/NEW -------------",form.data)
         song = form.data["aws_url"]
         print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=============>>>>>>>>>>>>>AAAAAAAAAAAAAAAAAAAAAAAA',song)

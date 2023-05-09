@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getAllPlaylistThunk } from "../../store/playlist";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import './playlist.css'
 
 function GetAllPlaylist() {
     const dispatch = useDispatch()
@@ -23,7 +24,7 @@ function GetAllPlaylist() {
                     {/* {playlist.songs.map(song => (
                         <ul>
                             <li> {song.title}</li>
-                        </ul>   
+                        </ul>
                     ))} */}
                 </div>
             ))}

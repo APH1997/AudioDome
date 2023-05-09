@@ -47,20 +47,20 @@ export const getAllPlaylistThunk = () => async dispatch => {
 
 }
 
-export const createPlaylistThunk = (playlist) => async dispatch => {
-
+export const createPlaylistThunk = (formData) => async dispatch => {
+    console.log(JSON.stringify(formData),'not sure what this looks like');
     const res = await fetch ('/playlists/new', {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(playlist)
+        body: formData
     })
 
     if (res.ok) {
         const data = await res.json()
+        console.log(data,'data after res in the thunk');
 
         dispatch(CreatePlaylistAction(data))
+    } else {
+        console.log(res,'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     }
 }
 

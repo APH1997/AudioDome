@@ -13,6 +13,7 @@ s3 = boto3.client(
 BUCKET_NAME = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 ALLOWED_EXTENSIONS = {"mp3", "mp4", "wav"}
+ALLOWED_IMAGES = {'png', 'jpeg', 'jpg'}
 
 def get_unique_filename(filename):
     """ Creates unique filename
