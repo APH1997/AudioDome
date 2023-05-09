@@ -28,7 +28,7 @@ def create_song_by_id():
     if form.validate_on_submit:
         print("FORM.DATA IN /SONGS/NEW -------------",form.data)
         song = form.data["aws_url"]
-     
+        print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=============>>>>>>>>>>>>>AAAAAAAAAAAAAAAAAAAAAAAA',song)
         song.filename = get_unique_filename(song.filename)
         upload = upload_file_to_s3(song)
 

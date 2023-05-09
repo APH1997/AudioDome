@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {IoPlay, IoPlaySkipBack, IoPlaySkipForward, IoPause} from 'react-icons/io5'
-const Controls = ({audioRef}) => {
+const Controls = ({audioRef, isDisabled}) => {
     const [isPlaying, setisPlaying] = useState(false)
     useEffect(()=>{
         if (isPlaying){
@@ -9,6 +9,7 @@ const Controls = ({audioRef}) => {
             audioRef.current.pause()
         }
     },[isPlaying, audioRef])
+    if(isDisabled) setisPlaying(false)
     return (
         <div>
             <button>

@@ -1,7 +1,12 @@
 const DisplayTrack = ({track, audioRef}) => {
+
+    function endFunc(){
+        console.log('song ended')
+    }
+
     return (
     <div>
-        <audio src={track} ref={audioRef}></audio>
+        <audio src={track} ref={audioRef} onEnded={endFunc}></audio>
     </div>
     )
   };
