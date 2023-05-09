@@ -9,17 +9,11 @@ const Controls = ({audioRef, isDisabled}) => {
             audioRef.current.pause()
         }
     },[isPlaying, audioRef])
-    if(isDisabled) setisPlaying(false)
+
+
     return (
         <div>
-            <button>
-                <IoPlaySkipBack />
-            </button>
             {!isPlaying ? <button onClick={()=>setisPlaying(true)}><IoPlay /></button> : <button onClick={()=>setisPlaying(false)}><IoPause /></button> }
-            <button>
-                <IoPlaySkipForward />
-            </button>
-
         </div>
     )
 }

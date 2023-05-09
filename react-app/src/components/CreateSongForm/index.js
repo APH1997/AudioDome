@@ -27,7 +27,7 @@ function CreateSongForm(){
         history.push("/")
     }
     return (
-        <form onSubmit={HandleSubmit}>
+        <form onSubmit={HandleSubmit} encType="multipart/form-data">
             <label>
                 <div>Upload A Song</div>
                 <input id="song-upload" type="file" name="song" accept="audio/*" onChange={handleFileUpload}/>

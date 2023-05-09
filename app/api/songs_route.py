@@ -22,13 +22,11 @@ def get_song_by_id(id):
 @song_routes.route('/new', methods=['POST'])
 @login_required
 def create_song_by_id():
-    print('IM IN THE CREATE ROUTE HELP')
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print("FORM.DATA IN /SONGS/NEW -------------",form.data)
         song = form.data["aws_url"]
-        print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=============>>>>>>>>>>>>>AAAAAAAAAAAAAAAAAAAAAAAA',song)
+
         song.filename = get_unique_filename(song.filename)
         upload = upload_file_to_s3(song)
 
@@ -46,6 +44,7 @@ def create_song_by_id():
             aws_url = aws_url,
             uploader_id = form.data['uploader_id']
         )
+
         db.session.add(new_song)
         db.session.commit()
         redirect(f'/songs/{new_song.id}')
@@ -56,7 +55,6 @@ def create_song_by_id():
 def edit_song_by_id(id):
     song = Song.query.get(id)
     form = EditSongForm()
-    print(form.data, "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit:
         song.title = form.data['title']

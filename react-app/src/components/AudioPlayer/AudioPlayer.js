@@ -4,13 +4,22 @@ import ProgressBar from "./ProgressBar";
 import { useState, useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllSongsThunk } from "../../store/currentSong";
+import { IoPlaySkipBack, IoPlaySkipForward } from 'react-icons/io5'
 
 const AudioPlayer = () => {
-  const audioRef = useRef()
   const dispatch = useDispatch()
+  const audioRef = useRef()
   const songs = useSelector(state => state.currentSong)
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
   const songIds = Object.keys(songs)
+
+  useEffect(() => {
+    dispatch(getAllSongsThunk())
+  }, [dispatch])
+
+  useEffect(() => {
+    audioRef.current.play()
+  }, [currentSongIndex])
 
   useEffect(() => {
     dispatch(getAllSongsThunk())
@@ -38,15 +47,29 @@ const AudioPlayer = () => {
     audioRef.current.currentTime = 0
     audioRef.current.play()
   }
+  function skipForward() {
+    setCurrentSongIndex(currentSongIndex + 1)
+    return
+  }
+  function skipBack() {
+    return setCurrentSongIndex(currentSongIndex - 1)
+  }
 
   return (
     <div>
       <div>
+        <button onClick={skipForward}>
+          <IoPlaySkipForward />
+        </button>
         <DisplayTrack audioRef={audioRef} track={songs[songIds[currentSongIndex]]?.awsUrl} />
         <Controls audioRef={audioRef} handleNextSong={handleNextSong} />
+        <button onClick={skipBack}>
+          <IoPlaySkipBack />
+        </button>
         <ProgressBar />
       </div>
     </div>
   );
 };
-export default AudioPlayer;
+
+export default AudioPlayer
