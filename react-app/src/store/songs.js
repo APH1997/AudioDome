@@ -72,6 +72,33 @@ export const getSongsThunk = () => async (dispatch) => {
         return data
     }
 }
+
+export const likeSongThunk = (songId, userId) => async (dispatch) => {
+    const response = await fetch(`/songs/${songId}/likes/users/${userId}`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({songId, userId})
+    })
+    if (response.ok) {
+        return response
+    } else {
+        return {"message": "like song thunk machine broke"}
+    }
+}
+
+export const unlikeSongThunk = (songId, userId) => async (dispatch) => {
+    const response = await fetch(`/songs/${songId}/likes/users/${userId}`, {
+        method: "DELETE",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({songId, userId})
+    })
+    if (response.ok) {
+        return response
+    } else {
+        return {"message": "unlike song thunk machine broke"}
+    }
+}
+
 const initialState = { songs: null , singleSong: null};
 const songReducer = (state = initialState, action) => {
     let newState;

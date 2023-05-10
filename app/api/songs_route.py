@@ -84,3 +84,28 @@ def delete_song_by_id(id):
     return jsonify({
         'message': 'Song deleted'
     })
+
+@song_routes.route('/<int:id>/likes/users/<int:userId>',methods=["POST"])
+@login_required
+def like_song_by_id(id, userId):
+    song = Song.query.get(id)
+    user = User.query.get(userId)
+    song.song_likes.append(user)
+    db.session.commit()
+
+    return jsonify({
+        "message": f"{song.title} liked by {user.username}"
+    })
+
+
+@song_routes.route('/<int:id>/likes/users/<int:userId>',methods=["DELETE"])
+@login_required
+def unlike_song_by_id(id, userId):
+    song = Song.query.get(id)
+    user = User.query.get(userId)
+    song.song_likes = [user for user in song.song_likes if user.id != userId]
+    db.session.commit()
+
+    return jsonify({
+        "message": f"{song.title} unliked by {user.username}"
+    })
