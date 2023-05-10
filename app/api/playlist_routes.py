@@ -100,7 +100,19 @@ def add_song_to_playlists():
         db.session.commit()
     return jsonify("success or failure who knows")
 
+@playlist_routes.route('/<int:playlist_id>/delete/<int:song_id>', methods=['DELETE'])
+@login_required
+def remove_song_from_playlist(playlist_id, song_id):
+    print('WE RAE IN THE ROUTES ~~~~~~~~~~~~~~~~~~~~~~~~~')
+    playlist = Playlist.query.get(playlist_id)
+    song = Song.query.get(song_id)
+    print(playlist, '<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    playlist.playlist_songs = [songs for songs in playlist.playlist_songs if songs.id != song_id]
+    db.session.commit()
 
+    return jsonify({
+        'message': f'{playlist.playlist_songs} has been updated'
+    })
 
 @playlist_routes.route('/<int:id>', methods=['DELETE'])
 @login_required

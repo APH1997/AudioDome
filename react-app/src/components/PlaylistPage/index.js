@@ -56,7 +56,7 @@ function PlaylistPage() {
 
             {singlePlaylistObj.songs.map((song, index) => (
                 <div>
-                    <SongCard song={song} number={index + 1} />
+                    <SongCard song={song} number={index + 1} playlistId={playlistId} />
                 </div>
             ))}
 

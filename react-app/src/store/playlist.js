@@ -56,6 +56,21 @@ export const getOnePlaylistThunk = (id) => async dispatch => {
     }
 }
 
+export const deleteSongFromPlaylistThunk = (playlist_id, song_id) => async dispatch => {
+    console.log('woahweoawhle kjaklwje lkawjel kawj');
+    const res = await fetch(`/playlists/${playlist_id}/delete/${song_id}`,{
+        method: "DELETE",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(playlist_id, song_id)
+    })
+
+    console.log(res,'res in the thunk');
+    if (res.ok){
+        console.log('DELETE SUCCESSFUL');
+    } else {
+        console.log('DELETE UNSUCCESSFUL');
+    }
+}
 export const getAllPlaylistThunk = () => async dispatch => {
 
     const res = await fetch ('/playlists/')

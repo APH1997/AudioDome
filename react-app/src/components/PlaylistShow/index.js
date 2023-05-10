@@ -14,6 +14,7 @@ function PlaylistShow() {
     useEffect(() => {
         dispatch(getOnePlaylistThunk(playlistId))
     }, [dispatch])
+    console.log(playlistId);
 
     if (Object.values(singlePlaylistObj).length === 0){
         return null
@@ -24,8 +25,8 @@ function PlaylistShow() {
             {/* hello */}
             {singlePlaylistObj.songs.map((song, index) => (
                 <div>
-                    <SongCard song={song} number={index+1} />
-                </div>            
+                    <SongCard song={song} number={index+1} playlistId={playlistId} />
+                </div>
             ))}
         </div>
     )

@@ -6,8 +6,9 @@ import DeleteSong from '../DeleteSongModal/DeleteSong';
 import { useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal'
 import AddToPlaylist from '../AddToPlaylistModal/addToPlaylist';
+import DeleteFromPlaylist from '../DeleteFromPlaylistModal';
 
-function SongMenu({ song }) {
+function SongMenu({ song, playlistId }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -46,15 +47,19 @@ function SongMenu({ song }) {
         <>
             <ul>
                 <div>
-                    <li>Add to a Playlist</li>
                     <OpenModalButton
                         buttonText="Add to a playlist"
                         onItemClick={closeMenu}
                         modalComponent={<AddToPlaylist song={song} />}
                     />
-
                 </div>
-                <li>Remove from Playlist</li>
+                <div>
+                    <OpenModalButton
+                        buttonText="Delete from playlist"
+                        onItemClick={closeMenu}
+                        modalComponent={<DeleteFromPlaylist song={song} playlistId={playlistId} />}
+                    />
+                </div>
                 {user.user.username === song.uploader &&
                     <>
                         <div>
