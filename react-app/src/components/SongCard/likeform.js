@@ -1,24 +1,30 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
-import { likeSongThunk } from "../../store/songs"
+import { likeSongThunk, unlikeSongThunk } from "../../store/songs"
 
 function LikeForm({song}){
     const dispatch = useDispatch()
-    const [liked, setLiked] = useState(false)
     const user = useSelector(state => state.session)
+
+    const isSongLiked = () => {
+        for (let songId of user.user.likes) {
+            if (songId === song.id) {
+                return true
+            }
+        }
+        return false
+    }
+
+    const [liked, setLiked] = useState(isSongLiked())
+
     const handleLike = () => {
         setLiked(true)
-        // console.log("The song is liked")
-        // console.log(song.title)
-        // console.log(user)
-        dispatch(likeSongThunk(song.id, user.id))
+        dispatch(likeSongThunk(song.id, user.user.id))
     }
 
     const handleUnlike = () => {
         setLiked(false)
-        // console.log("The song is unliked")
-        // console.log(song.title)
-
+        dispatch(unlikeSongThunk(song.id, user.user.id))
     }
     return (
 

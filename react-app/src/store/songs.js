@@ -80,10 +80,22 @@ export const likeSongThunk = (songId, userId) => async (dispatch) => {
         body: JSON.stringify({songId, userId})
     })
     if (response.ok) {
-        const data = await response.json()
-        return data
+        return response
     } else {
         return {"message": "like song thunk machine broke"}
+    }
+}
+
+export const unlikeSongThunk = (songId, userId) => async (dispatch) => {
+    const response = await fetch(`/songs/${songId}/likes/users/${userId}`, {
+        method: "DELETE",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({songId, userId})
+    })
+    if (response.ok) {
+        return response
+    } else {
+        return {"message": "unlike song thunk machine broke"}
     }
 }
 
