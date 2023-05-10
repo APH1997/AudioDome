@@ -54,12 +54,16 @@ const AudioPlayer = () => {
     audioRef.current.play()
   }
   function skipForward() {
-    setCurrentSongIndex(currentSongIndex + 1)
-    return
+    setCurrentSongIndex((currentSongIndex + 1) % songIds.length)
+    if (currentSongIndex === songIds.length - 1) {
+      setCurrentSongIndex(0)
+    }
   }
+
   function skipBack() {
-    return setCurrentSongIndex(currentSongIndex - 1)
+    setCurrentSongIndex((currentSongIndex - 1 + songIds.length) % songIds.length)
   }
+
 
   return (
     <div>
