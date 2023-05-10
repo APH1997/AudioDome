@@ -22,7 +22,13 @@ const UserProileModal = () => {
     }, [user])
 
     const handelSubmit = () => {
-        const userInfo = {username, firstName, lastName, bio}
+        const userInfo = {
+            username,
+            first_name: firstName,
+            last_name: lastName,
+            bio
+        }
+        console.log(userInfo,'User Info');
         dispatch(updateUserThunk(userInfo,user.id))
         closeModal()
     }

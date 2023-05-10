@@ -33,6 +33,7 @@ def user_edit(id):
     print("WHERE IN THE USER ROUTE ========================================")
     user = User.query.get(id)
     form = EditUserForm()
+    print(form.data, '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user.username = form.data['username']

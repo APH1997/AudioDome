@@ -53,11 +53,12 @@ export const updateUserThunk = (userInfo, id) => async dispatch => {
 	const res = await fetch(`/api/users/${id}/edit`, {
 		method: "PUT",
 		headers: {"Content-Type": "application/json"},
-		body:userInfo
+		body:JSON.stringify(userInfo)
 	})
 	if (res.ok){
-		const data = await res.json()
-		return data
+		console.log('it is being accepted');
+	} else {
+		console.log('it is not being accepted');
 	}
 }
 
