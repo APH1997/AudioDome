@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllSongsThunk } from "../../store/currentSong";
 import { IoPlaySkipBack, IoPlaySkipForward } from 'react-icons/io5'
+import './audioplayer.css'
 
 const AudioPlayer = () => {
   const dispatch = useDispatch()
@@ -57,16 +58,24 @@ const AudioPlayer = () => {
 
   return (
     <div>
-      <div>
-        <button onClick={skipForward}>
-          <IoPlaySkipForward />
-        </button>
-        <DisplayTrack audioRef={audioRef} track={songs[songIds[currentSongIndex]]?.awsUrl} />
-        <Controls audioRef={audioRef} handleNextSong={handleNextSong} />
-        <button onClick={skipBack}>
-          <IoPlaySkipBack />
-        </button>
-        <ProgressBar />
+      <div className="AudioPlayerContainer">
+        <div className="skipBackBtn">
+          <button onClick={skipBack}>
+            <IoPlaySkipBack />
+          </button>
+        </div>
+        <div className="PlayPauseBtn">
+          <DisplayTrack audioRef={audioRef} track={songs[songIds[currentSongIndex]]?.awsUrl} />
+          <Controls audioRef={audioRef} handleNextSong={handleNextSong} />
+        </div>
+        <div className="skipForwardBtn">
+          <button onClick={skipForward}>
+            <IoPlaySkipForward />
+          </button>
+        </div>
+        <div className="ProgressBar">
+          <ProgressBar />
+        </div>
       </div>
     </div>
   );

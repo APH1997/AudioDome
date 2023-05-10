@@ -42,7 +42,6 @@ function App() {
           </Route>
           <Route exact path="/">
             <GetAllPlaylist />
-            <GetAllSongs />
           </Route>
           <Route exact path='/playlist/:playlistId'>
             <PlaylistPage />

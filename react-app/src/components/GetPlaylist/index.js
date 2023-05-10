@@ -16,16 +16,11 @@ function GetAllPlaylist() {
     },[dispatch])
 
     return (
-        <div>
+        <div className="containerforHomePage">
             {allPlaylists.map(playlist => (
                 <div key={playlist.id} className="playlistCardContainer" onClick={(e) => history.push(`/playlist/${playlist.id}`)}>
                     <img className="playlistImg" src={playlist.playlistImage} />
                     <div>{playlist.name}</div>
-                    {/* {playlist.songs.map(song => (
-                        <ul>
-                            <li> {song.title}</li>
-                        </ul>
-                    ))} */}
                 </div>
             ))}
         </div>

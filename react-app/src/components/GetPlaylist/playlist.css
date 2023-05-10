@@ -1,3 +1,16 @@
-.playlistImg {
-    width: 300px;
+.containerforHomePage{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px;
+}
+.playlistCardContainer{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 23%;
+    margin-bottom: 20px;
+}
+.playlistImg{
+    height: 225px;
+    width: 225px;
 }

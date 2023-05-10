@@ -1,0 +1,14 @@
+.AudioPlayerContainer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    padding: 20px;
+    box-sizing:border-box;
+    display: flex;
+    width: 100%;
+    border: black 1px solid;
+}
+.skipForwardBtn{
+    display: inline;
+}
