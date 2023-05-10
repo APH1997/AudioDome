@@ -2,12 +2,14 @@ import { useEffect, useState} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getOnePlaylistThunk, updatePlaylistThunk } from "../../store/playlist"
+import { useHistory } from "react-router-dom"
 
 
 function EditPlaylistForm() {
     const {playlistId} = useParams()
     const dispatch = useDispatch()
     const playlist = useSelector(state => state.playlist.singlePlaylist)
+    const history = useHistory()
 
     const [name, setName] = useState(playlist.name)
     const [imageFile, setImageFile] = useState(null)
@@ -32,6 +34,7 @@ function EditPlaylistForm() {
         }
 
         await dispatch(updatePlaylistThunk(formData, playlistId))
+        history.push('/')
     }
 
     if (!Object.values(playlist).length) return null

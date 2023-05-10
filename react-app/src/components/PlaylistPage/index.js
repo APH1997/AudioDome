@@ -38,7 +38,7 @@ function PlaylistPage() {
             <div className="playlistName">
                 {singlePlaylistObj.name}
             </div>
-            
+
             {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">
                 <OpenModalButton
                 buttonText={<BsThreeDots />}
