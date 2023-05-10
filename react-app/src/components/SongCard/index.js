@@ -5,6 +5,7 @@ import SongMenu from "../SongMenuModal"
 import OpenModalButton from "../OpenModalButton";
 import  {useState, useEffect, useRef } from "react"
 import { useDispatch } from "react-redux";
+import LikeForm from './likeform';
 
 function SongCard({song, number}){
     const dispatch = useDispatch();
@@ -47,6 +48,9 @@ function SongCard({song, number}){
             </div>
             <div className='song-card-uploader'>
                 <div>{song?.uploader}</div>
+            </div>
+            <div className='song-card-like-form'>
+                <LikeForm song={song}/>
             </div>
             <div className='song-card-menu-dots'>
                 {/* <BsThreeDots /> */}

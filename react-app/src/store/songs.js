@@ -72,6 +72,21 @@ export const getSongsThunk = () => async (dispatch) => {
         return data
     }
 }
+
+export const likeSongThunk = (songId, userId) => async (dispatch) => {
+    const response = await fetch(`/songs/${songId}/likes/users/${userId}`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({songId, userId})
+    })
+    if (response.ok) {
+        const data = await response.json()
+        return data
+    } else {
+        return {"message": "like song thunk machine broke"}
+    }
+}
+
 const initialState = { songs: null , singleSong: null};
 const songReducer = (state = initialState, action) => {
     let newState;
