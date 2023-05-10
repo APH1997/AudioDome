@@ -127,6 +127,22 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const deleteUserThunk = (user) => async (dispatch) => {
+	const response = await fetch(`/api/users/${user.id}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(user.id)
+	})
+
+	if (response.ok){
+		console.log("DELETED USER MAYBE")
+	} else {
+		console.log("DEFINITELY DID NOT DELETE USER")
+	}
+}
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:

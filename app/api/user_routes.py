@@ -45,3 +45,13 @@ def user_edit(id):
         return user.to_dict()
     else:
         return "Bad Data"
+
+
+@user_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_user(id):
+    user = User.query.get(id)
+    db.session.delete(user)
+    db.session.commit()
+
+    return "Succesfully deleted"
