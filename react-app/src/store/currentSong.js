@@ -1,9 +1,29 @@
-const GET_ALL = "currentSong/GET_ALL"
+const GET_ALL = "currentSong/GET_ALL";
+const GET_PLAYLIST_SONG = 'currentSong/GET_PLAYLIST_SONG';
 
 const getAllSong = (data) => {
     return {
         type: GET_ALL,
         payload: data
+    }
+}
+
+const getPlaylistSongAction = (data) => {
+    return {
+        type: GET_PLAYLIST_SONG,
+        payload: data
+    }
+}
+
+export const getPlaylistSongsThunk = () => async dispatch => {
+
+    const res = await fetch (`/playlists/${id}`)
+
+    if(res.ok){
+        const data = await res.json()
+
+        dispatch(getPlaylistSongAction(data))
+        return data
     }
 }
 
@@ -19,10 +39,18 @@ const initialState = {currentSong: null}
 const currentSongReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case GET_ALL:
+        case GET_ALL: {
             newState = Object.assign({}, state.currentSong)
             action.payload.forEach(song => {newState[song.id] = song})
             return newState
+        }
+        case GET_PLAYLIST_SONG: {
+            newState = Object.assign({}, state.currentSong)
+            console.log(action, 'ACtion in currentSongSTore');
+            console.log(newState, 'newState in currentSongSTore');
+            return newState
+        }
+
         default:
             return state;
     }

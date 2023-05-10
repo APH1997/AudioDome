@@ -21,6 +21,10 @@ function PlaylistPage() {
         dispatch(getOnePlaylistThunk(playlistId))
     }, [dispatch])
 
+    const handleSongPlayer = () => {
+
+    }
+
     if (Object.values(singlePlaylistObj).length === 0) {
         return null
     }
