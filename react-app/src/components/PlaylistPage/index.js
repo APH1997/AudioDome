@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
 import { BsThreeDots } from 'react-icons/bs'
 import PlaylistMenu from "../PlaylistMenuModal"
+import { getPlaylistSongsThunk } from "../../store/currentSong"
 
 function PlaylistPage() {
     const history = useHistory()
@@ -22,7 +23,7 @@ function PlaylistPage() {
     }, [dispatch])
 
     const handleSongPlayer = () => {
-
+        dispatch(getPlaylistSongsThunk(playlistId))
     }
 
     if (Object.values(singlePlaylistObj).length === 0) {
@@ -42,6 +43,9 @@ function PlaylistPage() {
             <div className="playlistName">
                 {singlePlaylistObj.name}
             </div>
+            <button onClick={handleSongPlayer}>
+                Change this button later
+            </button>
 
             {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">
                 <OpenModalButton

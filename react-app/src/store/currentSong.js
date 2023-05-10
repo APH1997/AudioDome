@@ -15,7 +15,7 @@ const getPlaylistSongAction = (data) => {
     }
 }
 
-export const getPlaylistSongsThunk = () => async dispatch => {
+export const getPlaylistSongsThunk = (id) => async dispatch => {
 
     const res = await fetch (`/playlists/${id}`)
 
@@ -46,11 +46,9 @@ const currentSongReducer = (state = initialState, action) => {
         }
         case GET_PLAYLIST_SONG: {
             newState = Object.assign({}, state.currentSong)
-            console.log(action, 'ACtion in currentSongSTore');
-            console.log(newState, 'newState in currentSongSTore');
+            action.payload.songs.forEach(song => {newState[song.id] = song})
             return newState
         }
-
         default:
             return state;
     }
