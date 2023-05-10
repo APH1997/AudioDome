@@ -14,6 +14,7 @@ import PlaylistPage from "./components/PlaylistPage";
 import PlaylistForm from "./components/CreatePlaylistForm";
 import SearchBar from "./components/SearchBar";
 import EditPlaylistForm from "./components/EditPlaylistForm";
+import UserPage from "./components/UserPage";
 
 
 function App() {
@@ -54,6 +55,9 @@ function App() {
           </Route>
           <Route exact path='/search'>
             <SearchBar />
+          </Route>
+          <Route exact path='/users/:userId'>
+            <UserPage />
           </Route>
         </Switch>
       )}
