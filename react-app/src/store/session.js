@@ -41,14 +41,24 @@ export const getUserByIdThunk = (id) => async dispatch => {
 	const res = await fetch(`/api/users/${id}`)
 
 	if (res.ok){
+
 		const data = await res.json()
 		dispatch(getUser(data))
 		return data
 	}
 }
 
-export const updateUserThunk = () => async dispatch => {
-	
+export const updateUserThunk = (userInfo, id) => async dispatch => {
+	console.log("HERE IS THE CONSOLE.log",id)
+	const res = await fetch(`/api/users/${id}/edit`, {
+		method: "PUT",
+		headers: {"Content-Type": "application/json"},
+		body:userInfo
+	})
+	if (res.ok){
+		const data = await res.json()
+		return data
+	}
 }
 
 export const login = (email, password) => async (dispatch) => {

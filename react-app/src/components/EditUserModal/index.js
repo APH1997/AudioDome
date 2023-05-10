@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { updateUserThunk } from "../../store/session"
+import {useModal} from '../../context/Modal'
 
 const UserProileModal = () => {
     const [username, setUsername] = useState('')
@@ -7,6 +9,8 @@ const UserProileModal = () => {
     const [lastName, setLastName] = useState('')
     const [bio, setBio] = useState('')
     const user = useSelector(state => state.session.user)
+    const dispatch = useDispatch()
+    const {closeModal} = useModal()
 
     useEffect(() => {
         if (user) {
@@ -18,7 +22,9 @@ const UserProileModal = () => {
     }, [user])
 
     const handelSubmit = () => {
-        return 'something'
+        const userInfo = {username, firstName, lastName, bio}
+        dispatch(updateUserThunk(userInfo,user.id))
+        closeModal()
     }
 
     return (
