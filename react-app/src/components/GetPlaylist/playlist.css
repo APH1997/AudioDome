@@ -7,9 +7,25 @@
 .playlistCardContainer{
     display: flex;
     flex-direction: column;
+    align-items: center;
     flex: 0 0 23%;
     margin-bottom: 20px;
 }
+.playlistCardContainer:hover{
+    cursor: pointer;
+}
+#playlistName{
+    width:225px;
+    margin: 0px;
+
+}
+
+#playlistuserName{
+    width:225px;
+    margin: 0px;
+
+}
+
 .playlistImg{
     height: 225px;
     width: 225px;

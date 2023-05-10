@@ -12,6 +12,7 @@ const AudioPlayer = () => {
   const audioRef = useRef()
   const songs = useSelector(state => state.currentSong)
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
+  const [volume1, setVolume] = useState(1)
   const songIds = Object.keys(songs)
 
   useEffect(() => {
@@ -25,6 +26,10 @@ const AudioPlayer = () => {
   useEffect(() => {
     dispatch(getAllSongsThunk())
   }, [dispatch])
+
+  useEffect(() => {
+    audioRef.current.volume = volume1 / 100
+  },[volume1])
 
   useEffect(() => {
     const audio = audioRef.current
@@ -76,6 +81,7 @@ const AudioPlayer = () => {
         <div className="ProgressBar">
           <ProgressBar />
         </div>
+        <input type="text" value={volume1} onChange={e => setVolume(e.target.value)}></input>
       </div>
     </div>
   );
