@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, redirect, request
 from app.models import Playlist, db, User, Song
-from app.forms import PlaylistForm, EditPlaylistForm
+from app.forms import PlaylistForm, EditPlaylistForm, AddSongToPlaylistForm
 from flask_login import login_required
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
@@ -84,10 +84,28 @@ def edit_playlist_by_id(id):
     else:
         return "BAD DATA IN EDIT PLAYLIST ROUTE"
 
+@playlist_routes.route('/add', methods=['PUT'])
+@login_required
+def add_song_to_playlists():
+    form = AddSongToPlaylistForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('form.data =====================>',form.data)
+    if form.validate_on_submit():
+        playlistList = form.data['playlist_ids'].split(',')
+        playlists = [Playlist.query.get(id) for id in playlistList]
+        song = Song.query.get(form.data['song_id'])
+
+        added = [playlist.playlist_songs.append(song) for playlist in playlists]
+
+        db.session.commit()
+    return jsonify("success or failure who knows")
+
+
 
 @playlist_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_playlist_by_id(id):
+
     playlist = Playlist.query.get(id)
 
     db.session.delete(playlist)

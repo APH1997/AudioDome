@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import DeleteSong from '../DeleteSongModal/DeleteSong';
 import { useHistory } from 'react-router-dom';
-import {useModal} from '../../context/Modal'
+import { useModal } from '../../context/Modal'
+import AddToPlaylist from '../AddToPlaylistModal/addToPlaylist';
 
 function SongMenu({ song }) {
     const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function SongMenu({ song }) {
     const ulRef = useRef();
     const user = useSelector(state => state.session)
     const history = useHistory()
-    const {closeModal} = useModal()
+    const { closeModal } = useModal()
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
@@ -36,7 +37,7 @@ function SongMenu({ song }) {
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
     const closeMenu = () => setShowMenu(false);
 
-    function handleUpdate(){
+    function handleUpdate() {
         closeModal()
         history.push(`song/${song.id}/edit`)
     }
@@ -44,7 +45,15 @@ function SongMenu({ song }) {
     return (
         <>
             <ul>
-                <li>Add to Playlist</li>
+                <div>
+                    <li>Add to a Playlist</li>
+                    <OpenModalButton
+                        buttonText="Add to a playlist"
+                        onItemClick={closeMenu}
+                        modalComponent={<AddToPlaylist song={song} />}
+                    />
+
+                </div>
                 <li>Remove from Playlist</li>
                 {user.user.username === song.uploader &&
                     <>

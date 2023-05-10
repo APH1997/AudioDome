@@ -98,6 +98,19 @@ export const updatePlaylistThunk = (formData, playlistId) => async dispatch => {
     }
 }
 
+export const addSongToPlaylistThunk = (playlist_ids, song_id) => async(dispatch) => {
+    const res = await fetch (`/playlists/add`, {
+        method: 'PUT',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({playlist_ids, song_id})
+    })
+    if (res.ok){
+        console.log("ADD TO PLAYLIST THUNK WORKING")
+    } else {
+        console.log("ADD TO PLAYLIST THUNK NOT WORKING")
+    }
+}
+
 const initialState = { allPlaylists:{}, singlePlaylist:{} }
 
 const playlistReducer = (state = initialState, action) =>{
