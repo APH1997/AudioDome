@@ -4,6 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { AiOutlineUser } from "react-icons/ai"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -39,8 +40,10 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="user-button" onClick={openMenu}>
+    <h1>
+        <AiOutlineUser />
+    </h1>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (

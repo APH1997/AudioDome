@@ -5,3 +5,32 @@
 .hidden {
   display: none;
 }
+
+.navigation-bar{
+  display: flex;
+  border: 1px solid red;
+  background-color: rgba(169, 169, 169, 0.42);
+  position: sticky;
+  width: 12%;
+  border-radius: 5px;
+}
+
+.navigation-div{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.home-icon{
+  size: 5rem;
+}
+
+li,
+ul {
+  list-style-type: none;
+}
+
+.user-button {
+  border: none;
+  background-color: transparent;
+}
