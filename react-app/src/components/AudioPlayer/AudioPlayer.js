@@ -10,9 +10,13 @@ import './audioplayer.css'
 const AudioPlayer = () => {
   const dispatch = useDispatch()
   const audioRef = useRef()
+  const progressBar = useRef()
+  const animationRef = useRef()
   const songs = useSelector(state => state.currentSong)
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
   const [volume1, setVolume] = useState(1)
+  const [duration, setDuration] = useState(0)
+  const [currTime, setCurrTime] = useState(0)
   const songIds = Object.keys(songs)
 
   useEffect(() => {
@@ -20,20 +24,16 @@ const AudioPlayer = () => {
   }, [dispatch])
 
   useEffect(() => {
-    audioRef.current.play()
-  }, [currentSongIndex])
-
-  useEffect(() => {
-    dispatch(getAllSongsThunk())
-  }, [dispatch])
-
-  useEffect(() => {
     audioRef.current.volume = volume1 / 100
-  },[volume1])
+  }, [volume1])
 
   useEffect(() => {
     const audio = audioRef.current
     audio.play()
+    const seconds = Math.floor(audio.duration)
+    setDuration(seconds)
+    // console.log(progressBar);
+    progressBar.current.max = seconds
     audio.addEventListener('ended', () => {
       setCurrentSongIndex((currentSongIndex + 1) % songIds.length)
       audio.currentTime = 0
@@ -48,6 +48,14 @@ const AudioPlayer = () => {
     }
   }, [audioRef, currentSongIndex, songIds])
 
+  const calculateTime = (secs) => {
+    const minutes = Math.floor(secs / 60);
+    const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    const seconds = Math.floor(secs % 60);
+    const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    return `${returnedMinutes}:${returnedSeconds}`;
+  }
+
   const handleNextSong = () => {
     setCurrentSongIndex((currentSongIndex + 1) % songIds.length)
     audioRef.current.currentTime = 0
@@ -60,8 +68,21 @@ const AudioPlayer = () => {
     }
   }
 
+  const changeRange = () => {
+    audioRef.current.currentTime = progressBar.current.value
+    progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`)
+    setCurrTime(progressBar.current.value)
+  }
+
   function skipBack() {
     setCurrentSongIndex((currentSongIndex - 1 + songIds.length) % songIds.length)
+  }
+
+  const whilePlaying = () => {
+    progressBar.current.value = audioRef.current.currentTime;
+    progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`)
+    setCurrTime(progressBar.current.value)
+    animationRef.current = requestAnimationFrame(whilePlaying)
   }
 
 
@@ -75,7 +96,7 @@ const AudioPlayer = () => {
         </div>
         <div className="PlayPauseBtn">
           <DisplayTrack audioRef={audioRef} track={songs[songIds[currentSongIndex]]?.awsUrl} />
-          <Controls audioRef={audioRef} handleNextSong={handleNextSong} />
+          <Controls whilePlaying={whilePlaying} audioRef={audioRef} handleNextSong={handleNextSong} animationRef={animationRef} />
         </div>
         <div className="skipForwardBtn">
           <button onClick={skipForward}>
@@ -83,7 +104,9 @@ const AudioPlayer = () => {
           </button>
         </div>
         <div className="ProgressBar">
-          <ProgressBar />
+          <div>
+            <input type="range" className='progressBar' defaultValue="0" ref={progressBar} onChange={changeRange}/>
+          </div>
         </div>
         <input type="text" value={volume1} onChange={e => setVolume(e.target.value)}></input>
       </div>

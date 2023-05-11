@@ -1,6 +1,13 @@
+import './audioplayer.css'
+
 const ProgressBar = () => {
     return (
-        <div>ProgressBar</div>
+        <div>
+            <input
+            type="range"
+            className="progressBar"
+             />
+        </div>
     )
 }
 export default ProgressBar
