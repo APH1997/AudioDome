@@ -14,7 +14,7 @@ const AudioPlayer = () => {
   const animationRef = useRef()
   const songs = useSelector(state => state.currentSong)
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
-  const [volume1, setVolume] = useState(1)
+  const [volume1, setVolume] = useState(20)
   const [duration, setDuration] = useState(0)
   const [currTime, setCurrTime] = useState(0)
   const songIds = Object.keys(songs)
@@ -96,22 +96,33 @@ const AudioPlayer = () => {
           <Controls whilePlaying={whilePlaying} audioRef={audioRef} handleNextSong={handleNextSong} animationRef={animationRef} />
         </div>
         <div className="skipForwardBtn">
-          <button onClick={skipForward}>
+          <button onClick={skipForward} className="skipForward">
             <IoPlaySkipForward />
           </button>
         </div>
+        <div className="artistSongContainer">
+          <div className="scroll-container">
+            <div className="songTitleandArtist">
+              {songs[songIds[currentSongIndex]]?.title}
+            </div>
+            <div className="songArtist">
+              {songs[songIds[currentSongIndex]]?.artist}
+            </div>
+          </div>
+        </div>
         <div className="ProgressBar">
-        <span className="timeInBar">
+          <span className="timeInBar">
             {calculateTime(currTime)}
           </span>
           <div>
-            <input type="range" className='progressBar' defaultValue="0" ref={progressBar} onChange={changeRange}/>
+            <input type="range" className='progressBar' defaultValue="0" ref={progressBar} onChange={changeRange} />
           </div>
           <span className="timeInBar">
             {(duration && !isNaN(duration)) && calculateTime(duration)}
           </span>
         </div>
         <input type="range" value={volume1} onChange={e => setVolume(e.target.value)}></input>
+        {`${volume1}`}
       </div>
     </div>
   );
