@@ -15,32 +15,46 @@ function SongCard({song, number, playlistId}){
 
 
     return(
-        <div className='song-card-container'>
-            <div className='song-card-song-number'>
-                {number}
-            </div>
-            <div className='song-card-title'>
-                <div>{song?.title}</div>
-            </div>
-            <div className='song-card-artist'>
-                <div>{song?.artist}</div>
-            </div>
-            <div className='song-card-uploader'>
-                <div>{song?.uploader}</div>
-            </div>
-            <div className='song-card-like-form'>
-                <LikeForm song={song}/>
-            </div>
-            <div className='song-card-menu-dots'>
-                {/* <BsThreeDots /> */}
-                {/* <SongMenu /> */}
+        <>
+            <td>{number}</td>
+            <td>{song?.title}</td>
+            <td>{song?.artist}</td>
+            <td>{song?.uploader}</td>
+            <td><LikeForm song={song} /></td>
+            <td>Menu model</td>
+            <td>
                 <OpenModalButton
                 buttonText= {< BsThreeDots />}
-                modalComponent={<SongMenu song={song} playlistId={playlistId} />}
-            />
-            </div>
+                modalComponent={<SongMenu song={song} playlistId={playlistId} />}/>
+            </td>
 
-        </div>
+        </>
+        // <div className='song-card-container'>
+        //     <div className='song-card-song-number'>
+        //         {number}
+        //     </div>
+        //     <div className='song-card-title'>
+        //         <div>{song?.title}</div>
+        //     </div>
+        //     <div className='song-card-artist'>
+        //         <div>{song?.artist}</div>
+        //     </div>
+        //     <div className='song-card-uploader'>
+        //         <div>{song?.uploader}</div>
+        //     </div>
+        //     <div className='song-card-like-form'>
+        //         <LikeForm song={song}/>
+        //     </div>
+        //     <div className='song-card-menu-dots'>
+        //         {/* <BsThreeDots /> */}
+        //         {/* <SongMenu /> */}
+                // <OpenModalButton
+                // buttonText= {< BsThreeDots />}
+                // modalComponent={<SongMenu song={song} playlistId={playlistId} />}
+        //     />
+        //     </div>
+
+        // </div>
     )
 }
 

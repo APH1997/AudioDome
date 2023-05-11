@@ -17,15 +17,22 @@ function GetAllSongs() {
     if (allSongs.songs === null) return null
     return (
         <div className='all-songs-container'>
-            <div className='all-songs-container-headers'>
-                <div>#</div>
-                <div>Title</div>
-                <div>Artist</div>
-                <div>Uploaded by</div>
-            </div>
-            {Object.values(allSongs).length > 0 && Object.values(allSongs).map((song, index) =>
-                <SongCard song={song} number={index + 1}/>,
-                )}
+            <table className='all-songs-container-headers'>
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Uploaded By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Object.values(allSongs).length > 0 && Object.values(allSongs).map((song, index) =>
+                        <tr><SongCard song={song} number={index + 1} /></tr>,
+                        )}
+                </tbody>
+            </table>
         </div>
     )
 }
