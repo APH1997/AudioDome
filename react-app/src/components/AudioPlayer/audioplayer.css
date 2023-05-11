@@ -1,26 +1,33 @@
 .AudioPlayerContainer {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     background-color: black;
     padding: 20px;
     box-sizing: border-box;
     display: flex;
-    width: 100%;
-    border: black 1px solid;
-}
-
-.skipForwardBtn {
-    display: inline;
-}
-
-body {
-    margin: 0px;
-}
-
-.progressBar {
-    --seek-before-width: 0
-}
-.AudioPlayerContainer {
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    z-index: 1;
     color: white;
-}
+  }
+
+  .skipForwardBtn {
+    display: inline;
+  }
+
+  .progressBar {
+    --seek-before-width: 0;
+  }
+
+  .coverArtSong {
+    height: 60px;
+    width: 60px;
+  }
+
+  body {
+    margin: 0;
+    padding-bottom: 80px;
+  }
