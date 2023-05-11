@@ -111,7 +111,7 @@ const AudioPlayer = () => {
             {(duration && !isNaN(duration)) && calculateTime(duration)}
           </span>
         </div>
-        <input type="text" value={volume1} onChange={e => setVolume(e.target.value)}></input>
+        <input type="range" value={volume1} onChange={e => setVolume(e.target.value)}></input>
       </div>
     </div>
   );
