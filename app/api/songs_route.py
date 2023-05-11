@@ -53,6 +53,7 @@ def create_song_by_id():
         db.session.add(new_song)
         db.session.commit()
         redirect(f'/songs/{new_song.id}')
+        return jsonify(new_song.to_dict())
     else:
         return "Bad Data"
 

@@ -2,6 +2,7 @@ const GET_SONGS = "songs/GET_SONGS"
 const UPDATE_SONGS = "songs/UPDATE_SONGS"
 const DELETE_SONGS = "songs/DELETE_SONGS"
 const SOLO_SONG = "songs/SOLO_SONG"
+const CREATE_SONG = "songs/CREATE_SONG"
 
 const getSongs = (data) => {
     return {
@@ -18,6 +19,13 @@ const deleteSong = (songId) => {
 const soloSong = (data) => {
     return {
         type: SOLO_SONG,
+        payload: data
+    }
+}
+
+const createSong = (data) => {
+    return {
+        type: CREATE_SONG,
         payload: data
     }
 }
@@ -53,14 +61,13 @@ export const removeSongThunk = (songId) => async (dispatch) => {
     }
 }
 export const createSongThunk = (song) => async (dispatch) => {
-    console.log("HERE IS THE CONSOLE.LOG", song)
     const response = await fetch('/songs/new', {
         method: 'POST',
         body: song,
     });
     if (response.ok) {
         const newSong = await response.json();
-        return newSong
+        await dispatch(createSong(newSong))
     }
 }
 
@@ -115,6 +122,10 @@ const songReducer = (state = initialState, action) => {
             return newState
         case SOLO_SONG:
             newState = Object.assign({}, state.singleSong)
+            newState[action.payload.id] = action.payload
+            return newState
+        case CREATE_SONG:
+            newState = Object.assign({}, state.songs)
             newState[action.payload.id] = action.payload
             return newState
         default:

@@ -1,17 +1,26 @@
-import React, { useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { createSongThunk } from '../../store/songs'
+import { createSongThunk, getSongsThunk } from '../../store/songs'
 
 function CreateSongForm(){
     const currentUser = useSelector(state => state.session.user);
+    const songs = useSelector(state => state.songs)
+    const songLength = Object.values(songs).length
     console.log(currentUser)
+    console.log('songs use selector',songs)
+    console.log('songs length',Object.values(songs).length)
     const history = useHistory()
     const dispatch = useDispatch()
     const [title , setTitle] = useState('');
     const [artist, setArtist] = useState('');
+    const [currSongLength, setCurrSongLength] = useState(songLength)
     const [file, setFile] = useState(null)
     const [imgFile, setImageFile] = useState(null)
+
+    useEffect(() => {
+        dispatch(getSongsThunk())
+    }, [dispatch, songLength])
 
     function handleFileUpload(e){
         setFile(e.target.files[0])
@@ -22,6 +31,8 @@ function CreateSongForm(){
     /*----------------------ANY VALIDATION WOULD DO HERE AS WELL FOR THE FORM FOR HANDLESUBMIT-------------------- */
     const HandleSubmit = async (e) => {
         e.preventDefault()
+        history.push('/songs/all')
+        setCurrSongLength(+songLength)
         const formData = new FormData()
         formData.append("title",title)
         formData.append("artist",artist)
@@ -29,7 +40,7 @@ function CreateSongForm(){
         formData.append("uploader_id", currentUser.id)
         formData.append('song_image', imgFile)
         await dispatch(createSongThunk(formData))
-        history.push("/")
+        console.log('song lengths', songLength, currSongLength)
     }
     return (
         <form onSubmit={HandleSubmit} encType="multipart/form-data">
