@@ -1,0 +1,14 @@
+.all-songs-container{
+    padding-top: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
+
+.all-songs-container-headers{
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
