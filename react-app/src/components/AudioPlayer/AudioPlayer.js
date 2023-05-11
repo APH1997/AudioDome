@@ -39,6 +39,11 @@ const AudioPlayer = () => {
       audio.currentTime = 0
       audio.play()
     })
+    audio.addEventListener('timeupdate', () => {
+      if (audio.currentTime === 0) {
+        audio.play();
+      }
+    });
     return () => {
       audio.removeEventListener('loadedmetadata', () => {
       });
@@ -56,7 +61,6 @@ const AudioPlayer = () => {
   const handleNextSong = () => {
     setCurrentSongIndex((currentSongIndex + 1) % songIds.length)
     audioRef.current.currentTime = 0
-    audioRef.current.play()
   }
   function skipForward() {
     setCurrentSongIndex((currentSongIndex + 1) % songIds.length)
