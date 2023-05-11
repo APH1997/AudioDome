@@ -2,7 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
-
+from flask_wtf.file import FileField, FileAllowed
+from app.api.aws_helpers import ALLOWED_IMAGES
 
 def username_exists(form, field):
     # Checking if username is already in use
@@ -17,3 +18,4 @@ class EditUserForm(FlaskForm):
     first_name = StringField('first name', validators=[DataRequired()])
     last_name = StringField('last name', validators=[DataRequired()])
     bio = TextAreaField('bio', validators=[DataRequired()])
+    profile_image = FileField("Profile Image", validators=[FileAllowed(list(ALLOWED_IMAGES))])
