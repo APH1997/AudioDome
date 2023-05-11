@@ -16,10 +16,11 @@
 
 body {
     margin: 0px;
-    color: white;
 }
 
 .progressBar {
     --seek-before-width: 0
 }
-
+.AudioPlayerContainer {
+    color: white;
+}

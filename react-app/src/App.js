@@ -8,7 +8,7 @@ import CreateSongForm from "./components/CreateSongForm";
 import UpdateSongForm from "./components/SongUpdate";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import GetAllPlaylist from "./components/GetPlaylist";
+import GetPlaylist from "./components/GetPlaylist";
 import PlaylistShow from "./components/PlaylistShow";
 import PlaylistPage from "./components/PlaylistPage";
 import PlaylistForm from "./components/CreatePlaylistForm";
@@ -44,7 +44,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
-            <GetAllPlaylist />
+            <GetPlaylist />
           </Route>
           <Route exact path='/playlist/:playlistId'>
             <PlaylistPage />
