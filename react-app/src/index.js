@@ -4,11 +4,13 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
 import { ModalProvider, Modal } from "./context/Modal";
+import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import App from "./App";
 
 import "./index.css";
+import Sidebar from "./components/Sidebar";
 
 const store = configureStore();
 
@@ -27,6 +29,8 @@ function Root() {
 				<BrowserRouter>
 					<App />
 					<Modal />
+					<AudioPlayer />
+					<Sidebar />
 				</BrowserRouter>
 			</Provider>
 		</ModalProvider>

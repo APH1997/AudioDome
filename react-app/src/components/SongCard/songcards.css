@@ -1,0 +1,12 @@
+.song-card-container{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: 80%;
+    border: 1px black solid
+}
+
+.song-card-menu-dots > svg{
+    align-self: center
+}
+

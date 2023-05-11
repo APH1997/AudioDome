@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const GET_USER_BY_ID = 'session/GET_USER_BY_ID';
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -11,7 +12,14 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-const initialState = { user: null };
+const getUser = (data) => {
+	return {
+		type: GET_USER_BY_ID,
+		payload : data
+	}
+}
+
+const initialState = { user: null, userPage: {} };
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -28,6 +36,31 @@ export const authenticate = () => async (dispatch) => {
 		dispatch(setUser(data));
 	}
 };
+
+export const getUserByIdThunk = (id) => async dispatch => {
+	const res = await fetch(`/api/users/${id}`)
+
+	if (res.ok){
+
+		const data = await res.json()
+		dispatch(getUser(data))
+		return data
+	}
+}
+
+export const updateUserThunk = (userInfo, id) => async dispatch => {
+	console.log("HERE IS THE CONSOLE.log",id)
+	const res = await fetch(`/api/users/${id}/edit`, {
+		method: "PUT",
+		headers: {"Content-Type": "application/json"},
+		body:JSON.stringify(userInfo)
+	})
+	if (res.ok){
+		console.log('it is being accepted');
+	} else {
+		console.log('it is not being accepted');
+	}
+}
 
 export const login = (email, password) => async (dispatch) => {
 	const response = await fetch("/api/auth/login", {
@@ -94,12 +127,33 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const deleteUserThunk = (user) => async (dispatch) => {
+	const response = await fetch(`/api/users/${user.id}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(user.id)
+	})
+
+	if (response.ok){
+		console.log("DELETED USER MAYBE")
+	} else {
+		console.log("DEFINITELY DID NOT DELETE USER")
+	}
+}
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case GET_USER_BY_ID: {
+			const newState = {...state, user:{...state.user}, userPage: action.payload}
+
+			return newState
+		}
 		default:
 			return state;
 	}

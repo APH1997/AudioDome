@@ -1,6 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required
-from app.models import User
+from app.models import User, db
+from app.forms import EditUserForm
+
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +25,33 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def user_edit(id):
+    print("WHERE IN THE USER ROUTE ========================================")
+    user = User.query.get(id)
+    form = EditUserForm()
+    print(form.data, '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user.username = form.data['username']
+        user.first_name = form.data['first_name']
+        user.last_name = form.data['last_name']
+        user.bio = form.data['bio']
+
+        db.session.commit()
+        return user.to_dict()
+    else:
+        return "Bad Data"
+
+
+@user_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_user(id):
+    user = User.query.get(id)
+    db.session.delete(user)
+    db.session.commit()
+
+    return "Succesfully deleted"
