@@ -21,6 +21,16 @@ function LoginFormModal() {
     }
   };
 
+  const handleOnClick = async () => {
+    const email = "demoo@aa.io"
+    const password = "password"
+    const data = await dispatch(login(email, password));
+      if (data) {
+        setErrors(data);
+      } else {
+          closeModal()
+      }
+    }
   return (
     <>
       <h1>Log In</h1>
@@ -50,6 +60,7 @@ function LoginFormModal() {
         </label>
         <button type="submit">Log In</button>
       </form>
+        <button onClick={handleOnClick}>Demo User</button>
     </>
   );
 }
