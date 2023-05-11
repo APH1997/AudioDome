@@ -20,3 +20,7 @@ body {
 .progressBar {
     --seek-before-width: 0
 }
+
+.timeInBar{
+    color: aliceblue;
+}

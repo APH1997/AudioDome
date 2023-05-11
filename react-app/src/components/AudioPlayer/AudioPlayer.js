@@ -28,25 +28,22 @@ const AudioPlayer = () => {
   }, [volume1])
 
   useEffect(() => {
-    const audio = audioRef.current
-    audio.play()
-    const seconds = Math.floor(audio.duration)
-    setDuration(seconds)
-    // console.log(progressBar);
-    progressBar.current.max = seconds
+    const audio = audioRef.current;
+    audio.addEventListener('loadedmetadata', () => {
+      const seconds = Math.floor(audio.duration);
+      setDuration(seconds);
+      progressBar.current.max = seconds;
+    });
     audio.addEventListener('ended', () => {
       setCurrentSongIndex((currentSongIndex + 1) % songIds.length)
       audio.currentTime = 0
       audio.play()
     })
     return () => {
-      audio.removeEventListener('ended', () => {
-        setCurrentSongIndex((currentSongIndex + 1) % songIds.length)
-        audio.currentTime = 0
-        audio.play()
-      })
-    }
-  }, [audioRef, currentSongIndex, songIds])
+      audio.removeEventListener('loadedmetadata', () => {
+      });
+    };
+  }, [audioRef, currentSongIndex, songIds]);
 
   const calculateTime = (secs) => {
     const minutes = Math.floor(secs / 60);
@@ -104,9 +101,15 @@ const AudioPlayer = () => {
           </button>
         </div>
         <div className="ProgressBar">
+        <span className="timeInBar">
+            {calculateTime(currTime)}
+          </span>
           <div>
             <input type="range" className='progressBar' defaultValue="0" ref={progressBar} onChange={changeRange}/>
           </div>
+          <span className="timeInBar">
+            {(duration && !isNaN(duration)) && calculateTime(duration)}
+          </span>
         </div>
         <input type="text" value={volume1} onChange={e => setVolume(e.target.value)}></input>
       </div>
