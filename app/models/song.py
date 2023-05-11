@@ -14,6 +14,7 @@ class Song(db.Model):
     artist = db.Column(db.String(255))
     aws_url = db.Column(db.String(255))
     uploader_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    song_image = db.Column(db.String(255), nullable=False)
 
     song_playlists = db.relationship(
         "Playlist",
@@ -40,5 +41,6 @@ class Song(db.Model):
             'title' : self.title,
             'artist' : self.artist,
             'awsUrl' : self.aws_url,
-            'uploader': self.uploader.username
+            'uploader': self.uploader.username,
+            'songImage': self.playlist_image
         }

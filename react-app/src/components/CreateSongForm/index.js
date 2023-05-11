@@ -11,9 +11,13 @@ function CreateSongForm(){
     const [title , setTitle] = useState('');
     const [artist, setArtist] = useState('');
     const [file, setFile] = useState(null)
+    const [imgFile, setImageFile] = useState(null)
 
     function handleFileUpload(e){
         setFile(e.target.files[0])
+    }
+    const handleAddImage = (e) => {
+        setImageFile(e.target.files[0])
     }
     /*----------------------ANY VALIDATION WOULD DO HERE AS WELL FOR THE FORM FOR HANDLESUBMIT-------------------- */
     const HandleSubmit = async (e) => {
@@ -23,6 +27,7 @@ function CreateSongForm(){
         formData.append("artist",artist)
         formData.append("aws_url", file)
         formData.append("uploader_id", currentUser.id)
+        formData.append('song_image', imgFile)
         await dispatch(createSongThunk(formData))
         history.push("/")
     }
@@ -31,6 +36,10 @@ function CreateSongForm(){
             <label>
                 <div>Upload A Song</div>
                 <input id="song-upload" type="file" name="song" accept="audio/*" onChange={handleFileUpload}/>
+            </label>
+            <label>
+                <div>Add Song Cover-Art</div>
+                <input id="songImages" type="file" name="songPicture" accept='"image/*' onChange={handleAddImage} />
             </label>
             <label>
                 <div>Title</div>
