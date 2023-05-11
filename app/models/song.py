@@ -42,5 +42,5 @@ class Song(db.Model):
             'artist' : self.artist,
             'awsUrl' : self.aws_url,
             'uploader': self.uploader.username,
-            'songImage': self.playlist_image
+            'songImage': self.song_image
         }

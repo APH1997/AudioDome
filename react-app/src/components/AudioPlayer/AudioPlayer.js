@@ -90,6 +90,9 @@ const AudioPlayer = () => {
   return (
     <div>
       <div className="AudioPlayerContainer">
+        <div>
+        <img className="coverArtSong" src={`${songs[songIds[currentSongIndex]]?.songImage}`} />
+        </div>
         <div className="skipBackBtn">
           <button onClick={skipBack}>
             <IoPlaySkipBack />
