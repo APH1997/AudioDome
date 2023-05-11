@@ -3,9 +3,13 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
-  const user = useSelector(state => state.session)
-  console.log(user);
-  const userId = user.user.id
+  const userObj = useSelector(state => state.session)
+  const user = Object.values(userObj)
+  console.log(user, 'user');
+  if(!user[0]){
+    return ''
+  }
+  const userId = user[0].id
   return (
     <div className="sidebar">
       <ul>
@@ -20,6 +24,9 @@ const Sidebar = () => {
         </ul>
         <ul>
           <Link to="/playlist/new">Create Playlist</Link>
+        </ul>
+        <ul>
+          <Link to="/songs/new">Create Song</Link>
         </ul>
         <ul>
           <Link to="/likedsong">Liked Songs</Link>
