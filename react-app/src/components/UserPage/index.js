@@ -7,7 +7,7 @@ import { BsThreeDots } from 'react-icons/bs'
 import OpenModalButton from "../OpenModalButton"
 import { useEffect } from "react"
 import { getUserByIdThunk } from "../../store/session"
-
+import './userpage.css'
 
 const UserPage = () => {
     const { userId } = useParams()
@@ -33,8 +33,8 @@ const UserPage = () => {
                 {pageUser?.firstName}{' '}{pageUser?.lastName}
             </div>
             }
-            <div>
-                {pageUser?.profileImage}
+            <div className="user-profile-pic">
+                <img src={pageUser?.profileImage}/>
             </div>
             <div>
                 {pageUser?.username}
