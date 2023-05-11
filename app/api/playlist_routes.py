@@ -37,6 +37,7 @@ def create_playlist():
         if 'url' not in upload:
             print('url errors if any ========>', upload['errors'])
             return upload['errors']
+        
         playlist_image = upload['url']
 
         new_playlist = Playlist(
