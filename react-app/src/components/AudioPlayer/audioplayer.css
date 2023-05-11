@@ -1,26 +1,25 @@
-.AudioPlayerContainer{
+.AudioPlayerContainer {
     position: fixed;
     bottom: 0;
     width: 100%;
     background-color: black;
     padding: 20px;
-    box-sizing:border-box;
+    box-sizing: border-box;
     display: flex;
     width: 100%;
     border: black 1px solid;
 }
-.skipForwardBtn{
+
+.skipForwardBtn {
     display: inline;
 }
 
 body {
     margin: 0px;
+    color: white;
 }
 
 .progressBar {
     --seek-before-width: 0
 }
 
-.timeInBar{
-    color: aliceblue;
-}
