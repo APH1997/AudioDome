@@ -60,3 +60,4 @@ class User(db.Model, UserMixin):
             'playlists': [playlist.to_dict() for playlist in self.playlists],
             'likes': [song.id for song in self.user_likes]
         }
+

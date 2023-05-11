@@ -44,7 +44,7 @@ function PlaylistPage() {
                 {singlePlaylistObj.name}
             </div>
             <button onClick={handleSongPlayer}>
-                Change this button later
+                Play This Playlist
             </button>
 
             {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">

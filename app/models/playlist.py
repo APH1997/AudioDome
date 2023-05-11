@@ -28,7 +28,7 @@ class Playlist(db.Model):
         return {
             'id': self.id,
             'userId': self.user_id,
-            'creator': self.user.username,
+            'creator': [self.user.username, self.user.id],
             'name': self.name,
             'playlistImage': self.playlist_image,
             'songs': [song.to_dict() for song in self.playlist_songs]
