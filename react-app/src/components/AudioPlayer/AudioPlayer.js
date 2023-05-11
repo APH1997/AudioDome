@@ -104,9 +104,15 @@ const AudioPlayer = () => {
           </button>
         </div>
         <div className="ProgressBar">
+        <span className="timeInBar">
+            {calculateTime(currTime)}
+          </span>
           <div>
             <input type="range" className='progressBar' defaultValue="0" ref={progressBar} onChange={changeRange}/>
           </div>
+          <span className="timeInBar">
+            {(duration && !isNaN(duration)) && calculateTime(duration)}
+          </span>
         </div>
         <input type="text" value={volume1} onChange={e => setVolume(e.target.value)}></input>
       </div>
