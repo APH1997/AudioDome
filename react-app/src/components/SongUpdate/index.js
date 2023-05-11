@@ -45,6 +45,7 @@ const UpdateSongForm = () => {
         console.log("all songs ==================================>",allSongs)
         history.push('/')
     }
+    console.log(song);
 
     if (!song[songId]) return null
 

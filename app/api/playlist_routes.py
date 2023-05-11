@@ -27,15 +27,16 @@ def create_playlist():
     form = PlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print(form.data,'DATAAAAAAAAAAAAAAAAAAAA')
+    print(form.validate_on_submit(),'<=======================================')
     if form.validate_on_submit():
         playlistPicture = form.data['playlist_image']
-
+        print('I Have Passed Validation')
         playlistPicture.filename = get_unique_filename(playlistPicture.filename)
         upload = upload_file_to_s3(playlistPicture)
 
         if 'url' not in upload:
+            print('url errors if any ========>', upload['errors'])
             return upload['errors']
-
         playlist_image = upload['url']
 
         new_playlist = Playlist(
@@ -43,6 +44,7 @@ def create_playlist():
             name = form.data['name'],
             playlist_image = playlist_image
         )
+        print('created Playlist =============>', new_playlist)
         song_list = []
         for song_id in form.data['playlist_songs'].split(','):
             song = Song.query.get(song_id)
@@ -55,6 +57,7 @@ def create_playlist():
         db.session.commit()
         redirect('/')
     else:
+        print('~~~~~~~~~~~~~Bad Data~~~~~~~~~~~~~~')
         return "Bad Data"
 
 
