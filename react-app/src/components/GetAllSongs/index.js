@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getSongsThunk } from '../../store/songs';
 import "./allsongs.css"
 import SongCard from '../SongCard';
+import { getPlaylistSongsThunk } from '../../store/currentSong';
 
 
 function GetAllSongs() {
-    const dispatch = useDispatch()
     const allSongs = useSelector(state => state.songs)
-    console.log("HERE IS YOUR ALLSONGS", allSongs)
+    const allSongsLength = Object.values(allSongs).length
+    const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getSongsThunk())
-    }, [dispatch])
+        dispatch(getPlaylistSongsThunk())
+    }, [dispatch, allSongsLength])
+
 
     if (allSongs.songs === null) return null
     return (
