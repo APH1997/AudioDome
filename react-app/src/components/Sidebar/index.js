@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
   const user = useSelector(state => state.session)
   console.log(user);
-  const userId = user.user.id
+  // const userId = user.user.id
   return (
     <div className="sidebar">
       <ul>
@@ -16,7 +16,7 @@ const Sidebar = () => {
           <Link to="/search">Search</Link>
         </ul>
         <ul>
-          <Link to={`/users/${userId}`}>Your Library</Link>
+          {/* <Link to={`/users/${userId}`}>Your Library</Link> */}
         </ul>
         <ul>
           <Link to="/playlist/new">Create Playlist</Link>
