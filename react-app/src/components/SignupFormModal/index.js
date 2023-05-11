@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+import { login } from "../../store/session";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -28,6 +29,17 @@ function SignupFormModal() {
 			]);
 		}
 	};
+
+	const handleOnClick = async () => {
+	const email = "demoo@aa.io"
+	const password = "password"
+	const data = await dispatch(login(email, password));
+    if (data) {
+      setErrors(data);
+    } else {
+        closeModal()
+    }
+	}
 
 	return (
 		<>
@@ -76,6 +88,7 @@ function SignupFormModal() {
 				</label>
 				<button type="submit">Sign Up</button>
 			</form>
+				<button onClick={handleOnClick}>Demo User</button>
 		</>
 	);
 }

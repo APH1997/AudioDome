@@ -15,11 +15,17 @@ const UserPage = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const pageUser = useSelector(state => state.session.userPage)
-    console.log(pageUser);
+    // console.log(Object.values(pageUser));
 
     useEffect(() => {
         dispatch(getUserByIdThunk(userId))
     },[dispatch])
+
+    // if(Object.values(pageUser).length === 0){
+    //     return(
+    //         <div>Loading</div>
+    //     )
+    // }
 
     return (
         <div>
