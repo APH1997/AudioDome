@@ -17,7 +17,7 @@ const Sidebar = () => {
           <Link to="/">Home</Link>
         </ul>
         <ul>
-          <Link to="/search">Search</Link>
+          <Link to="/songs/all">Browse Songs</Link>
         </ul>
         <ul>
           <Link to={`/users/${userId}`}>Your Library</Link>

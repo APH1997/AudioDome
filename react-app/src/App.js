@@ -53,6 +53,9 @@ function App() {
           <Route exact path='/songs/new'>
             <CreateSongForm />
           </Route>
+          <Route exact path ='/songs/all'>
+            <GetAllSongs />
+          </Route>
           <Route exact path='/search'>
             <SearchBar />
           </Route>
