@@ -21,7 +21,6 @@ function SongCard({song, number, playlistId}){
             <td>{song?.artist}</td>
             <td>{song?.uploader}</td>
             <td><LikeForm song={song} /></td>
-            <td>Menu model</td>
             <td>
                 <OpenModalButton
                 buttonText= {< BsThreeDots />}
