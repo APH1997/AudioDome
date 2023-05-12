@@ -20,7 +20,7 @@ function LikedSongs() {
         dispatch(getUserByIdThunk(user.id))
     }, [dispatch, allSongsLength, wasThereAClick])
 
-    function toggleWasThereAClick(){
+    function toggleWasThereAClick() {
         setWasThereAClick(!wasThereAClick)
         console.log("I HEARD A CLICK!")
     }
@@ -39,9 +39,11 @@ function LikedSongs() {
                     </tr>
                 </thead>
                 <tbody onClick={toggleWasThereAClick}>
-                    {likedSongs.length > 0 && likedSongs.map((song, index) =>
-                        <tr><SongCard song={song} number={index + 1} /></tr>,
-                        )}
+                    {likedSongs.map((song, index) =>
+                        <tr key={song.id}>
+                            <SongCard song={song} number={index + 1} />
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>
