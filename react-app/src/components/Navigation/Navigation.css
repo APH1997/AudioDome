@@ -30,3 +30,7 @@
 .home-icon {
   size: 5rem;
 }
+
+.hidden {
+  display: none
+}

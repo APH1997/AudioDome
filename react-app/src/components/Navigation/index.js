@@ -20,7 +20,6 @@ function Navigation({ isLoaded }) {
 
 				<div className='navigation-div'>
 					<ProfileButton user={sessionUser} />
-					<p>User</p>
 				</div>
 
 			)}
