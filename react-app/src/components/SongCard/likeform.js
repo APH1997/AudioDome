@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { likeSongThunk, unlikeSongThunk } from "../../store/songs"
+import { getSongsThunk } from "../../store/songs"
+import { getUserByIdThunk } from "../../store/session"
 
 function LikeForm({song}){
     const dispatch = useDispatch()
     const user = useSelector(state => state.session)
 
-    
+
     const isSongLiked = () => {
         for (let songId of user.user.likes) {
             if (songId === song.id) {
@@ -27,6 +29,10 @@ function LikeForm({song}){
         setLiked(false)
         dispatch(unlikeSongThunk(song.id, user.user.id))
     }
+
+        useEffect(() => {
+            dispatch(getUserByIdThunk(user.user.id))
+        },[liked])
     return (
 
         <>

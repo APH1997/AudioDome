@@ -3,6 +3,8 @@ const UPDATE_SONGS = "songs/UPDATE_SONGS"
 const DELETE_SONGS = "songs/DELETE_SONGS"
 const SOLO_SONG = "songs/SOLO_SONG"
 const CREATE_SONG = "songs/CREATE_SONG"
+const LIKE_SONG = "songs/LIKE_SONG"
+const UNLIKE_SONG = "songs/UNLIKE_SONG"
 
 const getSongs = (data) => {
     return {
@@ -13,6 +15,18 @@ const getSongs = (data) => {
 const deleteSong = (songId) => {
     return {
         type: DELETE_SONGS,
+        payload: songId
+    }
+}
+const likeSongs = (data) => {
+    return {
+        type: LIKE_SONG,
+        payload: data
+    }
+};
+const unlikeSong = (songId) => {
+    return {
+        type: UNLIKE_SONG,
         payload: songId
     }
 }
@@ -87,8 +101,12 @@ export const likeSongThunk = (songId, userId) => async (dispatch) => {
         body: JSON.stringify({songId, userId})
     })
     if (response.ok) {
+        const data = await response.json()
+        dispatch(likeSongs(data))
+        console.log("likesongthunkresponse", response)
         return response
     } else {
+        console.log(" NO likesongthunkresponse")
         return {"message": "like song thunk machine broke"}
     }
 }
@@ -100,8 +118,12 @@ export const unlikeSongThunk = (songId, userId) => async (dispatch) => {
         body: JSON.stringify({songId, userId})
     })
     if (response.ok) {
+        const data = await response.json()
+        dispatch(unlikeSong(data))
+        console.log("unlikesongthunkresponse", response)
         return response
     } else {
+        console.log(" NO unlikesongthunkresponse")
         return {"message": "unlike song thunk machine broke"}
     }
 }
