@@ -16,6 +16,7 @@ import SearchBar from "./components/SearchBar";
 import EditPlaylistForm from "./components/EditPlaylistForm";
 import UserPage from "./components/UserPage";
 import SignupFormModal from "./components/SignupFormModal";
+import LikedSongs from "./components/LikedSongs";
 
 
 function App() {
@@ -63,6 +64,10 @@ function App() {
           </Route>
           <Route exact path='/users/:userId'>
             <UserPage />
+          </Route>
+          <Route exact path='/users/:userId/liked'>
+            <h1>Here are your liked songs</h1>
+            <LikedSongs />
           </Route>
         </Switch>
       )}

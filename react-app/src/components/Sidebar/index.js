@@ -29,7 +29,7 @@ const Sidebar = () => {
           <Link to="/songs/new">Create Song</Link>
         </ul>
         <ul>
-          <Link to="/likedsong">Liked Songs</Link>
+          <Link to="/users/:userId/liked">Liked Songs</Link>
         </ul>
       </ul>
     </div>
