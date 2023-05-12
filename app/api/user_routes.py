@@ -56,7 +56,7 @@ def user_edit(id):
         user.bio = form.data['bio']
 
         db.session.commit()
-        return user.to_dict()
+        return jsonify(user.to_dict())
     else:
         return jsonify({"message": "You DID NOT update your profile! Aw man!"})
 
