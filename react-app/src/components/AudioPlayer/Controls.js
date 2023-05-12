@@ -17,7 +17,7 @@ const Controls = ({audioRef, isDisabled, animationRef, whilePlaying}) => {
 
     return (
         <div className='PlayPauseBtn'>
-            {!isPlaying ? <button onClick={()=>setisPlaying(true)}><IoPlay /></button> : <button onClick={()=>setisPlaying(false)}><IoPause /></button> }
+            {!isPlaying ? <button className="buttons" onClick={()=>setisPlaying(true)}><IoPlay /></button> : <button className="buttons" onClick={()=>setisPlaying(false)}><IoPause /></button> }
         </div>
     )
 }

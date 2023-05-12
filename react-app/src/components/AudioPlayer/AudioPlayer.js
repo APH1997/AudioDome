@@ -90,26 +90,18 @@ const AudioPlayer = () => {
   return (
     <div>
       <div className="AudioPlayerContainer">
-        <div>
-        <img className="coverArtSong" src={`${songs[songIds[currentSongIndex]]?.songImage}`} />
+      <div className="ProgressBar">
+          <div>
+            <input type="range" className='progressBar' defaultValue="0" ref={progressBar} onChange={changeRange} />
+          </div>
         </div>
-        <div className="skipBackBtn">
-          <button onClick={skipBack}>
-            <IoPlaySkipBack />
-          </button>
-        </div>
-        <div className="PlayPauseBtn">
-          <DisplayTrack audioRef={audioRef} track={songs[songIds[currentSongIndex]]?.awsUrl} />
-          <Controls whilePlaying={whilePlaying} audioRef={audioRef} handleNextSong={handleNextSong} animationRef={animationRef} />
-        </div>
-        <div className="skipForwardBtn">
-          <button onClick={skipForward} className="skipForward">
-            <IoPlaySkipForward />
-          </button>
-        </div>
-        <div className="artistSongContainer">
-          <div className="scroll-container">
-            <div className="songTitleandArtist">
+        <div className="Songinfo">
+        <div className="PicTitleArtist">
+          <div>
+            <img className="coverArtSong" src={`${songs[songIds[currentSongIndex]]?.songImage}`} />
+          </div>
+          <div className="SongArtistandTitle">
+            <div className="songTitle">
               {songs[songIds[currentSongIndex]]?.title}
             </div>
             <div className="songArtist">
@@ -117,19 +109,37 @@ const AudioPlayer = () => {
             </div>
           </div>
         </div>
-        <div className="ProgressBar">
-          <span className="timeInBar">
+        <div className="functionBtn">
+          <div className="timeInBar">
             {calculateTime(currTime)}
-          </span>
-          <div>
-            <input type="range" className='progressBar' defaultValue="0" ref={progressBar} onChange={changeRange} />
           </div>
-          <span className="timeInBar">
+          <div className="skipBackBtn">
+            <button className="buttons" onClick={skipBack}>
+              <IoPlaySkipBack />
+            </button>
+          </div>
+          <div className="PlayPauseBtn">
+            <DisplayTrack audioRef={audioRef} track={songs[songIds[currentSongIndex]]?.awsUrl} />
+            <Controls whilePlaying={whilePlaying} audioRef={audioRef} handleNextSong={handleNextSong} animationRef={animationRef} />
+          </div>
+          <div className="skipForwardBtn">
+            <button className="buttons" onClick={skipForward}>
+              <IoPlaySkipForward />
+            </button>
+          </div>
+          <div className="timeInBar">
             {(duration && !isNaN(duration)) && calculateTime(duration)}
-          </span>
+          </div>
         </div>
-        <input type="range" value={volume1} onChange={e => setVolume(e.target.value)}></input>
-        {`${volume1}`}
+        <div className="artistSongContainer">
+          <div className="scroll-container">
+          </div>
+        </div>
+        <div className="VolumeControls">
+          <input type="range" value={volume1} onChange={e => setVolume(e.target.value)}></input>
+          {`${volume1}`}
+        </div>
+        </div>
       </div>
     </div>
   );
