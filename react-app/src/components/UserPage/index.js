@@ -21,11 +21,6 @@ const UserPage = () => {
         dispatch(getUserByIdThunk(userId))
     }, [dispatch])
 
-    // if(Object.values(pageUser).length === 0){
-    //     return(
-    //         <div>Loading</div>
-    //     )
-    // }
 
     return (
         <div>
@@ -47,7 +42,7 @@ const UserPage = () => {
             </div>
 
             <div>
-                {pageUser?.playlist === null ? 'ADD SOME PLAYLIST TO YOUR ACCOUNT TO SPICE IT UP' : 'PLAYLIST'}
+                {pageUser?.playlists.length === 0 ? 'ADD SOME PLAYLIST TO YOUR ACCOUNT TO SPICE IT UP' : 'PLAYLIST'}
                 {pageUser?.playlists.map(playlist => (
                     <div key={playlist.id} className="playlistCardContainer" onClick={(e) => history.push(`/playlist/${playlist.id}`)}>
                         <img className="playlistImg" src={playlist.playlistImage} />
