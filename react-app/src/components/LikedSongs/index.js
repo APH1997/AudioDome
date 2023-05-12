@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getSongsThunk } from '../../store/songs';
 import SongCard from '../SongCard';
 import { getPlaylistSongsThunk } from '../../store/currentSong';
+import { getUserByIdThunk } from '../../store/session';
 
 
 function LikedSongs() {
     const allSongs = useSelector(state => state.songs)
     const user = useSelector(state => state.session.user)
+    const [wasThereAClick, setWasThereAClick] = useState(false)
     const allSongsLength = Object.values(allSongs).length
     const likedSongs = Object.values(allSongs).filter(song => user.likes.includes(song?.id))
     const dispatch = useDispatch()
@@ -15,8 +17,13 @@ function LikedSongs() {
     useEffect(() => {
         dispatch(getSongsThunk())
         dispatch(getPlaylistSongsThunk())
-    }, [dispatch, allSongsLength])
+        dispatch(getUserByIdThunk(user.id))
+    }, [dispatch, allSongsLength, wasThereAClick])
 
+    function toggleWasThereAClick(){
+        setWasThereAClick(!wasThereAClick)
+        console.log("I HEARD A CLICK!")
+    }
 
     if (allSongs.songs === null) return null
     return (
@@ -31,7 +38,7 @@ function LikedSongs() {
                         <th>Uploaded By</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody onClick={toggleWasThereAClick}>
                     {likedSongs.length > 0 && likedSongs.map((song, index) =>
                         <tr><SongCard song={song} number={index + 1} /></tr>,
                         )}

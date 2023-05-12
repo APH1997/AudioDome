@@ -30,9 +30,10 @@ function LikeForm({song}){
         dispatch(unlikeSongThunk(song.id, user.user.id))
     }
 
-        useEffect(() => {
-            dispatch(getUserByIdThunk(user.user.id))
+    useEffect(() => {
+        dispatch(getUserByIdThunk(user.user.id))
         },[liked])
+
     return (
 
         <>
