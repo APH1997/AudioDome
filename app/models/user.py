@@ -26,7 +26,8 @@ class User(db.Model, UserMixin):
 
     songs = db.relationship(
         "Song",
-        back_populates="uploader"
+        back_populates="uploader",
+        cascade='delete-orphan, all'
     )
 
     user_likes = db.relationship(
