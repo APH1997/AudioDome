@@ -14,7 +14,6 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className='sidebarContainer'>
-
       <ul>
         <ul>
           <div>

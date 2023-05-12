@@ -11,22 +11,20 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<div className="navigation-bar">
-			<ul>
-				<li>
-					<div className='navigation-div'>
-						<h1><NavLink exact to="/">< GrHomeRounded /></NavLink></h1>
-						<p>Home</p>
-					</div>
-				</li>
-				{isLoaded && (
-					<li>
-						<div className='navigation-div'>
-							<ProfileButton user={sessionUser} />
-							<p>User</p>
-						</div>
-					</li>
-				)}
-			</ul>
+
+			<div className='navigation-div'>
+				<h1><NavLink exact to="/">< GrHomeRounded /><p>Home</p></NavLink></h1>
+			</div>
+
+			{isLoaded && (
+
+				<div className='navigation-div'>
+					<ProfileButton user={sessionUser} />
+					<p>User</p>
+				</div>
+
+			)}
+
 		</div>
 	);
 }

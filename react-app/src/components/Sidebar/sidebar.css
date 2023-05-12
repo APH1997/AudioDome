@@ -1,17 +1,17 @@
 .sidebar {
     position: fixed;
-    top: 100px;
+    top: 88px;
     left: 0;
     bottom: 0;
     width: 200px;
     background-color: black;
     color: white;
-    justify-content: spa;
+
+
   }
 
   .sidebar ul {
     list-style: none;
-    height: 30px;
     padding: 0;
     margin: 0;
   }
@@ -27,14 +27,14 @@
     color: white;
     text-decoration: none;
   }
-  .sidebar li {
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 10px;
-    font-size: 18px;
-    text-align: center;
-  }
+.sidebar li {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+}
   .sidebar a:hover {
     background-color: teal;
     color: black;

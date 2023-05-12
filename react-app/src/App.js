@@ -30,55 +30,57 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && user && (
-        <Switch>
-          <Route exact path='/playlist/new'>
-            <PlaylistForm />
-          </Route>
-          <Route exact path='/playlist/:playlistId/edit'>
-            <EditPlaylistForm />
-          </Route>
-          <Route exact path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route exact path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/">
-            <GetPlaylist />
-          </Route>
-          <Route exact path='/playlist/:playlistId'>
-            <PlaylistPage />
-          </Route>
-          <Route exact path='/song/:songId/edit'>
-            <UpdateSongForm />
-          </Route>
-          <Route exact path='/songs/new'>
-            <CreateSongForm />
-          </Route>
-          <Route exact path='/songs/all'>
-            <GetAllSongs />
-          </Route>
-          <Route exact path='/search'>
-            <SearchBar />
-          </Route>
-          <Route exact path='/users/:userId'>
-            <UserPage />
-          </Route>
-          <Route exact path='/users/:userId/liked'>
-            <h1>Here are your liked songs</h1>
-            <LikedSongs />
-          </Route>
-        </Switch>
-      )}
-      {isLoaded && !user && (
-        <Switch>
-          <Route>
-            <h1 className="Please-Sign-In">Please sign in to venture into the AudioDome!!!!!!</h1>
-            <SignupFormModal />
-          </Route>
-        </Switch>
-      )}
+      <div className="main-content">
+        {isLoaded && user && (
+          <Switch>
+            <Route exact path='/playlist/new'>
+              <PlaylistForm />
+            </Route>
+            <Route exact path='/playlist/:playlistId/edit'>
+              <EditPlaylistForm />
+            </Route>
+            <Route exact path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route exact path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route exact path="/">
+              <GetPlaylist />
+            </Route>
+            <Route exact path='/playlist/:playlistId'>
+              <PlaylistPage />
+            </Route>
+            <Route exact path='/song/:songId/edit'>
+              <UpdateSongForm />
+            </Route>
+            <Route exact path='/songs/new'>
+              <CreateSongForm />
+            </Route>
+            <Route exact path='/songs/all'>
+              <GetAllSongs />
+            </Route>
+            <Route exact path='/search'>
+              <SearchBar />
+            </Route>
+            <Route exact path='/users/:userId'>
+              <UserPage />
+            </Route>
+            <Route exact path='/users/:userId/liked'>
+              <h1>Here are your liked songs</h1>
+              <LikedSongs />
+            </Route>
+          </Switch>
+        )}
+        {isLoaded && !user && (
+          <Switch>
+            <Route>
+              <h1 className="Please-Sign-In">Please sign in to venture into the AudioDome!!!!!!</h1>
+              <SignupFormModal />
+            </Route>
+          </Switch>
+        )}
+      </div>
     </>
   );
 }
