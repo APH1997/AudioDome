@@ -8,7 +8,7 @@ import { GrHomeRounded } from "react-icons/gr"
 const Sidebar = () => {
   const userObj = useSelector(state => state.session)
   const user = Object.values(userObj)
-  console.log(user, 'user');
+  // console.log(user, 'user');
   if (!user[0]) {
     return ''
   }
@@ -51,7 +51,7 @@ const Sidebar = () => {
       </div>
       <div>
         <div className='icons-bottom'>
-          <h1>
+        <h1>
             <BsLinkedin />
           </h1>
           <h1>

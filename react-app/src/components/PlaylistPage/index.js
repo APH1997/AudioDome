@@ -31,11 +31,6 @@ function PlaylistPage() {
         return null
     }
 
-    const handleDelete = (e) => {
-        dispatch(deletePlaylistThunk(playlistId))
-        history.push('/')
-    }
-
     return (
         <div>
             <div className="playlistImage">

@@ -4,7 +4,6 @@ const CREATE_PLAYLIST = 'playlists/CreatePlaylist';
 const DELETE_PLAYLIST = 'playlists/DeletePlaylist';
 const DELETE_SONG_FROM_PLAYLIST = 'playlists/DeleteSongFromPlaylist'
 
-
 export const DeletePlaylistAction = (playlistId) => {
     return {
         type: DELETE_PLAYLIST,
@@ -62,6 +61,7 @@ export const deleteSongFromPlaylistAction = (playlistId, songId) => {
         payload: {playlistId, songId}
     }
 }
+
 
 export const deleteSongFromPlaylistThunk = (playlist_id, song_id) => async dispatch => {
     console.log('woahweoawhle kjaklwje lkawjel kawj');
@@ -135,7 +135,7 @@ export const addSongToPlaylistThunk = (playlist_ids, song_id) => async(dispatch)
     }
 }
 
-const initialState = { allPlaylists:{}, singlePlaylist:{} }
+const initialState = { allPlaylists:{}, singlePlaylist:{}, singleSong:{} }
 
 const playlistReducer = (state = initialState, action) =>{
     switch (action.type) {

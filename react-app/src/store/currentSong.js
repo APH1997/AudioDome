@@ -1,5 +1,6 @@
 const GET_ALL = "currentSong/GET_ALL";
 const GET_PLAYLIST_SONG = 'currentSong/GET_PLAYLIST_SONG';
+const PLAY_SINGLE_SONG = 'playlists/PlaySingleSong'
 
 const getAllSong = (data) => {
     return {
@@ -12,6 +13,21 @@ const getPlaylistSongAction = (data) => {
     return {
         type: GET_PLAYLIST_SONG,
         payload: data
+    }
+}
+
+export const playOneSong = (data) => {
+    return{
+        type: PLAY_SINGLE_SONG,
+        data
+    }
+}
+
+export const playOneSongThunk = (id) => async dispatch => {
+    const response = await fetch(`/songs/${id}`)
+    if (response.ok){
+        const data = await response.json()
+        await dispatch(playOneSong(data))
     }
 }
 
@@ -47,6 +63,11 @@ const currentSongReducer = (state = initialState, action) => {
         case GET_PLAYLIST_SONG: {
             newState = Object.assign({}, state.currentSong)
             action.payload.songs.forEach(song => {newState[song.id] = song})
+            return newState
+        }
+        case PLAY_SINGLE_SONG: {
+            newState = Object.assign({}, state.currentSong)
+            newState[action.data.id] = action.data
             return newState
         }
         default:

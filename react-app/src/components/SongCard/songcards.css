@@ -10,3 +10,13 @@
     align-self: center
 }
 
+.number-play:hover{
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+.number-play {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
