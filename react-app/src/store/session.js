@@ -149,7 +149,7 @@ export default function reducer(state = initialState, action) {
 		case REMOVE_USER:
 			return { user: null };
 		case GET_USER_BY_ID: {
-			const newState = {...state, user:{...state.user}, userPage: action.payload}
+			const newState = {...state, user:{...state.user, likes: action.payload.likes}, userPage: action.payload}
 
 			return newState
 		}

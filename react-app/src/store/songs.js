@@ -103,10 +103,8 @@ export const likeSongThunk = (songId, userId) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(likeSongs(data))
-        console.log("likesongthunkresponse", response)
         return response
     } else {
-        console.log(" NO likesongthunkresponse")
         return {"message": "like song thunk machine broke"}
     }
 }
@@ -119,11 +117,8 @@ export const unlikeSongThunk = (songId, userId) => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
-        dispatch(unlikeSong(data))
-        console.log("unlikesongthunkresponse", response)
         return response
     } else {
-        console.log(" NO unlikesongthunkresponse")
         return {"message": "unlike song thunk machine broke"}
     }
 }
@@ -138,9 +133,7 @@ const songReducer = (state = initialState, action) => {
             return newState
         case DELETE_SONGS:
             newState = Object.assign({}, state)
-            console.log('AFTER OBJECT.ASSIGN BEFORE DELETE:',newState)
             delete newState[action.payload]
-            console.log('AFTER DELETE', newState)
             return newState
         case SOLO_SONG:
             newState = Object.assign({}, state.singleSong)
