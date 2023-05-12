@@ -17,6 +17,7 @@ import EditPlaylistForm from "./components/EditPlaylistForm";
 import UserPage from "./components/UserPage";
 import SignupFormModal from "./components/SignupFormModal";
 import LikedSongs from "./components/LikedSongs";
+import SplashPage from "./components/SplashPage";
 
 
 function App() {
@@ -75,8 +76,7 @@ function App() {
         {isLoaded && !user && (
           <Switch>
             <Route>
-              <h1 className="Please-Sign-In">Please sign in to venture into the AudioDome!!!!!!</h1>
-              <SignupFormModal />
+              <SplashPage />
             </Route>
           </Switch>
         )}
