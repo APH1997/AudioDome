@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
 		<div className="navigation-bar">
 
 			<div className='navigation-div'>
-				<h1><NavLink exact to="/">< GrHomeRounded /><p>Home</p></NavLink></h1>
+				<h1><NavLink exact to="/">< GrHomeRounded /><img className="LOGO" src="http://audiodome-songs.s3.amazonaws.com/db3bcada0cbf478f9369a2e312c1885f.png" /></NavLink></h1>
 			</div>
 
 			{isLoaded && (
