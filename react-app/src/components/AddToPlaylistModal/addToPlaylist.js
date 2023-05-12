@@ -1,14 +1,15 @@
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { useModal } from '../../context/Modal'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { addSongToPlaylistThunk } from "../../store/playlist"
 import {useHistory} from 'react-router-dom'
 import { useParams } from "react-router-dom"
+import { getUserByIdThunk } from "../../store/session"
 
 function AddToPlaylist({ song }) {
     const dispatch = useDispatch()
-    const statePlaylist = useSelector(state => state.session.user.playlists)
+    const user = useSelector(state => state.session.user)
     const [checked, setChecked] = useState([])
     const history = useHistory()
     const {playlistId} = useParams()
@@ -42,13 +43,15 @@ function AddToPlaylist({ song }) {
         closeModal()
         history.push(`/playlist/${playlistId}`)
     }
-
+    useEffect(() => {
+        dispatch(getUserByIdThunk(user.id))
+    }, [dispatch])
 
     return (
         <>
             <h2>Select a playlist</h2>
             <form onSubmit={handleSubmit} method="PUT">
-                {statePlaylist.map(playlist =>
+                {user.playlists.map(playlist =>
                     isSongInPlaylist(playlist.songs, song) && <div
                         className="select_playlist">{playlist.name}
                         <input type="checkbox" value={playlist.id} onChange={handelCheckBox}></input>

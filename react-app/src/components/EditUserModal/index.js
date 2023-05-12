@@ -10,6 +10,7 @@ const UserProileModal = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [bio, setBio] = useState('')
+    const [imgFile, setImageFile] = useState(null)
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const {closeModal} = useModal()
@@ -23,15 +24,23 @@ const UserProileModal = () => {
         }
     }, [user])
 
-    const handelSubmit = () => {
-        const userInfo = {
-            username,
-            first_name: firstName,
-            last_name: lastName,
-            bio
+    const handelSubmit = (e) => {
+        e.preventDefault()
+        const formData = new FormData()
+        if (user.username !== username){
+            formData.append('username', username)
+        } else {
+            formData.append('username', 'giraffenostrilwidenderplusULTRA')
         }
-        console.log(userInfo,'User Info');
-        dispatch(updateUserThunk(userInfo,user.id))
+        formData.append('first_name', firstName)
+        formData.append('last_name', lastName)
+        formData.append('bio',bio)
+        if (imgFile){
+            formData.append('profile_image', imgFile)
+        }
+        console.log(formData)
+
+        dispatch(updateUserThunk(formData,user.id))
         closeModal()
     }
 
@@ -70,6 +79,14 @@ const UserProileModal = () => {
                     type="text"
                     value={bio || 'bio'}
                     onChange={e => setBio(e.target.value)}
+                    />
+                </label>
+                <label>
+                    Profile Picture
+                    <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImageFile(e.target.files[0])}
                     />
                 </label>
                 <button type="submit">

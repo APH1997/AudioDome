@@ -1,7 +1,40 @@
-.profile-dropdown {
-  position: absolute;
+.navigation-bar {
+  display: flex;
+  background-color: black;
+  position: sticky;
+  top: 0;
+  bottom: calc(100% - 200px); /* adjust the value based on the sidebar's height */
+  width: 100%;
+  border-radius: 5px;
+  z-index: 1; /* make sure the navigation bar appears on top of other elements */
+  justify-content: space-between;
+}
+
+
+.navigation-div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navigation-div h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.navigation-div p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.home-icon {
+  size: 5rem;
 }
 
 .hidden {
-  display: none;
+  display: none
+}
+.LOGO{
+  height: 85px;
+  width: 85px;
 }

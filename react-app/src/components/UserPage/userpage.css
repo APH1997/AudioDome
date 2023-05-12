@@ -1,0 +1,13 @@
+.user-profile-pic img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.user-name {
+    padding: 40px;
+}
+
+.username {
+    padding: 40px;
+}

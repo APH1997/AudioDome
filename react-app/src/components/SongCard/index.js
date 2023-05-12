@@ -10,10 +10,9 @@ import LikeForm from './likeform';
 
 function SongCard({song, number, playlistId}){
 
-    const dispatch = useDispatch();
-    const ulRef = useRef();
-
-
+    useEffect(() => {
+        console.log('number changed')
+    }, [number])
     return(
         <>
             <td>{number}</td>
@@ -21,7 +20,6 @@ function SongCard({song, number, playlistId}){
             <td>{song?.artist}</td>
             <td>{song?.uploader}</td>
             <td><LikeForm song={song} /></td>
-            <td>Menu model</td>
             <td>
                 <OpenModalButton
                 buttonText= {< BsThreeDots />}
@@ -29,32 +27,6 @@ function SongCard({song, number, playlistId}){
             </td>
 
         </>
-        // <div className='song-card-container'>
-        //     <div className='song-card-song-number'>
-        //         {number}
-        //     </div>
-        //     <div className='song-card-title'>
-        //         <div>{song?.title}</div>
-        //     </div>
-        //     <div className='song-card-artist'>
-        //         <div>{song?.artist}</div>
-        //     </div>
-        //     <div className='song-card-uploader'>
-        //         <div>{song?.uploader}</div>
-        //     </div>
-        //     <div className='song-card-like-form'>
-        //         <LikeForm song={song}/>
-        //     </div>
-        //     <div className='song-card-menu-dots'>
-        //         {/* <BsThreeDots /> */}
-        //         {/* <SongMenu /> */}
-                // <OpenModalButton
-                // buttonText= {< BsThreeDots />}
-                // modalComponent={<SongMenu song={song} playlistId={playlistId} />}
-        //     />
-        //     </div>
-
-        // </div>
     )
 }
 

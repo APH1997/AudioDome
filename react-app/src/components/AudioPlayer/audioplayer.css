@@ -1,26 +1,78 @@
-.AudioPlayerContainer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: black;
-    padding: 20px;
-    box-sizing:border-box;
+.AudioPlayerContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 90px;
+  z-index: 1;
+  color: white;
+  border-top: 1px solid black;
+  text-align: center; /* Add this line to center the buttons */
+}
+.Songinfo{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  color: white;
+  border-top: 1px solid black;
+  text-align: center;
+}
+.PicTitleArtist{
+  display: flex;
+}
+.functionBtn {
     display: flex;
-    width: 100%;
-    border: black 1px solid;
-}
-.skipForwardBtn{
-    display: inline;
-}
-
-body {
-    margin: 0px;
+    justify-content: center;
+    width: 90%;
+    gap: 15px;
+    align-items: center;
 }
 
 .progressBar {
-    --seek-before-width: 0
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+}
+.skipForwardBtn {
+  display: inline;
+}
+.buttons {
+  height: 50px;
+  width: 50px;
+  border: 1px solid teal;
+  background-color: black;
+  color: teal;
+  border-radius: 50%;
 }
 
-.timeInBar{
-    color: aliceblue;
+.coverArtSong {
+  height: 60px;
+  width: 60px;
 }
+
+body {
+  margin: 0;
+  padding-bottom: 80px;
+}
+.SongArtistandTitle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+

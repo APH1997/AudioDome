@@ -9,9 +9,10 @@ function DeleteAccount({user}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const {closeModal} = useModal()
-    function handleDelete(){
-        dispatch(deleteUserThunk(user))
-        dispatch(logout())
+    console.log(user,'useruseur');
+    const handleDelete = async() => {
+        await dispatch(deleteUserThunk(user))
+        await dispatch(logout())
         closeModal()
         history.push('/')
     }

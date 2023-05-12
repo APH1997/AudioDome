@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
@@ -11,6 +11,7 @@ function SignupFormModal() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [error, setError] = useState({})
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
@@ -23,10 +24,18 @@ function SignupFormModal() {
 			} else {
 				closeModal();
 			}
-		} else {
+		} else if (password !== confirmPassword) {
 			setErrors([
 				"Confirm Password field must be the same as the Password field",
 			]);
+		} else if (!email.includes('@')) {
+			setError([
+				"Enter Valid Email"
+			])
+		} else if (username.length > 30){
+			setErrors([
+				"Username too long"
+			])
 		}
 	};
 
@@ -41,9 +50,12 @@ function SignupFormModal() {
     }
 	}
 
+
 	return (
 		<>
 			<h1>Sign Up</h1>
+			{error.email && <p>{error.email}</p>}
+			{error.username && <p>{error.username}</p>}
 			<form onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (

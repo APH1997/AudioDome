@@ -7,7 +7,7 @@ import { BsThreeDots } from 'react-icons/bs'
 import OpenModalButton from "../OpenModalButton"
 import { useEffect } from "react"
 import { getUserByIdThunk } from "../../store/session"
-
+import './userpage.css'
 
 const UserPage = () => {
     const { userId } = useParams()
@@ -15,37 +15,34 @@ const UserPage = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const pageUser = useSelector(state => state.session.userPage)
-    // console.log(Object.values(pageUser));
+    console.log(pageUser);
 
     useEffect(() => {
         dispatch(getUserByIdThunk(userId))
-    },[dispatch])
+    }, [dispatch])
 
-    // if(Object.values(pageUser).length === 0){
-    //     return(
-    //         <div>Loading</div>
-    //     )
-    // }
 
     return (
         <div>
-            {pageUser?.id == userId && <div>
-                {pageUser?.firstName}{' '}{pageUser?.lastName}
-            </div>
+            {pageUser?.id == userId &&
+                <div className="user-name">
+                    {pageUser?.firstName}{' '}{pageUser?.lastName}
+                </div>
             }
-            <div>
-                {pageUser?.profileImage}
+            <div className="user-profile-pic">
+                <img src={pageUser?.profileImage === null ? "https://static1.squarespace.com/static/5898e29c725e25e7132d5a5a/58aa11bc9656ca13c4524c68/58aa11e99656ca13c45253e2/1487540713345/600x400-Image-Placeholder.jpg?format=original" : pageUser?.profileImage} />
             </div>
             <div>
-                {pageUser?.username}
+                <h1 className="username">
+                    {pageUser?.username}
+                </h1>
             </div>
             <div>
-                {pageUser?.bio}
+                {pageUser?.bio === null ? "ADD A BIO  TO YOUR ACCOUNT !!!!!" : pageUser?.bio}
             </div>
 
-
             <div>
-                PLAYLIST
+                {pageUser?.playlists.length === 0 ? 'ADD SOME PLAYLIST TO YOUR ACCOUNT TO SPICE IT UP' : 'PLAYLIST'}
                 {pageUser?.playlists.map(playlist => (
                     <div key={playlist.id} className="playlistCardContainer" onClick={(e) => history.push(`/playlist/${playlist.id}`)}>
                         <img className="playlistImg" src={playlist.playlistImage} />
@@ -56,8 +53,8 @@ const UserPage = () => {
             </div>
             {user?.id == userId && <div className="user-profile-menu-dots">
                 <OpenModalButton
-                buttonText={<BsThreeDots />}
-                modalComponent={<UserProileModal/>}
+                    buttonText={<BsThreeDots />}
+                    modalComponent={<UserProileModal />}
                 />
             </div>}
         </div>
