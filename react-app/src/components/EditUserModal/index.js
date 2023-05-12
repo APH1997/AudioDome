@@ -29,6 +29,8 @@ const UserProileModal = () => {
         const formData = new FormData()
         if (user.username !== username){
             formData.append('username', username)
+        } else {
+            formData.append('username', 'giraffenostrilwidenderplusULTRA')
         }
         formData.append('first_name', firstName)
         formData.append('last_name', lastName)
