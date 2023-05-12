@@ -15,12 +15,13 @@ function PlaylistPage() {
     const { playlistId } = useParams()
     const user = useSelector(state => state.session)
     const singlePlaylistObj = useSelector(state => state.playlist.singlePlaylist)
+    const singlePlaylistLength = singlePlaylistObj.songs?.length
 
     console.log("USER:", user)
     console.log("PLAYLIST:", singlePlaylistObj)
     useEffect(() => {
         dispatch(getOnePlaylistThunk(playlistId))
-    }, [dispatch])
+    }, [dispatch, singlePlaylistLength])
 
     const handleSongPlayer = () => {
         dispatch(getPlaylistSongsThunk(playlistId))
