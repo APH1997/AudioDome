@@ -31,10 +31,6 @@ const PlaylistForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!imgFile){
-            setError("Image is required")
-            return
-        }
         if (!name) {
             setError("Name is required");
             return;
