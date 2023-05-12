@@ -20,14 +20,16 @@ function LikeForm({song}){
 
     const [liked, setLiked] = useState(isSongLiked())
 
-    const handleLike = () => {
+    const handleLike = async () => {
         setLiked(true)
-        dispatch(likeSongThunk(song.id, user.user.id))
+        await dispatch(likeSongThunk(song.id, user.user.id))
+
     }
 
-    const handleUnlike = () => {
+    const handleUnlike = async () => {
         setLiked(false)
-        dispatch(unlikeSongThunk(song.id, user.user.id))
+        await dispatch(unlikeSongThunk(song.id, user.user.id))
+
     }
 
     useEffect(() => {

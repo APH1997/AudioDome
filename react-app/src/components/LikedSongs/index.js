@@ -38,9 +38,9 @@ function LikedSongs() {
                         <th>Uploaded By</th>
                     </tr>
                 </thead>
-                <tbody onClick={toggleWasThereAClick}>
+                <tbody>
                     {likedSongs.length > 0 && likedSongs.map((song, index) =>
-                        <tr><SongCard song={song} number={index + 1} /></tr>,
+                        <tr onClick={toggleWasThereAClick}><SongCard song={song} number={index + 1} /></tr>,
                         )}
                 </tbody>
             </table>

@@ -10,9 +10,6 @@ import LikeForm from './likeform';
 
 function SongCard({song, number, playlistId}){
 
-    useEffect(() => {
-        console.log('number changed')
-    }, [number])
     return(
         <>
             <td>{number}</td>
