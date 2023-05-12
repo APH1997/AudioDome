@@ -40,15 +40,6 @@ function CreateSongForm() {
             setError('Artist is required')
             return
         }
-        if (!file) {
-            setError('Song is required')
-            return
-        }
-        if (imgFile) {
-            setError('Cover-Art is required')
-            return
-        }
-
 
         history.push('/songs/all')
         setCurrSongLength(+songLength)
