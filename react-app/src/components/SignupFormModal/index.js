@@ -100,7 +100,6 @@ function SignupFormModal() {
 				</label>
 				<button type="submit">Sign Up</button>
 			</form>
-				<button onClick={handleOnClick}>Demo User</button>
 		</>
 	);
 }

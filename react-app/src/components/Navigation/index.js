@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
 				<h1><NavLink exact to="/"><img className="LOGO" src="http://audiodome-songs.s3.amazonaws.com/03ba22abe56942c39dfb757804c7ad3a.png" /></NavLink></h1>
 			</div>
 
-			{isLoaded && (
+			{isLoaded && sessionUser && (
 
 				<div className='navigation-div'>
 					<ProfileButton user={sessionUser} />
