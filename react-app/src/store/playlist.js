@@ -2,6 +2,7 @@ const GET_ALL_PLAYLIST = 'playlists/GetAllPlaylist';
 const GET_ONE_PLAYLIST = 'playlists/GetOnePlaylist';
 const CREATE_PLAYLIST = 'playlists/CreatePlaylist';
 const DELETE_PLAYLIST = 'playlists/DeletePlaylist';
+const DELETE_SONG_FROM_PLAYLIST = 'playlists/DeleteSongFromPlaylist'
 
 
 export const DeletePlaylistAction = (playlistId) => {
@@ -55,6 +56,12 @@ export const getOnePlaylistThunk = (id) => async dispatch => {
         dispatch(GetOnePlaylistAction(data))
     }
 }
+export const deleteSongFromPlaylistAction = (playlistId, songId) => {
+    return{
+        type: DELETE_SONG_FROM_PLAYLIST,
+        payload: {playlistId, songId}
+    }
+}
 
 export const deleteSongFromPlaylistThunk = (playlist_id, song_id) => async dispatch => {
     console.log('woahweoawhle kjaklwje lkawjel kawj');
@@ -66,7 +73,10 @@ export const deleteSongFromPlaylistThunk = (playlist_id, song_id) => async dispa
 
     console.log(res,'res in the thunk');
     if (res.ok){
+        const newRes = await res.json()
+        dispatch(deleteSongFromPlaylistAction(playlist_id, song_id))
         console.log('DELETE SUCCESSFUL');
+        return newRes
     } else {
         console.log('DELETE UNSUCCESSFUL');
     }
@@ -148,6 +158,16 @@ const playlistReducer = (state = initialState, action) =>{
         case DELETE_PLAYLIST: {
             const newState = {...state, allPlaylists: {...state.allPlaylists}}
             delete newState.allPlaylists[action.playlistId]
+            return newState
+        }
+        case DELETE_SONG_FROM_PLAYLIST: {
+            const newState = {...state, singlePlaylist: {...state.singlePlaylist}}
+            for(let i = 0; i< newState.singlePlaylist.songs.length; i++){
+                let song = newState.singlePlaylist.songs[i]
+                if(song.id === action.payload.songId){
+                    newState.singlePlaylist.songs.splice(i,1)
+                }
+            }
             return newState
         }
         default:
