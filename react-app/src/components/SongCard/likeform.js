@@ -7,7 +7,7 @@ import { getUserByIdThunk } from "../../store/session"
 function LikeForm({song}){
     const dispatch = useDispatch()
     const user = useSelector(state => state.session)
-
+    const likes = user.user.likes
 
     const isSongLiked = () => {
         for (let songId of user.user.likes) {
@@ -37,13 +37,13 @@ function LikeForm({song}){
     return (
 
         <>
-        {(liked && <i
+        {(liked && <td><i
                     class="fas fa-heart"
                     style={{color: "#1dcd20"}}
-                    onClick={handleUnlike}></i>)
-                || <i
+                    onClick={handleUnlike}></i></td>)
+                || <td><i
                     class="far fa-heart"
-                    onClick={handleLike}></i>}
+                    onClick={handleLike}></i></td>}
         </>
     )
 }
