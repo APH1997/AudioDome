@@ -43,6 +43,24 @@
 
   .icons-bottom{
     display: flex;
+    flex-flow: column;
     justify-content: space-around;
-    align-items: end;
+    align-items: start;
+  }
+
+  .icons-bottom h1{
+    margin-bottom: 0px;
+    margin-left: 5px;
+  }
+
+  .icons-bottom a{
+    font-size: 12px;
+    line-height: 0px;
+    padding-left: 5px;
+  }
+
+  .icons-bottom a:hover{
+    color: teal;
+    background-color: black;
+    cursor: pointer;
   }
