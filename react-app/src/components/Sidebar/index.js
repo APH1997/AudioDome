@@ -49,14 +49,14 @@ const Sidebar = () => {
         </ul>
       </div>
       <div>
-        <p>
+        <div className='icons-bottom'>
           <h1>
             <BsLinkedin />
           </h1>
           <h1>
             <BsGithub />
           </h1>
-        </p>
+        </div>
       </div>
     </div>
   );
