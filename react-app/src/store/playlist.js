@@ -82,12 +82,11 @@ export const deleteSongFromPlaylistThunk = (playlist_id, song_id) => async dispa
     }
 }
 export const getAllPlaylistThunk = () => async dispatch => {
-
     const res = await fetch ('/playlists/')
 
     if (res.ok) {
         const data = await res.json()
-
+        console.log('DATA from get all playlist thunk ==============================>', data)
         dispatch(GetAllPlaylistAction(data))
     }
 
@@ -141,7 +140,7 @@ const initialState = { allPlaylists:{}, singlePlaylist:{} }
 const playlistReducer = (state = initialState, action) =>{
     switch (action.type) {
         case GET_ALL_PLAYLIST: {
-            const newState = { ...state, allPlaylists: {...state.allPlaylists} }
+            const newState = { allPlaylists: {}, singlePlaylist: {} }
             action.playlist.forEach(playlist => newState.allPlaylists[playlist.id] = playlist)
             return newState
         }
