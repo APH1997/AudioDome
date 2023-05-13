@@ -2,14 +2,12 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createSongThunk, getSongsThunk } from '../../store/songs'
+import './CreateSongForm.css'
 
 function CreateSongForm() {
     const currentUser = useSelector(state => state.session.user);
     const songs = useSelector(state => state.songs)
     const songLength = Object.values(songs).length
-    console.log(currentUser)
-    console.log('songs use selector', songs)
-    console.log('songs length', Object.values(songs).length)
     const history = useHistory()
     const dispatch = useDispatch()
     const [title, setTitle] = useState('');
@@ -67,13 +65,22 @@ function CreateSongForm() {
                 <div className="error">
                     {error}
                 </div>}
+            <div>
+
+                <label>
+                    <input id="song-upload" type="file" name="song" accept="audio/*" onChange={handleFileUpload} className='SongUploadbtn' />
+                    <label htmlFor="song-upload" className="uploadbutton">
+                        <i className="fas fa-cloud-upload-alt"></i>
+                        {file ? "Song Ready to Upload" : "Upload Song"}
+                    </label>
+                </label>
+            </div>
             <label>
-                <div>Upload A Song</div>
-                <input id="song-upload" type="file" name="song" accept="audio/*" onChange={handleFileUpload} />
-            </label>
-            <label>
-                <div>Add Song Cover-Art</div>
-                <input id="songImages" type="file" name="songPicture" accept='"image/*' onChange={handleAddImage} />
+                <input id="songImages" type="file" name="songPicture" accept='"image/*' onChange={handleAddImage} className='SongPicupload' />
+                <label htmlFor="songImages" className="uploadbutton">
+                    <i className="fas fa-cloud-upload-alt"></i>
+                    {imgFile ? "Picture Ready to Upload" : "Upload Picture"}
+                </label>
             </label>
             <label>
                 <div>Title</div>
