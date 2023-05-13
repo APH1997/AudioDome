@@ -19,6 +19,8 @@ function CreateSongForm() {
     const [imgFile, setImageFile] = useState(null)
     const [error, setError] = useState(null)
 
+    // console.log(file, 'file~~~~~~~~~~~~~');
+
     useEffect(() => {
         dispatch(getSongsThunk())
     }, [dispatch, songLength])
@@ -40,7 +42,14 @@ function CreateSongForm() {
             setError('Artist is required')
             return
         }
-
+        if(file === null){
+            setError('Song is required')
+            return
+        }
+        if(imgFile === null){
+            setError('Image is required')
+            return
+        }
         history.push('/songs/all')
         setCurrSongLength(+songLength)
         const formData = new FormData()
