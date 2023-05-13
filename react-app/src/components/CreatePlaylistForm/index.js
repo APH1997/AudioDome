@@ -102,7 +102,7 @@ const PlaylistForm = () => {
             </div>
             <div>
                 {allSongs.map(song =>
-                    <div>
+                    <div className="every-song">
                         <label>
                             {song?.title}
                             <input

@@ -44,3 +44,8 @@
     margin-top: 10px;
     margin-bottom: 20px;
 }
+
+.every-song{
+    display: flex;
+    flex-direction: column;
+}
