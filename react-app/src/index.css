@@ -1,4 +1,7 @@
 /* TODO Add site wide styles */
+#modal-content{
+    border-radius: 6%;
+}
 body {
     background-color: rgba(0, 0, 0, 0.956);
     color: darkcyan;
@@ -30,7 +33,4 @@ body {
     padding-top: 8px;
     padding-bottom: 28px;
     column-gap: 30px;
-}
-#modal-content{
-    border-radius: 6%;
 }
