@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { updateUserThunk } from "../../store/session"
-import {useModal} from '../../context/Modal'
+import { useModal } from '../../context/Modal'
 import DeleteAccount from "../UserPage/DeleteAccountModal"
 import OpenModalButton from "../OpenModalButton"
 
@@ -13,7 +13,11 @@ const UserProileModal = () => {
     const [imgFile, setImageFile] = useState(null)
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
-    const {closeModal} = useModal()
+    const { closeModal } = useModal()
+    const [error, setError] = useState(null)
+
+    console.log(username);
+    console.log(lastName);
 
     useEffect(() => {
         if (user) {
@@ -24,23 +28,40 @@ const UserProileModal = () => {
         }
     }, [user])
 
+    console.log(user);
     const handelSubmit = (e) => {
         e.preventDefault()
+        if (!username) {
+            setError('Username is required')
+            return
+        }
+        if (firstName === null) {
+            setError('first name is required')
+            return
+        }
+        if (lastName === null) {
+            setError('last name is required')
+            return
+        }
+        if (bio === null) {
+            setError('Bio is required')
+            return
+        }
         const formData = new FormData()
-        if (user.username !== username){
+        if (user.username !== username) {
             formData.append('username', username)
         } else {
             formData.append('username', 'giraffenostrilwidenderplusULTRA')
         }
         formData.append('first_name', firstName)
         formData.append('last_name', lastName)
-        formData.append('bio',bio)
-        if (imgFile){
+        formData.append('bio', bio)
+        if (imgFile) {
             formData.append('profile_image', imgFile)
         }
         console.log(formData)
 
-        dispatch(updateUserThunk(formData,user.id))
+        dispatch(updateUserThunk(formData, user.id))
         closeModal()
     }
 
@@ -49,44 +70,52 @@ const UserProileModal = () => {
     return (
         <>
             <form onSubmit={handelSubmit}>
+                {error &&
+                    <div className="error">
+                        {error}
+                    </div>}
                 <label>
                     UserName
                     <input
-                    type="text"
-                    value={username || 'username'}
-                    onChange={e => setUsername(e.target.value)}
+                        type="text"
+                        placeholder={username || 'username'}
+                        // value={''}
+                        onChange={e => setUsername(e.target.value)}
                     />
                 </label>
                 <label>
                     First Name
                     <input
-                    type="text"
-                    value={firstName || 'first name'}
-                    onChange={e => setFirstName(e.target.value)}
+                        type="text"
+                        placeholder={firstName || 'first name'}
+                        // value={''}
+                        onChange={e => setFirstName(e.target.value)}
                     />
                 </label>
                 <label>
                     Last Name
                     <input
-                    type="text"
-                    value={lastName || 'last name'}
-                    onChange={e => setLastName(e.target.value)}
+                        type="text"
+                        // value={''}
+                        placeholder={lastName || 'last name'}
+                        onChange={e => setLastName(e.target.value)}
                     />
                 </label>
                 <label>
                     Bio
                     <input
-                    type="text"
-                    value={bio || 'bio'}
-                    onChange={e => setBio(e.target.value)}
+                        type="text"
+                        placeholder={bio || 'bio'}
+                        // value={''}
+                        onChange={e => setBio(e.target.value)}
                     />
                 </label>
                 <label>
                     Profile Picture
                     <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setImageFile(e.target.files[0])}
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => setImageFile(e.target.files[0])}
                     />
                 </label>
                 <button type="submit">
@@ -94,8 +123,8 @@ const UserProileModal = () => {
                 </button>
             </form>
             <OpenModalButton
-            buttonText="Delete Account"
-            modalComponent={<DeleteAccount user={user}/>}
+                buttonText="Delete Account"
+                modalComponent={<DeleteAccount user={user} />}
             />
         </>
     )

@@ -39,6 +39,10 @@ const PlaylistForm = () => {
             setError("Please select at least one song");
             return;
         }
+        if(imgFile === null){
+            setError('Image is required')
+            return
+        }
 
         const formData = new FormData()
 
