@@ -8,7 +8,7 @@ import OpenModalButton from "../OpenModalButton"
 import { BsThreeDots } from 'react-icons/bs'
 import PlaylistMenu from "../PlaylistMenuModal"
 import { getPlaylistSongsThunk } from "../../store/currentSong"
-import {IoPlay, IoPlaySkipBack, IoPlaySkipForward, IoPause} from 'react-icons/io5'
+import { IoPlay, IoPlaySkipBack, IoPlaySkipForward, IoPause } from 'react-icons/io5'
 
 
 function PlaylistPage() {
@@ -41,22 +41,41 @@ function PlaylistPage() {
             <div className="playlistName">
                 {singlePlaylistObj.name}
             </div>
-            <button className="buttons"onClick={handleSongPlayer}>
-            <IoPlay />
+            <button className="buttons" onClick={handleSongPlayer}>
+                <IoPlay />
             </button>
 
             {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">
                 <OpenModalButton
-                buttonText={<BsThreeDots />}
-                modalComponent={<PlaylistMenu playlistId={playlistId}/>}
+                    buttonText={<BsThreeDots />}
+                    modalComponent={<PlaylistMenu playlistId={playlistId} />}
                 />
             </div>}
 
-            {singlePlaylistObj.songs.map((song, index) => (
-                <div>
-                    <SongCard song={song} number={index + 1} playlistId={playlistId} />
-                </div>
-            ))}
+            <div className='all-songs-container'>
+                <table className='all-songs-container-headers'>
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Artist</th>
+                            <th colSpan={3}>Uploaded By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {singlePlaylistObj.songs.map((song, index) => (
+                            <tr>
+                                <SongCard song={song} number={index + 1} playlistId={playlistId} />
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
 
         </div>
     )
