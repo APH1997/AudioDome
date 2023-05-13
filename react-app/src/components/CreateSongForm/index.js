@@ -16,8 +16,8 @@ function CreateSongForm() {
     const [file, setFile] = useState(null)
     const [imgFile, setImageFile] = useState(null)
     const [error, setError] = useState(null)
+    const [isUploading, setIsUploading] = useState(false)
 
-    // console.log(file, 'file~~~~~~~~~~~~~');
 
     useEffect(() => {
         dispatch(getSongsThunk())
@@ -48,7 +48,9 @@ function CreateSongForm() {
             setError('Image is required')
             return
         }
-        history.push('/songs/all')
+
+        setIsUploading(true)
+
         setCurrSongLength(+songLength)
         const formData = new FormData()
         formData.append("title", title)
@@ -57,7 +59,11 @@ function CreateSongForm() {
         formData.append("uploader_id", currentUser.id)
         formData.append('song_image', imgFile)
         await dispatch(createSongThunk(formData))
-        console.log('song lengths', songLength, currSongLength)
+
+        setTimeout(() => setIsUploading(false), 3000)
+        
+        history.push('/songs/all')
+
     }
     return (
         <form onSubmit={HandleSubmit} encType="multipart/form-data">
@@ -91,7 +97,7 @@ function CreateSongForm() {
                 <input id="artist-name" type="text" value={artist} placeholder='Artist Time' onChange={(e) => setArtist(e.target.value)} />
             </label>
             <div className='SubmitSongBtn'>
-                <button className="create-song-button" type="submit">Submit Song</button>
+                <button className="create-song-button" type="submit">{isUploading ? "Uploading song..." : "Submit Song"}</button>
             </div>
         </form>
     )
