@@ -12,6 +12,7 @@ function SongCard({song, number, playlistId}){
     return(
         <>
             <td>{number}</td>
+            <td><img className='song-img' src={song.songImage}/></td>
             <td>{song?.title}</td>
             <td>{song?.artist}</td>
             <td>{song?.uploader}</td>
