@@ -49,7 +49,7 @@ const UserPage = () => {
                 </h1>
             </div>
             <div className="username">
-                {pageUser?.playlists.length === 0 ? 'ADD SOME PLAYLIST TO YOUR ACCOUNT TO SPICE IT UP' : 'PLAYLIST'}
+                {pageUser?.playlists?.length === 0 ? 'ADD SOME PLAYLIST TO YOUR ACCOUNT TO SPICE IT UP' : 'PLAYLIST'}
             </div>
 
             <div className="playlist-area">
