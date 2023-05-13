@@ -41,16 +41,19 @@ function PlaylistPage() {
             <div className="playlistName">
                 {singlePlaylistObj.name}
             </div>
-            <button className="buttons" onClick={handleSongPlayer}>
-                <IoPlay />
-            </button>
 
-            {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">
-                <OpenModalButton
-                    buttonText={<BsThreeDots />}
-                    modalComponent={<PlaylistMenu playlistId={playlistId} />}
-                />
-            </div>}
+            <div className="playlist-play-options">
+                <button className="buttons" onClick={handleSongPlayer}>
+                    <IoPlay />
+                </button>
+
+                {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">
+                    <OpenModalButton
+                        buttonText={<BsThreeDots />}
+                        modalComponent={<PlaylistMenu playlistId={playlistId} />}
+                        />
+                </div>}
+            </div>
 
             <div className='all-songs-container'>
                 <table className='all-songs-container-headers'>
