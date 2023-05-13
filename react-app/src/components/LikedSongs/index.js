@@ -35,7 +35,7 @@ function LikedSongs() {
                         <th>#</th>
                         <th>Title</th>
                         <th>Artist</th>
-                        <th>Uploaded By</th>
+                        <th colSpan={3}>Uploaded By</th>
                     </tr>
                 </thead>
                 <tbody onClick={toggleWasThereAClick}>
