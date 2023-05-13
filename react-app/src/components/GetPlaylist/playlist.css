@@ -39,6 +39,10 @@
 .playlistImg{
     height: 225px;
     width: 225px;
+}
+.playlistImage img{
+    height: 400px;
+    width: 400px;
     border-radius: 4px;
 }
 .white-icon svg {
