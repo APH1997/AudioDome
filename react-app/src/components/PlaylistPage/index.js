@@ -7,8 +7,9 @@ import { useHistory } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
 import { BsThreeDots } from 'react-icons/bs'
 import PlaylistMenu from "../PlaylistMenuModal"
-import { getPlaylistSongsThunk } from "../../store/currentSong"
+import { getPlaylistSongsThunk, playOneSongThunk} from "../../store/currentSong"
 import { IoPlay, IoPlaySkipBack, IoPlaySkipForward, IoPause } from 'react-icons/io5'
+import "../SongCard/songcards.css"
 
 
 function PlaylistPage() {
@@ -31,6 +32,10 @@ function PlaylistPage() {
 
     if (Object.values(singlePlaylistObj).length === 0) {
         return null
+    }
+
+    const handelClick = (song) => {
+        dispatch(playOneSongThunk(song.id))
     }
 
     return (
@@ -68,8 +73,8 @@ function PlaylistPage() {
                     </thead>
                     <tbody>
                         {singlePlaylistObj.songs.map((song, index) => (
-                            <tr>
-                                <SongCard song={song} number={index + 1} playlistId={playlistId} />
+                            <tr className='number-play' onClick={e => handelClick(song)} >
+                                <SongCard song={song} number={index + 1} playlistId={playlistId}/>
                             </tr>
                         ))}
                     </tbody>
