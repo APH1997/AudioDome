@@ -7,8 +7,9 @@ import { useHistory } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
 import { BsThreeDots } from 'react-icons/bs'
 import PlaylistMenu from "../PlaylistMenuModal"
-import { getPlaylistSongsThunk } from "../../store/currentSong"
-import {IoPlay, IoPlaySkipBack, IoPlaySkipForward, IoPause} from 'react-icons/io5'
+import { getPlaylistSongsThunk, playOneSongThunk} from "../../store/currentSong"
+import { IoPlay, IoPlaySkipBack, IoPlaySkipForward, IoPause } from 'react-icons/io5'
+import "../SongCard/songcards.css"
 
 
 function PlaylistPage() {
@@ -33,6 +34,10 @@ function PlaylistPage() {
         return null
     }
 
+    const handelClick = (song) => {
+        dispatch(playOneSongThunk(song.id))
+    }
+
     return (
         <div>
             <div className="playlistImage">
@@ -41,22 +46,44 @@ function PlaylistPage() {
             <div className="playlistName">
                 {singlePlaylistObj.name}
             </div>
-            <button className="buttons"onClick={handleSongPlayer}>
-            <IoPlay />
-            </button>
 
-            {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">
-                <OpenModalButton
-                buttonText={<BsThreeDots />}
-                modalComponent={<PlaylistMenu playlistId={playlistId}/>}
-                />
-            </div>}
+            <div className="playlist-play-options">
+                <button className="buttons" onClick={handleSongPlayer}>
+                    <IoPlay />
+                </button>
 
-            {singlePlaylistObj.songs.map((song, index) => (
-                <div>
-                    <SongCard song={song} number={index + 1} playlistId={playlistId} />
-                </div>
-            ))}
+                {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">
+                    <OpenModalButton
+                        buttonText={<BsThreeDots />}
+                        modalComponent={<PlaylistMenu playlistId={playlistId} />}
+                        />
+                </div>}
+            </div>
+
+            <div className='all-songs-container'>
+                <table className='all-songs-container-headers'>
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Artist</th>
+                            <th colSpan={3}>Uploaded By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {singlePlaylistObj.songs.map((song, index) => (
+                            <tr className='number-play' onClick={e => handelClick(song)} >
+                                <SongCard song={song} number={index + 1} playlistId={playlistId}/>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
 
         </div>
     )
