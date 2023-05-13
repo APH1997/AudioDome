@@ -17,8 +17,6 @@ const UserProileModal = () => {
     const { closeModal } = useModal()
     const [error, setError] = useState(null)
 
-    console.log(username);
-    console.log(lastName);
 
     useEffect(() => {
         if (user) {
@@ -29,7 +27,6 @@ const UserProileModal = () => {
         }
     }, [user])
 
-    console.log(user);
     const handelSubmit = (e) => {
         e.preventDefault()
         if (!username) {
@@ -60,7 +57,6 @@ const UserProileModal = () => {
         if (imgFile) {
             formData.append('profile_image', imgFile)
         }
-        console.log(formData)
 
         dispatch(updateUserThunk(formData, user.id))
         closeModal()
@@ -114,22 +110,36 @@ const UserProileModal = () => {
                         onChange={e => setBio(e.target.value)}
                     />
                 </label>
-                <label>
-                    Profile Picture
+                <div className="profilePictureupload">
                     <input
+                        id="hideprofilepicture1"
                         type="file"
                         accept="image/*"
                         onChange={(e) => setImageFile(e.target.files[0])}
+                        className="hideprofilepicture"
                     />
-                </label>
-                <button type="submit">
-                    Update
-                </button>
+                    <label htmlFor="hideprofilepicture1" className="upload-button">
+                        <i className="fas fa-cloud-upload-alt"></i>
+                        {imgFile ? "Picture Ready to Upload" : "Upload Picture"}
+                    </label>
+                </div>
+                <div>
+
+                </div>
+                <div className="seperatingDeleteandUpdate">
+                    <div>
+                        <button className="submit" type="submit">
+                            Update
+                        </button>
+                    </div>
+                    <div>
+                        <OpenModalButton
+                            buttonText="Delete Account"
+                            modalComponent={<DeleteAccount user={user} />}
+                        />
+                    </div>
+                </div>
             </form>
-            <OpenModalButton
-                buttonText="Delete Account"
-                modalComponent={<DeleteAccount user={user} />}
-            />
         </div>
     )
 }

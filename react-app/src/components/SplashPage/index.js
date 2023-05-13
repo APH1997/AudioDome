@@ -11,15 +11,15 @@ function SplashPage() {
   const dispatch = useDispatch();
   const allSongs = useSelector((state) => state.songs);
   const songIds = Object.keys(allSongs);
-  const [counter, setCounter] = useState(0); // use useState() to update counter
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     dispatch(getSongsThunk());
     const intervalId = setInterval(() => {
-      setCounter((prevCounter) => (prevCounter + 1) % songIds.length); // use setCounter() to update counter
+      setCounter((prevCounter) => (prevCounter + 1) % songIds.length);
     }, 4750);
-    return () => clearInterval(intervalId); // clear interval on component unmount
-  }, [dispatch, songIds.length]); // include songIds.length in dependencies array
+    return () => clearInterval(intervalId);
+  }, [dispatch, songIds.length]);
 
   const handleOnClick = async () => {
     const email = "demoo@aa.io";
