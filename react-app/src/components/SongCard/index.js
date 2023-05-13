@@ -16,7 +16,7 @@ function SongCard({song, number, playlistId}){
             <td>{song?.artist}</td>
             <td>{song?.uploader}</td>
             <td className='like-song-svg'><LikeForm song={song} /></td>
-            <td className='song-menu-svg'>
+            <td className='song-menu-svg' onClick={(e) => e.stopPropagation()}>
                 <OpenModalButton
                 buttonText= {< BsThreeDots />}
                 modalComponent={<SongMenu song={song} playlistId={playlistId} />}/>

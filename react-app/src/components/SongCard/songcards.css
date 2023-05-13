@@ -11,8 +11,12 @@
 }
 
 .number-play:hover{
-    background-color: darkgray;
+    background-color: #151716;
     cursor: pointer;
+}
+
+.number-play:active{
+    scale: .99;
 }
 
 .all-songs-container-headers{
