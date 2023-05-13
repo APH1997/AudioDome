@@ -33,6 +33,7 @@ function LikedSongs() {
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Cover</th>
                         <th>Title</th>
                         <th>Artist</th>
                         <th>Uploaded By</th>
