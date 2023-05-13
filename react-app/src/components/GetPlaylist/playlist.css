@@ -13,10 +13,15 @@
     background-color: #151716;
     padding: 8px;
     border-radius: 6px;
+    transition: background-color .5s, scale .5s;
+
 }
 .playlistCardContainer:hover{
     cursor: pointer;
     background-color: #2a2f2e;
+    scale: 1.05;
+    transition: background-color .5s, scale .5s;
+
 }
 #playlistName{
     padding-top: 5px;
@@ -34,6 +39,7 @@
 .playlistImg{
     height: 225px;
     width: 225px;
+    border-radius: 4px;
 }
 .white-icon svg {
     fill: white;
