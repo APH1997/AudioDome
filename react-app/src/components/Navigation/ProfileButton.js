@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
     <>
       <button className="user-button" onClick={openMenu}>
     <h1>
-        <AiOutlineUser />
+        <AiOutlineUser style={{backgroundColor: 'transparent'}}/>
     </h1>
       </button>
       <ul className={ulClassName} ref={ulRef}>
