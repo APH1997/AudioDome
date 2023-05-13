@@ -15,8 +15,35 @@
     cursor: pointer;
 }
 
-.number-play {
+.all-songs-container-headers{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.song-menu-svg{
+    text-align: end;
+    width: 5%;
+}
+.song-menu-svg button {
+    background-color: transparent;
+    border: none;
+}
+.song-menu-svg button svg{
+    fill: darkcyan;
+    scale: 2
+}
+
+.like-song-svg{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: end;
+}
+
+th{
+    border-bottom: 1px solid teal;
+    text-align:start;
+    border-spacing: 50px;
+}
+
+tbody{
+    line-height: 35px;
 }
