@@ -31,3 +31,6 @@ body {
     padding-bottom: 28px;
     column-gap: 30px;
 }
+#modal-content{
+    border-radius: 6%;
+}

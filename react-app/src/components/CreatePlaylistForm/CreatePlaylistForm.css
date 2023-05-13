@@ -39,3 +39,8 @@
 .playlistImageBtn{
     display: none;
 }
+.name-name{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
