@@ -13,6 +13,7 @@ const AudioPlayer = () => {
   const progressBar = useRef()
   const animationRef = useRef()
   const songs = useSelector(state => state.currentSong)
+  const user = useSelector(state => state.session.user)
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
   const [volume1, setVolume] = useState(20)
   const [duration, setDuration] = useState(0)
@@ -89,7 +90,7 @@ const AudioPlayer = () => {
 
   return (
     <div>
-      <div className="AudioPlayerContainer">
+      <div className="AudioPlayerContainer" id={user ? "" : "hidden"}>
       <div className="ProgressBar">
           <div>
             <input type="range" className='progressBar' defaultValue="0" ref={progressBar} onChange={changeRange} />

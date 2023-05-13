@@ -6,6 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { AiOutlineUser } from "react-icons/ai"
 import { useHistory } from "react-router-dom";
+import "./ProfileButton.css"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button className="user-button" onClick={openMenu}>
+      <button className="userbuttonnav" onClick={openMenu}>
     <h1>
         <AiOutlineUser style={{backgroundColor: 'transparent'}}/>
     </h1>
@@ -54,7 +55,7 @@ function ProfileButton({ user }) {
             <ul>{user.username}</ul>
             <ul>{user.email}</ul>
             <ul>
-              <button onClick={handleLogout}>Log Out</button>
+              <button className="LogOutBtn" onClick={handleLogout}>Log Out</button>
             </ul>
           </>
         ) : (
