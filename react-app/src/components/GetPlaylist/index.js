@@ -14,15 +14,17 @@ function GetAllPlaylist() {
 
     useEffect(() => {
         dispatch(getAllPlaylistThunk())
-    },[dispatch])
+    }, [dispatch])
 
-        return (
-            <div className="containerforHomePage">
+    return (
+        <div className="containerforHomePage">
             {allPlaylists.map(playlist => (
                 <div key={playlist.id} className="playlistCardContainer" onClick={(e) => history.push(`/playlist/${playlist.id}`)}>
                     <img className="playlistImg" src={playlist.playlistImage} />
-                    <p id="playlistName">{playlist.name}</p>
-                    <p id="playlistuserName">Playlist by: {playlist.creator}</p>
+                    <div className="playlistCardText">
+                        <p id="playlistName">{playlist.name}</p>
+                        <p id="playlistuserName">Playlist by: {playlist.creator}</p>
+                    </div>
                 </div>
             ))}
         </div>
