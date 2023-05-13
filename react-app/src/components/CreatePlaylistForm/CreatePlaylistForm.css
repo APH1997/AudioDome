@@ -36,3 +36,6 @@
     border-color: black;
     text-decoration: none;
 }
+.playlistImageBtn{
+    display: none;
+}

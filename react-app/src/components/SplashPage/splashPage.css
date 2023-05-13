@@ -1,0 +1,62 @@
+.DemoUser{
+    background-color: teal;
+    color: white;
+    font-family: 'Comfortaa', sans-serif;
+    padding: 15px;
+    border-radius: 30px;
+}
+.DemoUser:hover{
+    background-color: rgb(236, 130, 91);
+}
+.button {
+    /* Add your styles here */
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #3e8e41;
+}
+.RotatingPic{
+    width: 100%;
+}
+.PicOnSplash{
+    width: 100%;
+    height: auto;
+    border-radius: 30%;
+    box-shadow: 0 4px 8px 0 teal, 0 6px 20px 0 teal;
+}
+.splashScreenButtons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.loginBtnSplash{
+    border: black 1px transparent;
+    box-shadow: 0 4px 8px 0 teal, 0 6px 20px 0 teal;
+    padding: 10px;
+    border-radius: 20px;
+}
+.signupBtnSplash{
+    display: flex;
+    flex-direction: column;
+    border: rgba(0, 0, 0, 0.956) 1px transparent;
+    box-shadow: 0 4px 8px 0 teal, 0 6px 20px 0 teal;
+    padding: 10px;
+    border-radius: 20px;
+}
+.Logincard{
+    font-size: 12pt;
+}
+.TitleStuff{
+    justify-content: center;
+    text-align: center;
+}
+.signupbuttondiv{
+    display: flex;
+    justify-content: space-between;
+}

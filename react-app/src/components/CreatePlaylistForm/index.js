@@ -72,12 +72,16 @@ const PlaylistForm = () => {
                 </div>}
             <div className="topOfPage">
                 <div className="playlistImage">
-                    <input id="playlistImages"
+                <input id="playlistImages"
                         type="file"
                         name="playlistPicture"
                         accept="image/*"
-                        onChange={handleAddImage} />
-
+                        onChange={handleAddImage}
+                        className="playlistImageBtn" />
+                    <label htmlFor="playlistImages" className="upload-button">
+                        <i className="fas fa-cloud-upload-alt"></i>
+                        {imgFile ? "Picture Ready to Upload" : "Upload Photo"}
+                    </label>
 
                 </div>
                 <label>
