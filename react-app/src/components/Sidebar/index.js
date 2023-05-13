@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import "./sidebar.css"
 import { BsLinkedin, BsGithub } from "react-icons/bs";
-import { GrHomeRounded } from "react-icons/gr"
+import { GrHomeRounded,GrSearch } from "react-icons/gr"
 
 const Sidebar = () => {
   const userObj = useSelector(state => state.session)
@@ -19,12 +19,12 @@ const Sidebar = () => {
         <ul>
           <ul>
             <div>
-              <Link to="/">Home< GrHomeRounded style={{color:'white'}}/></Link>
+              <Link className="white-icon hover-teal" to="/">Home <GrHomeRounded /></Link>
             </div>
           </ul>
           <ul>
             <div>
-              <Link to="/songs/all">Browse Songs</Link>
+              <Link className="white-icon1 hover-teal1" to="/songs/all">Browse Songs <GrSearch /></Link>
             </div>
           </ul>
           <ul>

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { createPlaylistThunk, getAllPlaylistThunk } from "../../store/playlist"
 import SongCard from "../SongCard"
 import { getSongsThunk } from "../../store/songs"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-
+import { useHistory } from "react-router-dom"
+import "./CreatePlaylistForm.css"
 const PlaylistForm = () => {
     const user = useSelector(state => state.session.user)
     const allSongsObj = useSelector(state => state.songs)
@@ -77,6 +77,8 @@ const PlaylistForm = () => {
                         name="playlistPicture"
                         accept="image/*"
                         onChange={handleAddImage} />
+
+
                 </div>
                 <label>
                     Name
@@ -89,16 +91,6 @@ const PlaylistForm = () => {
                 </label>
             </div>
             <div>
-                {/* {allSongs.length > 0 && allSongs.map(song =>
-                    <div>
-                        {song?.title} {' '}{song?.artist} {' '} {song?.uploader}
-                        {' '}
-                        <button
-                            onClick={() => handleSubmit(song)}>
-                            Add
-                        </button>
-                    </div>
-                )} */}
                 {allSongs.map(song =>
                     <div>
                         <label>
