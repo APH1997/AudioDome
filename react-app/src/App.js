@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import { authenticate } from "./store/session";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import GetAllSongs from "./components/GetAllSongs";
 import CreateSongForm from "./components/CreateSongForm";
 import UpdateSongForm from "./components/SongUpdate";
-import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import GetPlaylist from "./components/GetPlaylist";
-import PlaylistShow from "./components/PlaylistShow";
 import PlaylistPage from "./components/PlaylistPage";
 import PlaylistForm from "./components/CreatePlaylistForm";
-import SearchBar from "./components/SearchBar";
 import EditPlaylistForm from "./components/EditPlaylistForm";
 import UserPage from "./components/UserPage";
-import SignupFormModal from "./components/SignupFormModal";
 import LikedSongs from "./components/LikedSongs";
 import SplashPage from "./components/SplashPage";
 
@@ -60,9 +57,6 @@ function App() {
             </Route>
             <Route exact path='/songs/all'>
               <GetAllSongs />
-            </Route>
-            <Route exact path='/search'>
-              <SearchBar />
             </Route>
             <Route exact path='/users/:userId'>
               <UserPage />
