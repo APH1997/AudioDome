@@ -30,3 +30,10 @@
     height: 225px;
     width: 225px;
 }
+.white-icon svg {
+    fill: white;
+  }
+
+  .hover-teal:hover svg {
+    fill: black;
+  }

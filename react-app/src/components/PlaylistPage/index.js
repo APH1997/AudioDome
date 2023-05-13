@@ -8,6 +8,8 @@ import OpenModalButton from "../OpenModalButton"
 import { BsThreeDots } from 'react-icons/bs'
 import PlaylistMenu from "../PlaylistMenuModal"
 import { getPlaylistSongsThunk } from "../../store/currentSong"
+import {IoPlay, IoPlaySkipBack, IoPlaySkipForward, IoPause} from 'react-icons/io5'
+
 
 function PlaylistPage() {
     const history = useHistory()
@@ -44,8 +46,8 @@ function PlaylistPage() {
             <div className="playlistName">
                 {singlePlaylistObj.name}
             </div>
-            <button onClick={handleSongPlayer}>
-                Change this button later
+            <button className="buttons"onClick={handleSongPlayer}>
+            <IoPlay />
             </button>
 
             {singlePlaylistObj.userId === user.user.id && <div className="playlist-menu-dots">
