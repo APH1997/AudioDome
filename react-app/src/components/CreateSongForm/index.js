@@ -61,46 +61,48 @@ function CreateSongForm() {
         await dispatch(createSongThunk(formData))
 
         setTimeout(() => setIsUploading(false), 3000)
-        
+
         history.push('/songs/all')
 
     }
     return (
-        <form onSubmit={HandleSubmit} encType="multipart/form-data">
-            {error &&
-                <div className="error">
-                    {error}
-                </div>}
-            <div className='button-for-used'>
-                <label>
-                    <input id="song-upload" type="file" name="song" accept="audio/*" onChange={handleFileUpload} className='SongUploadbtn' />
-                    <label htmlFor="song-upload" className="uploadbutton">
-                        <i className="fas fa-cloud-upload-alt"></i>
-                        {file ? "Song Ready to Upload" : "Upload Song"}
+        <div className='wholepage'>
+            <form onSubmit={HandleSubmit} encType="multipart/form-data">
+                {error &&
+                    <div className="error">
+                        {error}
+                    </div>}
+                <div className='button-for-used'>
+                    <label>
+                        <input id="song-upload" type="file" name="song" accept="audio/*" onChange={handleFileUpload} className='SongUploadbtn' />
+                        <label htmlFor="song-upload" className="uploadbutton">
+                            <i className="fas fa-cloud-upload-alt"></i>
+                            {file ? "Song Ready to Upload" : "Upload Song"}
+                        </label>
                     </label>
-                </label>
-            </div>
-            <div className='button-for-used'>
-                <label>
-                    <input id="songImages" type="file" name="songPicture" accept='"image/*' onChange={handleAddImage} className='SongPicupload' />
-                    <label htmlFor="songImages" className="uploadbutton">
-                        <i className="fas fa-cloud-upload-alt"></i>
-                        {imgFile ? "Picture Ready to Upload" : "Upload Picture"}
+                </div>
+                <div className='button-for-used'>
+                    <label>
+                        <input id="songImages" type="file" name="songPicture" accept='"image/*' onChange={handleAddImage} className='SongPicupload' />
+                        <label htmlFor="songImages" className="uploadbutton">
+                            <i className="fas fa-cloud-upload-alt"></i>
+                            {imgFile ? "Picture Ready to Upload" : "Upload Picture"}
+                        </label>
                     </label>
+                </div>
+                <label>
+                    <div>Title</div>
+                    <input id="song-title" type="text" value={title} placeholder='Song Title' onChange={(e) => setTitle(e.target.value)} />
                 </label>
-            </div>
-            <label>
-                <div>Title</div>
-                <input id="song-title" type="text" value={title} placeholder='Song Title' onChange={(e) => setTitle(e.target.value)} />
-            </label>
-            <label>
-                <div>Artist</div>
-                <input id="artist-name" type="text" value={artist} placeholder='Artist Time' onChange={(e) => setArtist(e.target.value)} />
-            </label>
-            <div className='SubmitSongBtn'>
-                <button className="create-song-button" type="submit">{isUploading ? "Uploading song..." : "Submit Song"}</button>
-            </div>
-        </form>
+                <label>
+                    <div>Artist</div>
+                    <input id="artist-name" type="text" value={artist} placeholder='Artist Time' onChange={(e) => setArtist(e.target.value)} />
+                </label>
+                <div className='SubmitSongBtn'>
+                    <button className="create-song-button" type="submit">{isUploading ? "Uploading song..." : "Submit Song"}</button>
+                </div>
+            </form>
+        </div>
     )
 }
 

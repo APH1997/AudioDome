@@ -69,55 +69,57 @@ const PlaylistForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            {error &&
-                <div className="error">
-                    {error}
-                </div>}
-            <div className="topOfPage">
-                <div className="playlistImage">
-                    <input id="playlistImages"
-                        type="file"
-                        name="playlistPicture"
-                        accept="image/*"
-                        onChange={handleAddImage}
-                        className="playlistImageBtn" />
-                    <label htmlFor="playlistImages" className="upload-button">
-                        <i className="fas fa-cloud-upload-alt"></i>
-                        {imgFile ? "Picture Ready to Upload" : "Upload Photo"}
-                    </label>
-
-                </div>
-                <div className="name-name">
-                    <label>
-                        Name
-                        <input
-                            id="playlistName"
-                            placeholder={`My Playlist #${(user.playlists).length + 1}`}
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)} />
-                    </label>
-                </div>
-            </div>
-            <div>
-                {allSongs.map(song =>
-                    <div className="every-song">
-                        <label>
-                            {song?.title}
-                            <input
-                                type="checkbox"
-                                name='song'
-                                value={song?.id}
-                                onChange={handelCheckBox}
-                            />
+        <div className="wholepage">
+            <form onSubmit={handleSubmit}>
+                {error &&
+                    <div className="error">
+                        {error}
+                    </div>}
+                <div className="topOfPage">
+                    <div className="playlistImage">
+                        <input id="playlistImages"
+                            type="file"
+                            name="playlistPicture"
+                            accept="image/*"
+                            onChange={handleAddImage}
+                            className="playlistImageBtn" />
+                        <label htmlFor="playlistImages" className="upload-button">
+                            <i className="fas fa-cloud-upload-alt"></i>
+                            {imgFile ? "Picture Ready to Upload" : "Upload Photo"}
                         </label>
-                    </div>)}
-            </div>
-            <div className='SubmitPlaylistBtn'>
-                <button className="create-playlist-button" type="submit">Create Playlist</button>
-            </div>
-        </form>
+
+                    </div>
+                    <div className="name-name">
+                        <label>
+                            Name
+                            <input
+                                id="playlistName"
+                                placeholder={`My Playlist #${(user.playlists).length + 1}`}
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)} />
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    {allSongs.map(song =>
+                        <div className="every-song">
+                            <label>
+                                {song?.title}
+                                <input
+                                    type="checkbox"
+                                    name='song'
+                                    value={song?.id}
+                                    onChange={handelCheckBox}
+                                />
+                            </label>
+                        </div>)}
+                </div>
+                <div className='SubmitPlaylistBtn'>
+                    <button className="create-playlist-button" type="submit">Create Playlist</button>
+                </div>
+            </form>
+        </div>
     )
 }
 
