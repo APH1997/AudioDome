@@ -23,6 +23,9 @@ function GetAllSongs() {
     if (allSongs.songs === null) return null
     return (
         <div className='all-songs-container'>
+            <div className='titleforBrowse'>
+                <h1>WELCOME TO THE AUDIO ARCHIVE</h1>
+            </div>
             <table className='all-songs-container-headers'>
 
                 <thead>
