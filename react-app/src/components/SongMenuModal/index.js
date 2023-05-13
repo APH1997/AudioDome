@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal'
 import AddToPlaylist from '../AddToPlaylistModal/addToPlaylist';
 import DeleteFromPlaylist from '../DeleteFromPlaylistModal';
-
+import './SongMenu.css'
 function SongMenu({ song, playlistId }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
@@ -44,7 +44,10 @@ function SongMenu({ song, playlistId }) {
     }
 
     return (
-        <>
+        <div className='modal'>
+            <div>
+                <h1>SONG PAGE</h1>
+            </div>
             <ul>
                 <div>
                     <OpenModalButton
@@ -73,7 +76,7 @@ function SongMenu({ song, playlistId }) {
                     </>
                 }
             </ul>
-        </>
+        </div>
     )
 }
 

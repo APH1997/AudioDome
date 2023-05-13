@@ -4,6 +4,7 @@ import { updateUserThunk } from "../../store/session"
 import { useModal } from '../../context/Modal'
 import DeleteAccount from "../UserPage/DeleteAccountModal"
 import OpenModalButton from "../OpenModalButton"
+import './usermodal.css'
 
 const UserProileModal = () => {
     const [username, setUsername] = useState('')
@@ -68,7 +69,10 @@ const UserProileModal = () => {
 
 
     return (
-        <>
+        <div className="user-modal">
+            <div>
+                <h1>UPDATE USER ACCOUNT</h1>
+            </div>
             <form onSubmit={handelSubmit}>
                 {error &&
                     <div className="error">
@@ -126,7 +130,7 @@ const UserProileModal = () => {
                 buttonText="Delete Account"
                 modalComponent={<DeleteAccount user={user} />}
             />
-        </>
+        </div>
     )
 }
 

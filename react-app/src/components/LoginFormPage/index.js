@@ -22,12 +22,12 @@ function LoginFormPage() {
       setErrors(data);
     } else {
       closeModal()
-      
+
     }
   };
 
   return (
-    <>
+    <div className="login-modal">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -55,7 +55,7 @@ function LoginFormPage() {
         </label>
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 
