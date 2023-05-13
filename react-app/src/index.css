@@ -12,3 +12,12 @@ body {
     margin-right: 200px;
     padding: 20px;
 }
+
+.playlist-menu-dots button {
+    background-color: transparent;
+    border: none;
+}
+.playlist-menu-dots button svg{
+    fill: darkcyan;
+    scale: 3
+}
