@@ -40,11 +40,11 @@ function CreateSongForm() {
             setError('Artist is required')
             return
         }
-        if(file === null){
+        if (file === null) {
             setError('Song is required')
             return
         }
-        if(imgFile === null){
+        if (imgFile === null) {
             setError('Image is required')
             return
         }
@@ -65,8 +65,7 @@ function CreateSongForm() {
                 <div className="error">
                     {error}
                 </div>}
-            <div>
-
+            <div className='button-for-used'>
                 <label>
                     <input id="song-upload" type="file" name="song" accept="audio/*" onChange={handleFileUpload} className='SongUploadbtn' />
                     <label htmlFor="song-upload" className="uploadbutton">
@@ -75,13 +74,15 @@ function CreateSongForm() {
                     </label>
                 </label>
             </div>
-            <label>
-                <input id="songImages" type="file" name="songPicture" accept='"image/*' onChange={handleAddImage} className='SongPicupload' />
-                <label htmlFor="songImages" className="uploadbutton">
-                    <i className="fas fa-cloud-upload-alt"></i>
-                    {imgFile ? "Picture Ready to Upload" : "Upload Picture"}
+            <div className='button-for-used'>
+                <label>
+                    <input id="songImages" type="file" name="songPicture" accept='"image/*' onChange={handleAddImage} className='SongPicupload' />
+                    <label htmlFor="songImages" className="uploadbutton">
+                        <i className="fas fa-cloud-upload-alt"></i>
+                        {imgFile ? "Picture Ready to Upload" : "Upload Picture"}
+                    </label>
                 </label>
-            </label>
+            </div>
             <label>
                 <div>Title</div>
                 <input id="song-title" type="text" value={title} placeholder='Song Title' onChange={(e) => setTitle(e.target.value)} />

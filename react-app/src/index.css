@@ -12,3 +12,7 @@ body {
     margin-right: 200px;
     padding: 20px;
 }
+
+#modal-content{
+    border-radius: 6%;
+}

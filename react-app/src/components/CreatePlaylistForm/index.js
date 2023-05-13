@@ -39,7 +39,7 @@ const PlaylistForm = () => {
             setError("Please select at least one song");
             return;
         }
-        if(imgFile === null){
+        if (imgFile === null) {
             setError('Image is required')
             return
         }
@@ -76,7 +76,7 @@ const PlaylistForm = () => {
                 </div>}
             <div className="topOfPage">
                 <div className="playlistImage">
-                <input id="playlistImages"
+                    <input id="playlistImages"
                         type="file"
                         name="playlistPicture"
                         accept="image/*"
@@ -88,15 +88,17 @@ const PlaylistForm = () => {
                     </label>
 
                 </div>
-                <label>
-                    Name
-                    <input
-                        id="playlistName"
-                        placeholder={`My Playlist #${(user.playlists).length + 1}`}
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)} />
-                </label>
+                <div className="name-name">
+                    <label>
+                        Name
+                        <input
+                            id="playlistName"
+                            placeholder={`My Playlist #${(user.playlists).length + 1}`}
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)} />
+                    </label>
+                </div>
             </div>
             <div>
                 {allSongs.map(song =>
