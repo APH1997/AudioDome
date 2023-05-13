@@ -10,6 +10,14 @@
   justify-content: space-between;
 }
 
+.profile-dropdown{
+  position: absolute;
+  right: 50px;
+}
+
+/* .user-button{
+  position: absolute;
+} */
 
 .navigation-div {
   display: flex;
