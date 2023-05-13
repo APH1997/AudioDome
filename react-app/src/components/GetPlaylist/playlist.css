@@ -10,11 +10,16 @@
     align-items: center;
     flex: 0 0 23%;
     margin-bottom: 20px;
+    background-color: #151716;
+    padding: 8px;
+    border-radius: 6px;
 }
 .playlistCardContainer:hover{
     cursor: pointer;
+    background-color: #2a2f2e;
 }
 #playlistName{
+    padding-top: 5px;
     width:225px;
     margin: 0px;
 
