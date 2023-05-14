@@ -67,7 +67,7 @@ function CreateSongForm() {
     }
     return (
         <div className='wholepage'>
-            <form onSubmit={HandleSubmit} encType="multipart/form-data">
+            <form className='create-song-form' onSubmit={HandleSubmit} encType="multipart/form-data">
                 {error &&
                     <div className="error">
                         {error}
