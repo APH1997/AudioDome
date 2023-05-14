@@ -1,0 +1,12 @@
+.modalbtn {
+    background-color: teal;
+    color: white;
+    font-family: 'Comfortaa', sans-serif;
+    padding: 15px;
+    border-radius: 30px;
+    margin: 3px;
+}
+
+.modalbtn:hover {
+    background-color: rgb(236, 130, 91);
+}

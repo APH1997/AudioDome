@@ -30,7 +30,6 @@ def user(id):
 @user_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def user_edit(id):
-    print("WHERE IN THE USER ROUTE ========================================")
     user = User.query.get(id)
     form = EditUserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -38,13 +37,11 @@ def user_edit(id):
     if form.validate_on_submit():
 
         if form.data['profile_image']:
-            print(form.data,'EDIT PROFILE DATA --------------------------')
             profile_pic = form.data['profile_image']
             profile_pic.filename = get_unique_filename(profile_pic.filename)
             upload = upload_file_to_s3(profile_pic)
 
             if 'url' not in upload:
-                print('url errors if any ========>', upload['errors'])
                 return upload['errors']
             aws_url = upload['url']
             user.profile_image = aws_url
@@ -68,4 +65,4 @@ def delete_user(id):
     db.session.delete(user)
     db.session.commit()
 
-    return "Succesfully deleted"
+    return jsonify({"message":"Succesfully deleted"})

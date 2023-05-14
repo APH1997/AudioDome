@@ -6,6 +6,7 @@ import { addSongToPlaylistThunk } from "../../store/playlist"
 import {useHistory} from 'react-router-dom'
 import { useParams } from "react-router-dom"
 import { getUserByIdThunk } from "../../store/session"
+import './playlistmodal.css'
 
 function AddToPlaylist({ song }) {
     const dispatch = useDispatch()
@@ -48,7 +49,7 @@ function AddToPlaylist({ song }) {
     }, [dispatch])
 
     return (
-        <>
+        <div className="modal">
             <h2>Select a playlist</h2>
             <form onSubmit={handleSubmit} method="PUT">
                 {user.playlists.map(playlist =>
@@ -57,9 +58,9 @@ function AddToPlaylist({ song }) {
                         <input type="checkbox" value={playlist.id} onChange={handelCheckBox}></input>
                     </div>
                 )}
-                <button type="submit">Submit</button>
+                <button className="SubmitAddtoPlaylist" type="submit">Submit</button>
             </form>
-        </>
+        </div>
     )
 }
 

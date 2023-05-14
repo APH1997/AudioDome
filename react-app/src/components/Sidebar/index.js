@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import "./sidebar.css"
 import { BsLinkedin, BsGithub } from "react-icons/bs";
-import { GrHomeRounded } from "react-icons/gr"
+import { GrHomeRounded,GrSearch } from "react-icons/gr"
 
 const Sidebar = () => {
   const userObj = useSelector(state => state.session)
   const user = Object.values(userObj)
-  console.log(user, 'user');
   if (!user[0]) {
     return ''
   }
@@ -19,12 +18,12 @@ const Sidebar = () => {
         <ul>
           <ul>
             <div>
-              <Link to="/">Home< GrHomeRounded style={{color:'white'}}/></Link>
+              <Link className="white-icon hover-teal" to="/">Home <GrHomeRounded /></Link>
             </div>
           </ul>
           <ul>
             <div>
-              <Link to="/songs/all">Browse Songs</Link>
+              <Link className="white-icon1 hover-teal1" to="/songs/all">Browse Songs <GrSearch /></Link>
             </div>
           </ul>
           <ul>
@@ -52,11 +51,19 @@ const Sidebar = () => {
       <div>
         <div className='icons-bottom'>
           <h1>
-            <BsLinkedin />
-          </h1>
-          <h1>
             <BsGithub />
           </h1>
+          <a href='https://github.com/APH1997' target="_blank">Andre Hristu</a>
+          <a href="https://github.com/bzhang50167" target="_blank">Bao Heng Zhang</a>
+          <a href="https://github.com/DomenikMoody" target="_blank">Domenik Moody</a>
+          <a href="https://github.com/FrancisHuynh95" target="_blank">Francis Huynh</a>
+          <h1>
+            <BsLinkedin />
+          </h1>
+          <a href='https://www.linkedin.com/in/andre-hristu-012842164/' target="_blank">Andre Hristu</a>
+          <a href="https://www.linkedin.com/in/bao-heng-zhang-b43731256/" target="_blank">Bao Heng Zhang</a>
+          <a href="https://www.linkedin.com/in/domenik-moody-90370521b/" target="_blank">Domenik Moody</a>
+          <a href="https://www.linkedin.com/in/francis-huynh-153246161/" target="_blank">Francis Huynh</a>
         </div>
       </div>
     </div>

@@ -1,0 +1,23 @@
+.user-modal{
+    padding: 50px;
+}
+
+label{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.hideprofilepicture{
+    display: none;
+}
+.seperatingDeleteandUpdate{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.submit{
+    background-color: teal;
+    color: white;
+    font-family: 'Comfortaa', sans-serif;
+    padding: 15px;
+    border-radius: 30px;
+}

@@ -1,20 +1,40 @@
 .containerforHomePage{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     margin: 10px;
+    gap: 30px;
+    border-bottom: teal 1px solid;
+    border-top:teal 1px solid;
+    padding: 30px;
 }
 .playlistCardContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
     flex: 0 0 23%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    background-color: #151716;
+    border-radius: 6px;
+    transition: background-color .5s, scale .5s;
+    max-width: 290px;
+    padding: 23.5px 8.5px;
+    gap:10px;
+
 }
 .playlistCardContainer:hover{
     cursor: pointer;
+    background-color: #2a2f2e;
+    scale: 1.05;
+    transition: background-color .5s, scale .5s;
+
 }
+
+/* .playlistCardText {
+    margin-top: 15px;
+} */
+
 #playlistName{
+    padding-top: 5px;
     width:225px;
     margin: 0px;
 
@@ -30,3 +50,15 @@
     height: 225px;
     width: 225px;
 }
+.playlistImage img{
+    height: 400px;
+    width: 400px;
+    border-radius: 4px;
+}
+.white-icon svg {
+    fill: white;
+  }
+
+  .hover-teal:hover svg {
+    fill: black;
+  }

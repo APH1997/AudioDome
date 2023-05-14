@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { createPlaylistThunk, getAllPlaylistThunk } from "../../store/playlist"
 import SongCard from "../SongCard"
 import { getSongsThunk } from "../../store/songs"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import { useHistory } from "react-router-dom"
+import "./CreatePlaylistForm.css"
 
 const PlaylistForm = () => {
     const user = useSelector(state => state.session.user)
@@ -11,7 +12,6 @@ const PlaylistForm = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const [checked, setChecked] = useState([])
-    // console.log(checked,'work ~~~~~~~~~~~~~~');
     const [name, setName] = useState('')
     const [imgFile, setImageFile] = useState(null)
     const [error, setError] = useState(null)
@@ -39,6 +39,10 @@ const PlaylistForm = () => {
             setError("Please select at least one song");
             return;
         }
+        if (imgFile === null) {
+            setError('Image is required')
+            return
+        }
 
         const formData = new FormData()
 
@@ -65,57 +69,57 @@ const PlaylistForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            {error &&
-                <div className="error">
-                    {error}
-                </div>}
-            <div className="topOfPage">
-                <div className="playlistImage">
-                    <input id="playlistImages"
-                        type="file"
-                        name="playlistPicture"
-                        accept="image/*"
-                        onChange={handleAddImage} />
-                </div>
-                <label>
-                    Name
-                    <input
-                        id="playlistName"
-                        placeholder={`My Playlist #${(user.playlists).length + 1}`}
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)} />
-                </label>
-            </div>
-            <div>
-                {/* {allSongs.length > 0 && allSongs.map(song =>
-                    <div>
-                        {song?.title} {' '}{song?.artist} {' '} {song?.uploader}
-                        {' '}
-                        <button
-                            onClick={() => handleSubmit(song)}>
-                            Add
-                        </button>
-                    </div>
-                )} */}
-                {allSongs.map(song =>
-                    <div>
-                        <label>
-                            {song?.title}
-                            <input
-                                type="checkbox"
-                                name='song'
-                                value={song?.id}
-                                onChange={handelCheckBox}
-                            />
+        <div className="wholepage">
+            <form className="create-playlist-form" onSubmit={handleSubmit}>
+                {error &&
+                    <div className="error">
+                        {error}
+                    </div>}
+                <div className="topOfPage">
+                    <div className="playlistImage">
+                        <input id="playlistImages"
+                            type="file"
+                            name="playlistPicture"
+                            accept="image/*"
+                            onChange={handleAddImage}
+                            className="playlistImageBtn" />
+                        <label htmlFor="playlistImages" className="upload-button">
+                            <i className="fas fa-cloud-upload-alt"></i>
+                            {imgFile ? "Picture Ready to Upload" : "Upload Photo"}
                         </label>
-                    </div>)}
-            </div>
-            <div className='SubmitPlaylistBtn'>
-                <button className="create-playlist-button" type="submit">Create Playlist</button>
-            </div>
-        </form>
+
+                    </div>
+                    <div className="name-name">
+                        <label>
+                            Name
+                            <input
+                                id="playlistName"
+                                placeholder={`My Playlist #${(user.playlists).length + 1}`}
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)} />
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    {allSongs.map(song =>
+                        <div className="every-song">
+                            <label>
+                                {song?.title}
+                                <input
+                                    type="checkbox"
+                                    name='song'
+                                    value={song?.id}
+                                    onChange={handelCheckBox}
+                                />
+                            </label>
+                        </div>)}
+                </div>
+                <div className='SubmitPlaylistBtn'>
+                    <button className="create-playlist-button" type="submit">Create Playlist</button>
+                </div>
+            </form>
+        </div>
     )
 }
 

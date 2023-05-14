@@ -7,8 +7,8 @@ import { useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal'
 import AddToPlaylist from '../AddToPlaylistModal/addToPlaylist';
 import DeleteFromPlaylist from '../DeleteFromPlaylistModal';
-
-function SongMenu({ song, playlistId }) {
+import './SongMenu.css'
+function SongMenu({ song, playlistId, fromPlaylist, creatorId}) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -44,21 +44,27 @@ function SongMenu({ song, playlistId }) {
     }
 
     return (
-        <>
+        <div className='modal'>
+            <div>
+                <h1>SONG PAGE</h1>
+            </div>
             <ul>
                 <div>
-                    <OpenModalButton
+                        <OpenModalButton
                         buttonText="Add to a playlist"
                         onItemClick={closeMenu}
                         modalComponent={<AddToPlaylist song={song} />}
-                    />
+                        />
                 </div>
                 <div>
-                    <OpenModalButton
+                    {
+                        fromPlaylist && user.user.id === creatorId &&
+                        <OpenModalButton
                         buttonText="Delete from playlist"
                         onItemClick={closeMenu}
                         modalComponent={<DeleteFromPlaylist song={song} playlistId={playlistId} />}
-                    />
+                        />
+                    }
                 </div>
                 {user.user.username === song.uploader &&
                     <>
@@ -68,12 +74,12 @@ function SongMenu({ song, playlistId }) {
                                 onItemClick={closeMenu}
                                 modalComponent={<DeleteSong song={song} />}
                             />
-                            <button onClick={() => handleUpdate()}>Update Song</button>
+                            <button className='modalbtn' onClick={() => handleUpdate()}>Update Song</button>
                         </div>
                     </>
                 }
             </ul>
-        </>
+        </div>
     )
 }
 

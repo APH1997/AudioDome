@@ -5,11 +5,14 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { AiOutlineUser } from "react-icons/ai"
+import { useHistory } from "react-router-dom";
+import "./ProfileButton.css"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const history = useHistory()
 
   const openMenu = () => {
     if (showMenu) return;
@@ -33,6 +36,7 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push('/')
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -40,34 +44,22 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button className="user-button" onClick={openMenu}>
+      <button className="userbuttonnav" onClick={openMenu}>
     <h1>
-        <AiOutlineUser />
+        <AiOutlineUser style={{backgroundColor: 'transparent'}}/>
     </h1>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+            <ul>{user.username}</ul>
+            <ul>{user.email}</ul>
+            <ul>
+              <button className="LogOutBtn" onClick={handleLogout}>Log Out</button>
+            </ul>
           </>
         ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
+           null
         )}
       </ul>
     </>

@@ -60,6 +60,10 @@
   color: teal;
   border-radius: 50%;
 }
+.buttons:hover {
+  border: 1px solid rgb(236, 130, 91);
+  color: rgb(236, 130, 91);
+}
 
 .coverArtSong {
   height: 60px;
@@ -76,3 +80,6 @@ body {
   justify-content: center;
 }
 
+#hidden{
+  display: none;
+}

@@ -1,0 +1,19 @@
+.userbuttonnav{
+    background-color: black;
+    color: teal;
+    border:none;
+}
+
+.userbuttonnav:hover{
+    cursor: pointer;
+}
+.LogOutBtn{
+    background-color: black;
+    color: teal;
+    border: 1px solid teal
+}
+.LogOutBtn:hover{
+    background-color: teal;
+    color:black;
+    border: 1px solid black
+}

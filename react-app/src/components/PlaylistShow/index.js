@@ -8,13 +8,10 @@ function PlaylistShow() {
     const dispatch = useDispatch()
     const { playlistId } = useParams()
     const singlePlaylistObj = useSelector(state => state.playlist.singlePlaylist)
-    // const singlePlaylist = Object.values(singlePlaylistObj)
-    // console.log(singlePlaylist);
-    console.log(singlePlaylistObj);
     useEffect(() => {
         dispatch(getOnePlaylistThunk(playlistId))
     }, [dispatch])
-    console.log(playlistId);
+
 
     if (Object.values(singlePlaylistObj).length === 0){
         return null
@@ -22,7 +19,6 @@ function PlaylistShow() {
 
     return (
         <div>
-            {/* hello */}
             {singlePlaylistObj.songs.map((song, index) => (
                 <div>
                     <SongCard song={song} number={index+1} playlistId={playlistId} />

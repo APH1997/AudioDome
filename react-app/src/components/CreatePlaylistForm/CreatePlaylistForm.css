@@ -13,7 +13,19 @@
     vertical-align: middle;
     white-space: nowrap;
     border: 1px solid transparent;
-    transition: color .15s ease-in-out,border-color .15s ease-in-out,background-color .15s ease-in-out;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out, background-color .15s ease-in-out;
+}
+
+.wholepage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.every-song input[type="checkbox"] {
+    position: relative;
+    top: -23px;
+    right: -106px;
 }
 
 .custom-file-upload:hover {
@@ -23,62 +35,49 @@
     text-decoration: none;
 }
 
-.create-playlist-button{
+.create-playlist-button {
     background-color: teal;
     color: white;
     font-family: 'Comfortaa', sans-serif;
     padding: 15px;
     border-radius: 30px;
+
 }
-.create-playlist-button:hover{
-    color: black;
-    background-color: rgb(236, 130, 91);
-    border-color: black;
-    text-decoration: none;
-}
-.SongUploadbtn{
-    display: none;
-}
-.SongPicupload{
-    display: none;
-}
-.create-song-button{
-    background-color: teal;
-    color: white;
-    font-family: 'Comfortaa', sans-serif;
-    padding: 15px;
-    border-radius: 30px;
-}
-.create-song-button:hover{
+
+.create-playlist-button:hover {
     color: black;
     background-color: rgb(236, 130, 91);
     border-color: black;
     text-decoration: none;
 }
 
-.button-for-used{
+.playlistImageBtn {
+    display: none;
+}
+
+.name-name {
+    display: flex;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-.wholepage div{
-    margin-bottom: 40px;
+.every-song {
+    display: flex;
+    flex-direction: column;
 }
 
-label div {
-    margin-bottom: 10px;
-}
-
-.create-song-form {
-    width: 500px;
+.create-playlist-form{
     background-color: rgb(61, 61, 61);
     padding: 15px;
     border-radius: 5px;
-}
-.create-song-form input{
-    width: 60%;
+    width: 500px;
 }
 
-.create-song-form label > div{
-    margin: 0;
+.create-playlist-form input {
+    width: 620px;
+}
+
+.SubmitPlaylistBtn{
+    display: flex;
+    justify-content: center;
 }

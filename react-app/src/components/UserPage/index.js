@@ -8,6 +8,7 @@ import OpenModalButton from "../OpenModalButton"
 import { useEffect } from "react"
 import { getUserByIdThunk } from "../../store/session"
 import './userpage.css'
+import GetAllSongs from "../GetAllSongs"
 
 const UserPage = () => {
     const { userId } = useParams()
@@ -15,7 +16,7 @@ const UserPage = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const pageUser = useSelector(state => state.session.userPage)
-    console.log(pageUser);
+    
 
     useEffect(() => {
         dispatch(getUserByIdThunk(userId))
@@ -25,24 +26,36 @@ const UserPage = () => {
     return (
         <div>
             {pageUser?.id == userId &&
-                <div className="user-name">
+                <div className="username">
                     {pageUser?.firstName}{' '}{pageUser?.lastName}
                 </div>
             }
-            <div className="user-profile-pic">
-                <img src={pageUser?.profileImage === null ? "https://static1.squarespace.com/static/5898e29c725e25e7132d5a5a/58aa11bc9656ca13c4524c68/58aa11e99656ca13c45253e2/1487540713345/600x400-Image-Placeholder.jpg?format=original" : pageUser?.profileImage} />
+            <div className="banner">
+                <div className="user-profile-pic">
+                    <img src={pageUser?.profileImage === null ? "https://static1.squarespace.com/static/5898e29c725e25e7132d5a5a/58aa11bc9656ca13c4524c68/58aa11e99656ca13c45253e2/1487540713345/600x400-Image-Placeholder.jpg?format=original" : pageUser?.profileImage} />
+                </div>
+                <div className="username">
+                    {pageUser?.bio === null ? "ADD A BIO  TO YOUR ACCOUNT !!!!!" : pageUser?.bio}
+                </div>
             </div>
-            <div>
+            <div className="username-button">
                 <h1 className="username">
                     {pageUser?.username}
+                    {user?.id == userId && <span className="user-profile-menu-dots">
+                        <OpenModalButton
+                            buttonText={<BsThreeDots />}
+                            modalComponent={<UserProileModal />}
+                        />
+                    </span>}
                 </h1>
             </div>
-            <div>
-                {pageUser?.bio === null ? "ADD A BIO  TO YOUR ACCOUNT !!!!!" : pageUser?.bio}
+            <div className="username">
+                <h3>
+                    {pageUser?.playlists?.length === 0 ? 'CREATE SOME PLAYLISTS TO SPICE THINGS UP' : 'PLAYLISTS'}
+                </h3>
             </div>
 
-            <div>
-                {pageUser?.playlists.length === 0 ? 'ADD SOME PLAYLIST TO YOUR ACCOUNT TO SPICE IT UP' : 'PLAYLIST'}
+            <div className="playlist-area">
                 {pageUser?.playlists.map(playlist => (
                     <div key={playlist.id} className="playlistCardContainer" onClick={(e) => history.push(`/playlist/${playlist.id}`)}>
                         <img className="playlistImg" src={playlist.playlistImage} />
@@ -51,12 +64,11 @@ const UserPage = () => {
                     </div>
                 ))}
             </div>
-            {user?.id == userId && <div className="user-profile-menu-dots">
-                <OpenModalButton
-                    buttonText={<BsThreeDots />}
-                    modalComponent={<UserProileModal />}
-                />
-            </div>}
+            <div className="uploaded-songs-area">
+                <h3>YOUR UPLOADS</h3>
+                <GetAllSongs fromLib={true} pageUser={pageUser?.username}/>
+            </div>
+
         </div>
     )
 }

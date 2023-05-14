@@ -39,13 +39,11 @@ const UpdateSongForm = () => {
             title: title,
             artist: artist,
         }
-        console.log("REACT FORM SUBMIT SONGINFO", songInfo)
         await dispatch(editSongThunk(songInfo, songId))
         await dispatch(getSongsThunk())
-        console.log("all songs ==================================>",allSongs)
         history.push('/')
     }
-    console.log(song);
+    
 
     if (!song[songId]) return null
 

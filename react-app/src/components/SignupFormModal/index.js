@@ -52,7 +52,7 @@ function SignupFormModal() {
 
 
 	return (
-		<>
+		<div className="sign-up-modal">
 			<h1>Sign Up</h1>
 			{error.email && <p>{error.email}</p>}
 			{error.username && <p>{error.username}</p>}
@@ -62,6 +62,7 @@ function SignupFormModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
+				<div>
 				<label>
 					Email
 					<input
@@ -71,6 +72,8 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				</div>
+				<div>
 				<label>
 					Username
 					<input
@@ -80,6 +83,8 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				</div>
+				<div>
 				<label>
 					Password
 					<input
@@ -89,6 +94,8 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				</div>
+				<div>
 				<label>
 					Confirm Password
 					<input
@@ -98,10 +105,10 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				</div>
+				<button className="modalbtn" type="submit">Sign Up</button>
 			</form>
-				<button onClick={handleOnClick}>Demo User</button>
-		</>
+		</div>
 	);
 }
 

@@ -3,30 +3,27 @@ import "./songcards.css"
 import { BsThreeDots } from 'react-icons/bs'
 import SongMenu from "../SongMenuModal"
 import OpenModalButton from "../OpenModalButton";
-import  {useState, useEffect, useRef } from "react"
-import { useDispatch } from "react-redux";
 import LikeForm from './likeform';
 
 
-function SongCard({song, number, playlistId}){
 
-    useEffect(() => {
-        console.log('number changed')
-    }, [number])
+function SongCard({song, number, playlistId, fromPlaylist, creatorId}){
+
     return(
         <>
             <td>{number}</td>
+            <td><img className='song-img' src={song.songImage}/></td>
             <td>{song?.title}</td>
             <td>{song?.artist}</td>
             <td>{song?.uploader}</td>
-            <td><LikeForm song={song} /></td>
-            <td>
+            <td className='like-song-svg'onClick={(e) => e.stopPropagation()}><LikeForm song={song} /></td>
+            <td className='song-menu-svg' onClick={(e) => e.stopPropagation()}>
                 <OpenModalButton
                 buttonText= {< BsThreeDots />}
-                modalComponent={<SongMenu song={song} playlistId={playlistId} />}/>
+                modalComponent={<SongMenu fromPlaylist={fromPlaylist} song={song} playlistId={playlistId} creatorId={creatorId}/>}/>
             </td>
-
         </>
+
     )
 }
 

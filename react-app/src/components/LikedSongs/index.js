@@ -22,7 +22,6 @@ function LikedSongs() {
 
     function toggleWasThereAClick() {
         setWasThereAClick(!wasThereAClick)
-        console.log("I HEARD A CLICK!")
     }
 
     if (allSongs.songs === null) return null
@@ -33,9 +32,10 @@ function LikedSongs() {
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Cover</th>
                         <th>Title</th>
                         <th>Artist</th>
-                        <th>Uploaded By</th>
+                        <th colSpan={3}>Uploaded By</th>
                     </tr>
                 </thead>
                 <tbody onClick={toggleWasThereAClick}>

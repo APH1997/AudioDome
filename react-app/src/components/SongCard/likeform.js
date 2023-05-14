@@ -20,12 +20,14 @@ function LikeForm({song}){
 
     const [liked, setLiked] = useState(isSongLiked())
 
-    const handleLike = () => {
+    const handleLike = (e) => {
+        e.stopPropagation()
         setLiked(true)
         dispatch(likeSongThunk(song.id, user.user.id))
     }
 
-    const handleUnlike = () => {
+    const handleUnlike = (e) => {
+        e.stopPropagation()
         setLiked(false)
         dispatch(unlikeSongThunk(song.id, user.user.id))
     }

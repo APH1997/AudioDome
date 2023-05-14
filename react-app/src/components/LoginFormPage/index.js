@@ -3,6 +3,7 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './LoginForm.css';
+import { useModal } from "../../context/Modal";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ function LoginFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const {closeModal} = useModal()
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -18,11 +20,14 @@ function LoginFormPage() {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      closeModal()
+
     }
   };
 
   return (
-    <>
+    <div className="login-modal">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -48,9 +53,9 @@ function LoginFormPage() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="modalbtn" type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -23,21 +23,17 @@ def get_playlist_by_id(id):
 @playlist_routes.route('/new', methods=['POST'])
 @login_required
 def create_playlist():
-    print('I AM IN THE PLAYLIST ROUTE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     form = PlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data,'DATAAAAAAAAAAAAAAAAAAAA')
-    print(form.validate_on_submit(),'<=======================================')
     if form.validate_on_submit():
         playlistPicture = form.data['playlist_image']
-        print('I Have Passed Validation')
         playlistPicture.filename = get_unique_filename(playlistPicture.filename)
         upload = upload_file_to_s3(playlistPicture)
 
         if 'url' not in upload:
-            print('url errors if any ========>', upload['errors'])
-            return upload['errors']
-        
+
+            return jsonify(upload['errors'])
+
         playlist_image = upload['url']
 
         new_playlist = Playlist(
@@ -45,21 +41,19 @@ def create_playlist():
             name = form.data['name'],
             playlist_image = playlist_image
         )
-        print('created Playlist =============>', new_playlist)
+
         song_list = []
         for song_id in form.data['playlist_songs'].split(','):
             song = Song.query.get(song_id)
             song_list.append(song)
 
-        print(song_list,'<==========================this is a list of songs')
 
         new_playlist.playlist_songs.extend(song_list)
         db.session.add(new_playlist)
         db.session.commit()
         redirect('/')
     else:
-        print('~~~~~~~~~~~~~Bad Data~~~~~~~~~~~~~~')
-        return "Bad Data"
+        return jsonify({"message": "Bad Data"})
 
 
 @playlist_routes.route('/<int:id>', methods=['PUT'])
@@ -68,10 +62,7 @@ def edit_playlist_by_id(id):
     form = EditPlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print(form.data)
         if form.data['playlist_image']:
-            if not 1 <= playlist.id <= 3:
-                remove_file_from_s3(playlist.playlist_image)
                 image = form.data['playlist_image']
                 image.filename = get_unique_filename(image.filename)
                 upload = upload_file_to_s3(image)
@@ -93,7 +84,7 @@ def edit_playlist_by_id(id):
 def add_song_to_playlists():
     form = AddSongToPlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('form.data =====================>',form.data)
+
     if form.validate_on_submit():
         playlistList = form.data['playlist_ids'].split(',')
         playlists = [Playlist.query.get(id) for id in playlistList]
@@ -107,10 +98,8 @@ def add_song_to_playlists():
 @playlist_routes.route('/<int:playlist_id>/delete/<int:song_id>', methods=['DELETE'])
 @login_required
 def remove_song_from_playlist(playlist_id, song_id):
-    print('WE RAE IN THE ROUTES ~~~~~~~~~~~~~~~~~~~~~~~~~')
     playlist = Playlist.query.get(playlist_id)
     song = Song.query.get(song_id)
-    print(playlist, '<~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     playlist.playlist_songs = [songs for songs in playlist.playlist_songs if songs.id != song_id]
     db.session.commit()
 
@@ -127,9 +116,6 @@ def delete_playlist_by_id(id):
     db.session.delete(playlist)
     db.session.commit()
 
-    if not 1 <= playlist.id <= 3:
-        remove_file_from_s3(playlist.playlist_image)
-        print('Playlist Image Deleted from AWS bucket')
 
     return jsonify({
         'message': 'Playlist successfully deleted'

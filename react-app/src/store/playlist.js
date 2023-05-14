@@ -4,7 +4,6 @@ const CREATE_PLAYLIST = 'playlists/CreatePlaylist';
 const DELETE_PLAYLIST = 'playlists/DeletePlaylist';
 const DELETE_SONG_FROM_PLAYLIST = 'playlists/DeleteSongFromPlaylist'
 
-
 export const DeletePlaylistAction = (playlistId) => {
     return {
         type: DELETE_PLAYLIST,
@@ -20,7 +19,7 @@ export const deletePlaylistThunk = (playlistId) => async (dispatch) => {
     if (res.ok){
         await dispatch(DeletePlaylistAction(playlistId))
     } else {
-        console.log('HELP! THE DELETE THUNK IS BROKEN!')
+        return false
     }
 }
 
@@ -63,22 +62,20 @@ export const deleteSongFromPlaylistAction = (playlistId, songId) => {
     }
 }
 
+
 export const deleteSongFromPlaylistThunk = (playlist_id, song_id) => async dispatch => {
-    console.log('woahweoawhle kjaklwje lkawjel kawj');
     const res = await fetch(`/playlists/${playlist_id}/delete/${song_id}`,{
         method: "DELETE",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(playlist_id, song_id)
     })
 
-    console.log(res,'res in the thunk');
     if (res.ok){
         const newRes = await res.json()
         dispatch(deleteSongFromPlaylistAction(playlist_id, song_id))
-        console.log('DELETE SUCCESSFUL');
         return newRes
     } else {
-        console.log('DELETE UNSUCCESSFUL');
+        return false
     }
 }
 export const getAllPlaylistThunk = () => async dispatch => {
@@ -86,14 +83,12 @@ export const getAllPlaylistThunk = () => async dispatch => {
 
     if (res.ok) {
         const data = await res.json()
-        console.log('DATA from get all playlist thunk ==============================>', data)
         dispatch(GetAllPlaylistAction(data))
     }
 
 }
 
 export const createPlaylistThunk = (formData) => async dispatch => {
-    console.log(JSON.stringify(formData),'not sure what this looks like');
     const res = await fetch ('/playlists/new', {
         method: 'POST',
         body: formData
@@ -101,11 +96,10 @@ export const createPlaylistThunk = (formData) => async dispatch => {
 
     if (res.ok) {
         const data = await res.json()
-        console.log(data,'data after res in the thunk');
 
         dispatch(CreatePlaylistAction(data))
     } else {
-        console.log(res,'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+        return false
     }
 }
 
@@ -116,9 +110,9 @@ export const updatePlaylistThunk = (formData, playlistId) => async dispatch => {
     })
 
     if (res.ok){
-        console.log("UPDATE PLAYLIST THUNK WORKING")
+        return {"message": "playlist updated"}
     } else {
-        console.log("UPDATE PLAYLIST THUNK NOT WORKING")
+        return {"message": "playlist failed to update"}
     }
 }
 
@@ -129,13 +123,13 @@ export const addSongToPlaylistThunk = (playlist_ids, song_id) => async(dispatch)
         body: JSON.stringify({playlist_ids, song_id})
     })
     if (res.ok){
-        console.log("ADD TO PLAYLIST THUNK WORKING")
+        return {"message": "song added to playlist"}
     } else {
-        console.log("ADD TO PLAYLIST THUNK NOT WORKING")
+        return {"message": "song failed to be added to playlist"}
     }
 }
 
-const initialState = { allPlaylists:{}, singlePlaylist:{} }
+const initialState = { allPlaylists:{}, singlePlaylist:{}, singleSong:{} }
 
 const playlistReducer = (state = initialState, action) =>{
     switch (action.type) {

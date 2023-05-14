@@ -24,12 +24,10 @@ def get_song_by_id(id):
 def create_song_by_id():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('IN THE SONG CREATION ROUTE~~~~~~~~~~~~~~~~~~~~~~~~~~')
     if form.validate_on_submit():
         song = form.data["aws_url"]
         song.filename = get_unique_filename(song.filename)
         upload = upload_file_to_s3(song)
-        print('PASSED VALIDATION~~~~~~~~~~~~~~~~~~~~~')
 
         songPicture = form.data['song_image']
         songPicture.filename = get_unique_filename(songPicture.filename)
@@ -38,14 +36,12 @@ def create_song_by_id():
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
-            print('errorrr song ================>', upload['errors'])
             return upload["errors"]
         if "url" not in uploadpic:
-            print('errorrr image ================>', upload['errors'])
             return upload["errors"]
         song_pic = uploadpic["url"]
         aws_url = upload["url"]
-        
+
         new_song = Song(
             title = form.data['title'],
             artist = form.data['artist'],
@@ -53,7 +49,7 @@ def create_song_by_id():
             song_image = song_pic,
             uploader_id = form.data['uploader_id']
         )
-        print(new_song,'new song <========================')
+        
         db.session.add(new_song)
         db.session.commit()
         return jsonify(new_song.to_dict())
@@ -84,10 +80,6 @@ def delete_song_by_id(id):
     song = Song.query.get(id)
     db.session.delete(song)
     db.session.commit()
-
-    if not 1 <= song.id <= 3:
-        remove_file_from_s3(song.aws_url)
-        print('Song Deleted from AWS bucket')
 
 
     return jsonify({
