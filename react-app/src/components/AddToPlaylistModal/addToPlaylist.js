@@ -58,7 +58,7 @@ function AddToPlaylist({ song }) {
                         <input type="checkbox" value={playlist.id} onChange={handelCheckBox}></input>
                     </div>
                 )}
-                <button type="submit">Submit</button>
+                <button className="SubmitAddtoPlaylist" type="submit">Submit</button>
             </form>
         </div>
     )
