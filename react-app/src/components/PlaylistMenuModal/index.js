@@ -23,8 +23,8 @@ function PlaylistMenu({playlistId}) {
     return (
         <div className="manage-playlist-modal">
             <h3>Manage your playlist</h3>
-            <button onClick={handleUpdate}>Update Playlist</button>
-            <button onClick={handleDelete}>Delete Playlist</button>
+            <button className="modalbtn" onClick={handleUpdate}>Update Playlist</button>
+            <button className="modalbtn" onClick={handleDelete}>Delete Playlist</button>
         </div>
     )
 }
