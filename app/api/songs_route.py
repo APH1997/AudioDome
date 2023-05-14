@@ -83,11 +83,7 @@ def delete_song_by_id(id):
     db.session.delete(song)
     db.session.commit()
 
-    if not 1 <= song.id <= 3:
-        remove_file_from_s3(song.aws_url)
-        print('Song Deleted from AWS bucket')
-
-
+    
     return jsonify({
         'message': 'Song deleted'
     })
