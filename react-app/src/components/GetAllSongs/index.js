@@ -24,7 +24,7 @@ function GetAllSongs({fromLib, pageUser}) {
     if (allSongs.songs === null) return null
 
     const filterUploaded = Object.values(allSongs).filter(song => song.uploader === pageUser)
-    console.log(filterUploaded)
+
     return (
         <div className='all-songs-container'>
             <div className='titleforBrowse'>

@@ -8,7 +8,6 @@ import { GrHomeRounded,GrSearch } from "react-icons/gr"
 const Sidebar = () => {
   const userObj = useSelector(state => state.session)
   const user = Object.values(userObj)
-  // console.log(user, 'user');
   if (!user[0]) {
     return ''
   }

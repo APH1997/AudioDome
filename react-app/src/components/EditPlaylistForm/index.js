@@ -38,7 +38,7 @@ function EditPlaylistForm() {
     }
 
     if (!Object.values(playlist).length) return null
-    console.log(imageFile)
+    
     return (
         <>
             <form method="PUT" onSubmit={handleSubmit}>

@@ -66,7 +66,7 @@ export const updateUserThunk = (userInfo, id) => async dispatch => {
 		const data = await res.json()
 		dispatch(updateUser(data))
 	} else {
-		console.log('it is not being accepted');
+		return {"message":"user failed to update"}
 	}
 }
 
@@ -145,9 +145,9 @@ export const deleteUserThunk = (user) => async (dispatch) => {
 	})
 
 	if (response.ok){
-		console.log("DELETED USER MAYBE")
+		return {"message": "Success!"}
 	} else {
-		console.log("DEFINITELY DID NOT DELETE USER")
+		return {"message": "Failed to Delete"}
 	}
 }
 
@@ -164,11 +164,8 @@ export default function reducer(state = initialState, action) {
 		}
 		case UPDATE_USER: {
 			const newState = {...state, user:{...state.user}, userPage:{...state.userPage}}
-			console.log(action,'the acitonciont~~~~~');
-			console.log(newState,'before update =====');
 			newState.user = action.payload
 			newState.userPage = action.payload
-			console.log(newState,'after update =====');
 			return newState
 		}
 		default:

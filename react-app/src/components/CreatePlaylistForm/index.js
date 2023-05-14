@@ -12,7 +12,6 @@ const PlaylistForm = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const [checked, setChecked] = useState([])
-    // console.log(checked,'work ~~~~~~~~~~~~~~');
     const [name, setName] = useState('')
     const [imgFile, setImageFile] = useState(null)
     const [error, setError] = useState(null)

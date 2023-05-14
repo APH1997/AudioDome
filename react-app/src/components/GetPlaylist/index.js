@@ -10,7 +10,7 @@ function GetAllPlaylist() {
     const history = useHistory()
     const allPlaylistsObj = useSelector(state => state.playlist.allPlaylists)
     const allPlaylists = Object.values(allPlaylistsObj)
-    console.log(allPlaylists);
+    
 
     useEffect(() => {
         dispatch(getAllPlaylistThunk())

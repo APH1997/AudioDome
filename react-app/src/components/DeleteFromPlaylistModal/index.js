@@ -8,11 +8,9 @@ const DeleteFromPlaylist = ({song, playlistId}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const { closeModal } = useModal()
-    console.log(playlistId);
     const handleDelete = (e) => {
         e.preventDefault()
         let playlist_id = playlistId
-        console.log(playlistId);
         let song_id = song.id
         dispatch(deleteSongFromPlaylistThunk(playlist_id, song_id))
         closeModal()
