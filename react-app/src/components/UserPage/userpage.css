@@ -6,7 +6,7 @@
 }
 
 .username {
-    margin-left: 40px;
+    margin-left: 0px;
     margin-bottom: 15px;
 }
 
@@ -44,3 +44,6 @@
     display: flex;
     gap: 15px;
 }
+ .uploaded-songs-area {
+    padding-top: 50px;
+ }

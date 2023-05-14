@@ -66,8 +66,6 @@ def edit_playlist_by_id(id):
     if form.validate_on_submit():
         print(form.data)
         if form.data['playlist_image']:
-            if not 1 <= playlist.id <= 3:
-                remove_file_from_s3(playlist.playlist_image)
                 image = form.data['playlist_image']
                 image.filename = get_unique_filename(image.filename)
                 upload = upload_file_to_s3(image)
@@ -123,9 +121,6 @@ def delete_playlist_by_id(id):
     db.session.delete(playlist)
     db.session.commit()
 
-    if not 1 <= playlist.id <= 3:
-        remove_file_from_s3(playlist.playlist_image)
-        print('Playlist Image Deleted from AWS bucket')
 
     return jsonify({
         'message': 'Playlist successfully deleted'
