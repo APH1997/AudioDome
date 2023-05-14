@@ -40,7 +40,7 @@ def seed_users():
         username='Prince',
         first_name='Domenik',
         last_name='Moody',
-        bio='Domenik Moody, aka Prince/Dom, is a gamer and music lover. He enjoys R&B, drawing, and was part of the team that built this site.',
+        bio='Hello Im Domenik Moody, also known as Prince to his gamer friends and Dom to other friends, im a multi-talented individual with a passion for video games, music, and art. Born and raised in Norfolk, VA, I developed an early love for gaming, spending countless hours exploring virtual worlds and honing my skills in various game genres. Aside from gaming, Im also an avid music lover, with a particular affinity for R&B. He enjoys discovering new artists and tracks, and often creates playlists to match his moods and activities. When Im not playing video games or listening to music, I can be found sketching and drawing, with a talent for creating intricate designs and illustrations. In addition to my personal interests, im also a valuable member of the team that built the site this bio is on, contributing his skills and expertise to ensure the site is user-friendly and visually appealing. With his passion for gaming, music, and art, as well as his technical know-how, Im is a well-rounded and dynamic individual with a bright future ahead of me.',
         profile_image='https://audiodome-songs.s3.us-east-2.amazonaws.com/6e914103ce8248ef978db5cc493e6d00.jpg',
         email='Prince@aa.io',
         password='password')
