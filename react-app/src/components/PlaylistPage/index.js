@@ -75,7 +75,7 @@ function PlaylistPage() {
                     <tbody>
                         {singlePlaylistObj.songs.map((song, index) => (
                             <tr className='number-play' onClick={e => handelClick(song)} >
-                                <SongCard song={song} number={index + 1} playlistId={playlistId}/>
+                                <SongCard fromPlaylist={true} song={song} number={index + 1} playlistId={playlistId}/>
                             </tr>
                         ))}
                     </tbody>

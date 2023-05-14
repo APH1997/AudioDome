@@ -7,7 +7,7 @@ import LikeForm from './likeform';
 
 
 
-function SongCard({song, number, playlistId}){
+function SongCard({song, number, playlistId, fromPlaylist}){
 
     return(
         <>
@@ -20,7 +20,7 @@ function SongCard({song, number, playlistId}){
             <td className='song-menu-svg' onClick={(e) => e.stopPropagation()}>
                 <OpenModalButton
                 buttonText= {< BsThreeDots />}
-                modalComponent={<SongMenu song={song} playlistId={playlistId} />}/>
+                modalComponent={<SongMenu fromPlaylist={fromPlaylist} song={song} playlistId={playlistId} />}/>
             </td>
         </>
 

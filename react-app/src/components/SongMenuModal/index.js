@@ -8,7 +8,7 @@ import { useModal } from '../../context/Modal'
 import AddToPlaylist from '../AddToPlaylistModal/addToPlaylist';
 import DeleteFromPlaylist from '../DeleteFromPlaylistModal';
 import './SongMenu.css'
-function SongMenu({ song, playlistId }) {
+function SongMenu({ song, playlistId, fromPlaylist}) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -57,11 +57,14 @@ function SongMenu({ song, playlistId }) {
                     />
                 </div>
                 <div>
-                    <OpenModalButton
+                    {
+                        fromPlaylist &&
+                        <OpenModalButton
                         buttonText="Delete from playlist"
                         onItemClick={closeMenu}
                         modalComponent={<DeleteFromPlaylist song={song} playlistId={playlistId} />}
-                    />
+                        />
+                    }
                 </div>
                 {user.user.username === song.uploader &&
                     <>
