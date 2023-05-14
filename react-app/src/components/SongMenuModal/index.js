@@ -42,7 +42,7 @@ function SongMenu({ song, playlistId, fromPlaylist, creatorId}) {
         closeModal()
         history.push(`/song/${song.id}/edit`)
     }
-    
+
     return (
         <div className='modal'>
             <div>
@@ -50,11 +50,11 @@ function SongMenu({ song, playlistId, fromPlaylist, creatorId}) {
             </div>
             <ul>
                 <div>
-                    <OpenModalButton
+                        <OpenModalButton
                         buttonText="Add to a playlist"
                         onItemClick={closeMenu}
                         modalComponent={<AddToPlaylist song={song} />}
-                    />
+                        />
                 </div>
                 <div>
                     {
@@ -74,7 +74,7 @@ function SongMenu({ song, playlistId, fromPlaylist, creatorId}) {
                                 onItemClick={closeMenu}
                                 modalComponent={<DeleteSong song={song} />}
                             />
-                            <button onClick={() => handleUpdate()}>Update Song</button>
+                            <button className='modalbtn' onClick={() => handleUpdate()}>Update Song</button>
                         </div>
                     </>
                 }
