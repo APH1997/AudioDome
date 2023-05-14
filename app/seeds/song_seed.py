@@ -403,7 +403,57 @@ def seed_songs(seeded_users):
         song_likes = sample(seeded_users, randint(0, len(seeded_users))),
         song_image ="http://audiodome-songs.s3.amazonaws.com/4aa03b14d85c4ff690478b9ade517075.jpeg"
     )
-    all_songs = [song1, song2, song3, song4, song5, song6, song7, song8, song9, song10, song11, song12, song13, song14, song15, song16, song17, song18, song19, song20, song21, song22, song23, song24, song25, song26, song27, song28, song29, song30, song31, song32, song33, song34, song35, song36, song37, song38, song39, song40, song41, song42, song43, song44, song45, song46, song47, song48, song49, song50]
+    song51 = Song(
+        title="Mulan - I'll Make A Man Out Of You",
+        artist='Donny Osmond',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/6a0bbe6a70f14fcdb2ede1b91a947c8b.mp3',
+        uploader = seeded_users[5],
+        song_likes = sample(seeded_users, randint(0, len(seeded_users))),
+        song_image ="http://audiodome-songs.s3.amazonaws.com/b2b0b58c58a64a9784cc53a1a5b58e80.jpeg"
+    )
+    song52 = Song(
+        title="Aladdin - Prince Ali",
+        artist='Will Smith',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/2985ddfd552b4f07b6bde980dd3a9f97.mp3',
+        uploader = seeded_users[5],
+        song_likes = sample(seeded_users, randint(0, len(seeded_users))),
+        song_image ="http://audiodome-songs.s3.amazonaws.com/5e666d827ced411fad49f98a801aaced.png"
+    )
+    song53 = Song(
+        title="Lion King - Hakuna Matata",
+        artist='Timon and Pumbaa Ft. Simba',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/62b3ca5df6334b8f8c9289482095bb92.mp3',
+        uploader = seeded_users[5],
+        song_likes = sample(seeded_users, randint(0, len(seeded_users))),
+        song_image ="http://audiodome-songs.s3.amazonaws.com/d247d15dccf64d52b81fe7514600c2c5.jpg"
+    )
+    song54 = Song(
+        title="Initial D - Forever Young",
+        artist='Bob Dylan',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/6871de8cfbef4457b83b568859874c1d.mp3',
+        uploader = seeded_users[5],
+        song_likes = sample(seeded_users, randint(0, len(seeded_users))),
+        song_image ="http://audiodome-songs.s3.amazonaws.com/6c6fe03190b241b5839bb1c0ea776ea5.png"
+    )
+    song55 = Song(
+        title="Initial D - Rage Your Dream",
+        artist='Move',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/a6bb4c412cb74e69a6e7e480fa5b6754.mp3',
+        uploader = seeded_users[5],
+        song_likes = sample(seeded_users, randint(0, len(seeded_users))),
+        song_image ="http://audiodome-songs.s3.amazonaws.com/6c6fe03190b241b5839bb1c0ea776ea5.png"
+    )
+    song56 = Song(
+        title="Initial D - Night of Fire",
+        artist='Niko',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/829e6cdbc2dc407c84c666eefe5a334c.mp3',
+        uploader = seeded_users[5],
+        song_likes = sample(seeded_users, randint(0, len(seeded_users))),
+        song_image ="http://audiodome-songs.s3.amazonaws.com/6c6fe03190b241b5839bb1c0ea776ea5.png"
+    )
+
+
+    all_songs = [song1, song2, song3, song4, song5, song6, song7, song8, song9, song10, song11, song12, song13, song14, song15, song16, song17, song18, song19, song20, song21, song22, song23, song24, song25, song26, song27, song28, song29, song30, song31, song32, song33, song34, song35, song36, song37, song38, song39, song40, song41, song42, song43, song44, song45, song46, song47, song48, song49, song50, song51, song52, song53, song54, song55, song56]
     add_songs = [db.session.add(song) for song in all_songs]
     db.session.commit()
 
