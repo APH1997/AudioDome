@@ -5,6 +5,7 @@ import SongCard from "../SongCard"
 import { getSongsThunk } from "../../store/songs"
 import { useHistory } from "react-router-dom"
 import "./CreatePlaylistForm.css"
+
 const PlaylistForm = () => {
     const user = useSelector(state => state.session.user)
     const allSongsObj = useSelector(state => state.songs)
@@ -70,7 +71,7 @@ const PlaylistForm = () => {
 
     return (
         <div className="wholepage">
-            <form onSubmit={handleSubmit}>
+            <form className="create-playlist-form" onSubmit={handleSubmit}>
                 {error &&
                     <div className="error">
                         {error}
