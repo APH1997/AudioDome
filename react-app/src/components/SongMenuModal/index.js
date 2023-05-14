@@ -8,7 +8,7 @@ import { useModal } from '../../context/Modal'
 import AddToPlaylist from '../AddToPlaylistModal/addToPlaylist';
 import DeleteFromPlaylist from '../DeleteFromPlaylistModal';
 import './SongMenu.css'
-function SongMenu({ song, playlistId, fromPlaylist}) {
+function SongMenu({ song, playlistId, fromPlaylist, creatorId}) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -42,7 +42,7 @@ function SongMenu({ song, playlistId, fromPlaylist}) {
         closeModal()
         history.push(`/song/${song.id}/edit`)
     }
-
+    
     return (
         <div className='modal'>
             <div>
@@ -58,7 +58,7 @@ function SongMenu({ song, playlistId, fromPlaylist}) {
                 </div>
                 <div>
                     {
-                        fromPlaylist &&
+                        fromPlaylist && user.user.id === creatorId &&
                         <OpenModalButton
                         buttonText="Delete from playlist"
                         onItemClick={closeMenu}

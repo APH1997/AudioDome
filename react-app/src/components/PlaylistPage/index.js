@@ -20,8 +20,7 @@ function PlaylistPage() {
     const singlePlaylistObj = useSelector(state => state.playlist.singlePlaylist)
     const singlePlaylistLength = singlePlaylistObj.songs?.length
 
-    console.log("USER:", user)
-    console.log("PLAYLIST:", singlePlaylistObj)
+
     useEffect(() => {
         dispatch(getOnePlaylistThunk(playlistId))
     }, [dispatch, singlePlaylistLength])
@@ -37,6 +36,7 @@ function PlaylistPage() {
     const handelClick = (song) => {
         dispatch(playOneSongThunk(song.id))
     }
+
 
     return (
         <div>
@@ -75,17 +75,12 @@ function PlaylistPage() {
                     <tbody>
                         {singlePlaylistObj.songs.map((song, index) => (
                             <tr className='number-play' onClick={e => handelClick(song)} >
-                                <SongCard fromPlaylist={true} song={song} number={index + 1} playlistId={playlistId}/>
+                                <SongCard fromPlaylist={true} song={song} number={index + 1} playlistId={playlistId} creatorId={singlePlaylistObj.userId}/>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-
-
-
-
-
         </div>
     )
 }
