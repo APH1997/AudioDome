@@ -23,21 +23,17 @@ def get_playlist_by_id(id):
 @playlist_routes.route('/new', methods=['POST'])
 @login_required
 def create_playlist():
-    print('I AM IN THE PLAYLIST ROUTE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     form = PlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data,'DATAAAAAAAAAAAAAAAAAAAA')
-    print(form.validate_on_submit(),'<=======================================')
     if form.validate_on_submit():
         playlistPicture = form.data['playlist_image']
-        print('I Have Passed Validation')
         playlistPicture.filename = get_unique_filename(playlistPicture.filename)
         upload = upload_file_to_s3(playlistPicture)
 
         if 'url' not in upload:
             print('url errors if any ========>', upload['errors'])
             return upload['errors']
-        
+
         playlist_image = upload['url']
 
         new_playlist = Playlist(

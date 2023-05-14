@@ -83,7 +83,12 @@ function CreateSongForm() {
                 </div>
                 <div className='button-for-used'>
                     <label>
-                        <input id="songImages" type="file" name="songPicture" accept='"image/*' onChange={handleAddImage} className='SongPicupload' />
+                        <input id="songImages"
+                        type="file"
+                        name="songPicture"
+                        accept="image/*"
+                        onChange={handleAddImage}
+                        className='SongPicupload' />
                         <label htmlFor="songImages" className="uploadbutton">
                             <i className="fas fa-cloud-upload-alt"></i>
                             {imgFile ? "Picture Ready to Upload" : "Upload Picture"}

@@ -2,8 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from app.api.aws_helpers import ALLOWED_EXTENSIONS
-from app.api.aws_helpers import ALLOWED_IMAGES
+from app.api.aws_helpers import ALLOWED_EXTENSIONS, ALLOWED_IMAGES
 
 class SongForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
