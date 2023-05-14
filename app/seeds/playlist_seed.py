@@ -10,19 +10,19 @@ def seed_playlist(seeded_users, seeded_songs):
         user = seeded_users[0],
         name="Groove City",
         playlist_image="https://audiodome-songs.s3.us-east-2.amazonaws.com/41e16ec0a2e04b1180fbbc138ce271c1.jpg",
-        playlist_songs = [seeded_songs[0], seeded_songs[1]]
+        playlist_songs = sample(seeded_songs, randint(0, len(seeded_songs)//2))
     )
     Playlist2 = Playlist(
         user = seeded_users[1],
         name="Otaku Melodies",
         playlist_image="https://audiodome-songs.s3.us-east-2.amazonaws.com/b9ca3b21496847baba0ec14a607d4e1d.jpg",
-        playlist_songs =[seeded_songs[0], seeded_songs[2]]
+        playlist_songs = sample(seeded_songs, randint(0, len(seeded_songs)//2))
     )
     Playlist3 = Playlist(
         user = seeded_users[2],
         name="Soulful Seduction",
         playlist_image="https://audiodome-songs.s3.us-east-2.amazonaws.com/92a45d6305544259a8994be974a6e244.jpg",
-        playlist_songs = [seeded_songs[1], seeded_songs[2]]
+        playlist_songs = sample(seeded_songs, randint(0, len(seeded_songs)//2))
     )
     Playlist4 = Playlist(
         user = seeded_users[4],
