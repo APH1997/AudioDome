@@ -34,3 +34,13 @@
     display: flex;
     justify-content: space-between;
 }
+
+.deleteUserModal {
+    height: 150px;
+    padding: 15px;
+}
+
+.deleteUserModalButtons{
+    display: flex;
+    gap: 15px;
+}
