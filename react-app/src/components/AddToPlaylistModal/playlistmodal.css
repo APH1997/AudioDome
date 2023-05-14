@@ -1,3 +1,17 @@
 .modal{
     padding: 40px;
 }
+.SubmitAddtoPlaylist{
+    border: rgba(0, 0, 0, 0.956) 1px transparent;
+    background-color: teal;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+}
+.SubmitAddtoPlaylist:hover{
+    border: rgba(0, 0, 0, 0.956) 1px transparent;
+    background-color: rgb(236, 130, 91);
+    color: black;
+    padding: 10px;
+    border-radius: 20px;
+}
