@@ -38,11 +38,6 @@ def upload_file_to_s3(file, acl="public-read"):
         )
     except Exception as e:
         # in case the our s3 upload fails
-        print('S3 UPLOAD FUNC FILE', file)
-        print('S3 UPLOAD FUNC CONTENT TYPE', file.content_type)
-        print('S3 UPLOAD FUNC BUCKET_NAME', BUCKET_NAME)
-        print('S3 UPLOAD FUNC FILE.FILENAME', file.filename)
-        print('S3 UPLOAD FUNC ACL', acl)
         return {"errors": str(e)}
 
     # THIS IS THE URL WE SAVE IN OUR DATABASE:
@@ -54,7 +49,6 @@ def remove_file_from_s3(song_url):
     # AWS needs the image file name, not the URL,
     # so we split that out of the URL
     key = song_url.rsplit("/", 1)[1]
-    print(key)
     try:
         s3.delete_object(
         Bucket=BUCKET_NAME,
