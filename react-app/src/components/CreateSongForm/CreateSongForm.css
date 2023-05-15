@@ -82,3 +82,8 @@ label div {
 .create-song-form label > div{
     margin: 0;
 }
+
+.uploadbutton:hover{
+    color: rgb(236, 130, 91);
+    cursor: pointer;
+}

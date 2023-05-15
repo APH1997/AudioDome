@@ -81,3 +81,9 @@
     display: flex;
     justify-content: center;
 }
+
+
+.upload-button:hover{
+    color: rgb(236, 130, 91);
+    cursor: pointer;
+}
