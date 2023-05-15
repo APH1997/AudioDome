@@ -20,10 +20,10 @@ const DeleteFromPlaylist = ({song, playlistId}) => {
     return (
         <div>
             <h2>ARE YOU SURE YOU WANT TO DELETE</h2>
-            <button onClick={handleDelete}>
+            <button className="modalbtn" onClick={handleDelete}>
                 Delete Song From Playlist
             </button>
-            <button>
+            <button className="modalbtn" onClick={() => closeModal()}>
                 Cancel
             </button>
         </div>
