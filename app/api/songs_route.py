@@ -49,12 +49,12 @@ def create_song_by_id():
             song_image = song_pic,
             uploader_id = form.data['uploader_id']
         )
-        
+
         db.session.add(new_song)
         db.session.commit()
         return jsonify(new_song.to_dict())
     else:
-        return "Bad Data"
+        return jsonify({"error":"Bad Data"})
 
 @song_routes.route('/<int:id>', methods=['PUT'])
 def edit_song_by_id(id):
@@ -67,7 +67,7 @@ def edit_song_by_id(id):
         db.session.commit()
         return song.to_dict()
     else:
-        return "Bad Data"
+        return jsonify({"error":"Bad Data"})
 
 
 
