@@ -104,7 +104,7 @@ function CreateSongForm() {
                     <input id="artist-name" type="text" value={artist} placeholder='Artist Time' onChange={(e) => setArtist(e.target.value)} />
                 </label>
                 <div className='SubmitSongBtn'>
-                    <button className="create-song-button" type="submit">{isUploading ? "Uploading song..." : "Submit Song"}</button>
+                    <button disabled={isUploading} className="create-song-button" type="submit">{isUploading ? "Uploading song..." : "Submit Song"}</button>
                 </div>
             </form>
         </div>
