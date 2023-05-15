@@ -1,0 +1,24 @@
+#edit-playlist-form{
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+}
+
+#edit-playlist-form input,button{
+    width: 25%;
+}
+
+#outer-label-edit-playlist{
+    display: flex;
+    flex-flow: column
+}
+
+#inner-label-edit-playlist{
+    width: fit-content;
+}
+
+#inner-label-edit-playlist:hover{
+
+    color: rgb(236, 130, 91);
+    cursor: pointer;
+}
