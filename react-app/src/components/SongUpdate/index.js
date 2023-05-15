@@ -8,6 +8,7 @@ const UpdateSongForm = () => {
     const { songId } = useParams()
     const history = useHistory()
     const song = useSelector(state => state.songs)
+    const user = useSelector(state => state.session.user)
     const allSongs = useSelector(state => state.songs)
     const dispatch = useDispatch()
 
@@ -41,9 +42,9 @@ const UpdateSongForm = () => {
         }
         await dispatch(editSongThunk(songInfo, songId))
         await dispatch(getSongsThunk())
-        history.push('/')
+        history.push(`/users/${user.id}`)
     }
-    
+
 
     if (!song[songId]) return null
 
