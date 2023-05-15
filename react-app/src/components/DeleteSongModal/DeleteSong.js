@@ -18,8 +18,8 @@ function DeleteSong({song}) {
     return (
         <>
         <h3>{`ARE YOU SURE YOU WANT TO REMOVE ${song.title}?`}</h3>
-            <button onClick={handleDelete}>Delete Song</button>
-            <button>Cancel</button>
+            <button className="modalbtn" onClick={handleDelete}>Delete Song</button>
+            <button className="modalbtn">Cancel</button>
         </>
     )
 }
