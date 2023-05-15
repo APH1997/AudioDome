@@ -7,6 +7,9 @@
 
 .add-to-playlist-modal > form{
     width: 500px;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
 }
 
 .add-to-playlist-modal > form > input{
@@ -28,4 +31,22 @@
     color: black;
     padding: 10px;
     border-radius: 20px;
+}
+
+div#add-to-playlist-input-and-label{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    gap: 10px;
+}
+
+div.select-playlist{
+    width: fit-content;
+}
+
+
+#playlist-checkbox{
+    width: fit-content;
+    margin-top: 12px;
 }

@@ -13,7 +13,6 @@ function AddToPlaylist({ song }) {
     const user = useSelector(state => state.session.user)
     const [checked, setChecked] = useState([])
     const history = useHistory()
-    const {playlistId} = useParams()
 
     const { closeModal } = useModal()
 
@@ -51,16 +50,15 @@ function AddToPlaylist({ song }) {
 
     return (
         <div className="add-to-playlist-modal">
-            <h2>Select a playlist</h2>
+            <h2>Add {song.title} to one of your playlists:</h2>
             <form onSubmit={handleSubmit} method="PUT">
                 {user.playlists.map(playlist =>
-                    isSongInPlaylist(playlist.songs, song) && <><label
-                        htmlFor={`playlist${playlist.id}`}
+                    isSongInPlaylist(playlist.songs, song) && <div id="add-to-playlist-input-and-label"><label
                         className="select_playlist">
                             {playlist.name}
                         </label>
-                        <input name={`playlist${playlist.id}`} type="checkbox" value={playlist.id} onChange={handelCheckBox}></input>
-                        </>
+                        <input id="playlist-checkbox" type="checkbox" value={playlist.id} onChange={handelCheckBox}></input>
+                        </div>
                 )}
                 <button className="SubmitAddtoPlaylist" type="submit">Submit</button>
             </form>
