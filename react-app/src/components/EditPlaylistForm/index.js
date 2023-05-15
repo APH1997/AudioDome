@@ -53,6 +53,7 @@ function EditPlaylistForm() {
                 <label>
                     Name
                     <input
+                    id="edit-playlist-name"
                     type="text"
                     value={name || ''}
                     onChange={(e) => setName(e.target.value)}
@@ -72,7 +73,7 @@ function EditPlaylistForm() {
                     </label>
                 </label>
 
-                <button className="modalbtn" type="submit">{isUploading ? "Updating..." : "Update Playlist"}</button>
+                <button id="submit-playlist-edit" className="modalbtn" type="submit">{isUploading ? "Updating..." : "Update Playlist"}</button>
 
             </form>
         </>

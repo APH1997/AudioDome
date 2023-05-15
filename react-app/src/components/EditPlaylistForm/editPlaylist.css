@@ -4,7 +4,8 @@
     align-content: center;
 }
 
-#edit-playlist-form input,button{
+#edit-playlist-name,
+#submit-playlist-edit {
     width: 25%;
 }
 

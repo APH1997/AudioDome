@@ -47,3 +47,12 @@
  .uploaded-songs-area {
     padding-top: 50px;
  }
+
+#modal-content .deleteUserModal{
+    padding: 100px;
+    padding-top: 0;
+    display: flex;
+    flex-flow: column;
+    border-radius: 3px;
+
+}
