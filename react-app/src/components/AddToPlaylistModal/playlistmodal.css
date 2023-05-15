@@ -1,6 +1,20 @@
-.modal{
+.add-to-playlist-modal{
     padding: 40px;
+    display: flex;
+    flex-flow: column;
 }
+
+
+.add-to-playlist-modal > form{
+    width: 500px;
+}
+
+.add-to-playlist-modal > form > input{
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+}
+
 .SubmitAddtoPlaylist{
     border: rgba(0, 0, 0, 0.956) 1px transparent;
     background-color: teal;

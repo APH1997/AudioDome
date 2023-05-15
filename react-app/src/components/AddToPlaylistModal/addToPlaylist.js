@@ -42,21 +42,25 @@ function AddToPlaylist({ song }) {
 
         dispatch(addSongToPlaylistThunk(playlist_ids, song_id))
         closeModal()
-        history.push(`/playlist/${playlistId}`)
+        history.push(`/users/${user.id}`)
     }
+
     useEffect(() => {
         dispatch(getUserByIdThunk(user.id))
     }, [dispatch])
 
     return (
-        <div className="modal">
+        <div className="add-to-playlist-modal">
             <h2>Select a playlist</h2>
             <form onSubmit={handleSubmit} method="PUT">
                 {user.playlists.map(playlist =>
-                    isSongInPlaylist(playlist.songs, song) && <div
-                        className="select_playlist">{playlist.name}
-                        <input type="checkbox" value={playlist.id} onChange={handelCheckBox}></input>
-                    </div>
+                    isSongInPlaylist(playlist.songs, song) && <><label
+                        htmlFor={`playlist${playlist.id}`}
+                        className="select_playlist">
+                            {playlist.name}
+                        </label>
+                        <input name={`playlist${playlist.id}`} type="checkbox" value={playlist.id} onChange={handelCheckBox}></input>
+                        </>
                 )}
                 <button className="SubmitAddtoPlaylist" type="submit">Submit</button>
             </form>
