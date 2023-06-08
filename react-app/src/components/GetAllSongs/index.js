@@ -10,7 +10,7 @@ function GetAllSongs({fromLib, pageUser}) {
     const allSongs = useSelector(state => state.songs)
     const allSongsLength = Object.values(allSongs).length
     const dispatch = useDispatch()
-
+    console.log(pageUser, 'in get all songs');
 
     useEffect(() => {
         dispatch(getSongsThunk())

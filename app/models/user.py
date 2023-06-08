@@ -64,7 +64,8 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'profileImage': self.profile_image,
             'playlists': [playlist.to_dict() for playlist in self.playlists],
-            'likes': [song.id for song in self.user_likes]
+            'likes': [song.id for song in self.user_likes],
+            'songs': [song.to_dict() for song in self.songs]
         }
 
     def to_dict_for_comment_card(self):
