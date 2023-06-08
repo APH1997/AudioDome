@@ -9,6 +9,7 @@ import { useEffect } from "react"
 import { getUserByIdThunk } from "../../store/session"
 import './userpage.css'
 import GetAllSongs from "../GetAllSongs"
+import { playOneSongThunk } from "../../store/currentSong"
 
 const UserPage = () => {
     const { userId } = useParams()
@@ -16,12 +17,17 @@ const UserPage = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const pageUser = useSelector(state => state.session.userPage)
-    
-
+    console.log(pageUser, 'pageuser');
     useEffect(() => {
         dispatch(getUserByIdThunk(userId))
     }, [dispatch])
+    if (!pageUser) {
+        return null
+    }
 
+    const handelClick = (song) => {
+        dispatch(playOneSongThunk(song.id))
+    }
 
     return (
         <div>
@@ -66,7 +72,30 @@ const UserPage = () => {
             </div>
             <div className="uploaded-songs-area">
                 <h3>YOUR UPLOADS</h3>
-                <GetAllSongs fromLib={true} pageUser={pageUser?.username}/>
+                <div className='all-songs-container'>
+                    <table className='all-songs-container-headers'>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Cover</th>
+                                <th>Title</th>
+                                <th>Artist</th>
+                                <th colSpan={3}>Uploaded By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {pageUser.songs.map(song => (
+                                <tr key={song?.id}>
+                                    <td>{song?.id}</td>
+                                    <td><img className='song-img' src={song.songImage} alt="Song Cover" /></td>
+                                    <td>{song?.title}</td>
+                                    <td>{song?.artist}</td>
+                                    <td>{song?.uploader}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
