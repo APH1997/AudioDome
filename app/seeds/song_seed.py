@@ -4,28 +4,52 @@ from random import choice, sample, randint
 
 def seed_songs(seeded_users):
     song1 = Song(
-        title='Beat 140',
-        artist='T-Pain',
-        aws_url='https://audiodome-songs.s3.us-east-2.amazonaws.com/3f7003990c2f44ca9c9e5275e21afedc.mp3',
-        uploader = seeded_users[0],
+        title='kanaria',
+        artist='Kanaria',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/18b4ece64f18475787fe7c306573a4a7.mp3',
+        uploader = seeded_users[3],
         song_likes = sample(seeded_users, randint(0, len(seeded_users))),
-        song_image ="https://audiodome-songs.s3.us-east-2.amazonaws.com/939637464ec44c48bb952f71909c3b45.jpeg"
+        song_image ="http://audiodome-songs.s3.amazonaws.com/0bc63f85407d4f848a524edaa7819e06.jpeg"
     )
     song2 = Song(
-        title='The Floor is Lava',
-        artist='Jack Roybal',
-        aws_url='https://audiodome-songs.s3.us-east-2.amazonaws.com/a48141dc79af400d9e2e8837071d05a8.mp3',
-        uploader = seeded_users[1],
+        title='Backlight',
+        artist='Uta',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/a8b035239edc4b24acd1233a3382171c.mp3',
+        uploader = seeded_users[3],
         song_likes = sample(seeded_users, randint(0, len(seeded_users))),
-        song_image ="https://audiodome-songs.s3.us-east-2.amazonaws.com/13f385f90ce74e72afd7e4338ef40a18.png"
+        song_image ="http://audiodome-songs.s3.amazonaws.com/42948d623dc5495190e8464eb995356a.jpeg"
     )
     song3 = Song(
-        title='Sample',
-        artist='Dom',
-        aws_url='https://audiodome-songs.s3.us-east-2.amazonaws.com/d20c1dfd8246499c92689fa7af778411.mp3',
+        title='Spicy',
+        artist='Aespa',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/82c7636a75e645389c2c3ebaad61135e.mp3',
+        uploader = seeded_users[2],
+        song_likes = sample(seeded_users, randint(0, len(seeded_users))),   
+        song_image ="http://audiodome-songs.s3.amazonaws.com/1ad2a70897c544898d08af140d9dc373.jpeg"
+    )
+    song1 = Song(
+        title='KURURURURURIN',
+        artist='KRURURURUURR',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/bd27ea5a74d4400b8edd90be59ee2dc8.mp3',
+        uploader = seeded_users[0],
+        song_likes = sample(seeded_users, randint(0, len(seeded_users))),
+        song_image ="http://audiodome-songs.s3.amazonaws.com/9f26e778c519466bba6c448a6dec2fae.jpeg"
+    )
+    song2 = Song(
+        title='OMG',
+        artist='NewJeans',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/e77880be963145a798117340525a1414.mp3',
+        uploader = seeded_users[1],
+        song_likes = sample(seeded_users, randint(0, len(seeded_users))),
+        song_image ="http://audiodome-songs.s3.amazonaws.com/58e1025317b048859c3e21f9581577da.jpg"
+    )
+    song3 = Song(
+        title='Wannabe',
+        artist='Itzy',
+        aws_url='http://audiodome-songs.s3.amazonaws.com/41a97cc7086c416ea5e9b9a6360e3e2b.mp3',
         uploader = seeded_users[2],
         song_likes = sample(seeded_users, randint(0, len(seeded_users))),
-        song_image ="https://audiodome-songs.s3.us-east-2.amazonaws.com/85d4da4f07fa45e9ae567d4d4738bfe1.jpg"
+        song_image ="http://audiodome-songs.s3.amazonaws.com/4aa03b14d85c4ff690478b9ade517075.jpeg"
     )
 
     all_songs = [song1, song2, song3]
