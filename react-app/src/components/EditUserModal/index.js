@@ -38,12 +38,24 @@ const UserProileModal = () => {
             setError('Username is required')
             return
         }
+        if (username.length > 100) {
+            setError('Length of username must be at most 100 characters')
+            return
+        }
         if (firstName === null) {
             setError('first name is required')
             return
         }
+        if (firstName.length > 100) {
+            setError('Length of first name must be at most 100 characters')
+            return
+        }
         if (lastName === null) {
             setError('last name is required')
+            return
+        }
+        if (lastName.length > 100) {
+            setError('Length of last name must be at most 100 characters')
             return
         }
         if (bio === null) {
