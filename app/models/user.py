@@ -37,6 +37,11 @@ class User(db.Model, UserMixin):
         back_populates="song_likes"
     )
 
+    comments = db.relationship(
+        "PlaylistComment",
+        back_populates="user"
+    )
+
 
     @property
     def password(self):
@@ -60,4 +65,13 @@ class User(db.Model, UserMixin):
             'profileImage': self.profile_image,
             'playlists': [playlist.to_dict() for playlist in self.playlists],
             'likes': [song.id for song in self.user_likes]
+        }
+
+    def to_dict_for_comment_card(self):
+        return {
+            'id': self.id,
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'username': self.username,
+            'profileImage': self.profile_image,
         }

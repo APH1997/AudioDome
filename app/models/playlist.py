@@ -24,6 +24,11 @@ class Playlist(db.Model):
         back_populates="playlists"
     )
 
+    comments = db.relationship(
+        "PlaylistComment",
+        back_populates="playlist"
+    )
+
     def to_dict(self):
         return {
             'id': self.id,
