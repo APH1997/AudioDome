@@ -39,6 +39,10 @@ const PlaylistForm = () => {
             setError("Name is required");
             return;
         }
+        if (name.length > 100) {
+            setError("Length of playlist Name must be at most 100 characters");
+            return;
+        }
         if (!checked.length) {
             setError("Please select at least one song");
             return;
