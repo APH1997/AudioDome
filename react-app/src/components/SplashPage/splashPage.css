@@ -25,6 +25,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 .PicOnSplash{
     width: 50vh;
@@ -38,6 +39,8 @@
     display: flex;
     justify-content: space-around;
     margin-top: 40px;
+    align-items: center;
+    min-width: 1000px;
 }
 .loginBtnSplash{
     border: black 1px transparent;

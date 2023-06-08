@@ -30,10 +30,7 @@ function SplashPage() {
 
   return (
     <div>
-      <div className="TitleStuff">
-        <h1 className="TitleSplashpage">AUDIODOME</h1>
-        <h2 className="slogan">Amplify your listening experience.</h2>
-      </div>
+      
     <div className="splash-page">
       <div className="splashScreenButtons">
         <div className="loginBtnSplash">
@@ -45,7 +42,13 @@ function SplashPage() {
           </div>
         </div>
       <div className="RotatingPic">
+      <div className="TitleStuff">
+        <h1 className="TitleSplashpage">AUDIODOME</h1>
+        <h2 className="slogan">Amplify your listening experience.</h2>
+      </div>
+      <div className="TitleStuff">
         <img src={`${allSongs[songIds[counter]]?.songImage}`} alt="Song Cover" className="PicOnSplash" />
+      </div>
       </div>
         <div className="signupBtnSplash">
           <div>
