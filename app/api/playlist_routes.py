@@ -120,7 +120,7 @@ def delete_playlist_by_id(id):
         'message': 'Playlist successfully deleted'
     })
 
-@playlist_routes.route('/<int:id>/user/<int:id>', methods=['POST'])
+@playlist_routes.route('/<int:playlistId>/user/<int:userId>', methods=['POST'])
 @login_required
 def create_comment(playlistId, userId):
     """
@@ -143,5 +143,5 @@ def create_comment(playlistId, userId):
         db.session.commit()
 
         return playlist.to_dict()
-    
+
     return form.errors
