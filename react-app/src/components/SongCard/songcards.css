@@ -1,58 +1,163 @@
-.song-card-container{
+.playlistImage {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .playlistImage img {
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+  }
+
+  .commentsSection {
+    width: 100%;
+    overflow-y: auto;
+  }
+
+  .comment {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .comment .userProfileImage {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .playlistName {
+    margin-bottom: 20px;
+  }
+
+  .song-card-container {
     display: flex;
     justify-content: space-between;
     align-content: center;
     width: 80%;
-    border: 1px black solid
-}
+    border: 1px black solid;
+  }
 
-.song-card-menu-dots > svg{
-    align-self: center
-}
+  .song-card-menu-dots > svg {
+    align-self: center;
+  }
 
-.number-play:hover{
+  .number-play:hover {
     background-color: #151716;
     cursor: pointer;
-}
+  }
 
-.number-play:active{
+  .number-play:active {
     scale: .999;
-}
+  }
 
-.all-songs-container-headers{
+  .all-songs-container-headers {
     width: 100%;
     border-collapse: collapse;
-}
+  }
 
-.song-menu-svg{
+  .song-menu-svg {
     text-align: end;
     width: 5%;
-}
-.song-menu-svg button {
+  }
+
+  .song-menu-svg button {
     background-color: transparent;
     border: none;
-}
-.song-menu-svg button svg{
-    fill: darkcyan;
-    scale: 2
-}
+  }
 
-.like-song-svg{
+  .song-menu-svg button svg {
+    fill: darkcyan;
+    scale: 2;
+  }
+
+  .like-song-svg {
     display: flex;
     justify-content: end;
-}
+  }
 
-th{
+  th {
     border-bottom: 1px solid teal;
-    text-align:start;
+    text-align: start;
     border-spacing: 50px;
-}
+  }
 
-tbody{
+  tbody {
     line-height: 35px;
-}
+  }
 
-.song-img{
+  .song-img {
     width: 37px;
     height: 37px;
+  }
+
+  .playlistImage {
+    display: flex;
+
+  }
+  .commentsSection{
+    overflow-y: scroll;
+    overflow-x: 0px;
+    height: 400px;
+  }
+.titleplaylistandComment{
+    display: flex;
+    justify-content: space-between;
+}
+.submitComment{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+#commentArea {
+  width: 100%;
+  resize: vertical;
+  background-color: #151716;
+  color: teal;
+  font-size: 25px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  outline: none;
+}
+.labelcomment{
+  margin: 0;
+}
+.submitCommentSection{
+  width: 66%;
+}
+.characterCounter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.green {
+  color: rgb(29, 205, 32);
+}
+
+.yellow {
+  color: yellow;
+}
+
+.orange {
+  color: orange;
+}
+
+.red {
+  color: red;
+}
+.commentButton {
+  padding: 5px 10px;
+  background-color: teal;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.commentButton:hover {
+  background-color: #151716;
+  color: teal;
 }
