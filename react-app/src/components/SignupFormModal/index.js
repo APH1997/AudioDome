@@ -17,6 +17,23 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (password !== confirmPassword) {
+			setErrors([
+				"Confirm Password field must be the same as the Password field",
+			]);
+		}
+		if (!email.includes('@')) {
+			setErrors([
+				"Enter Valid Email"
+			])
+			return
+		}
+		if (username.length > 30) {
+			setErrors([
+				"Username too long"
+			])
+			return
+		}
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
@@ -24,30 +41,18 @@ function SignupFormModal() {
 			} else {
 				closeModal();
 			}
-		} else if (password !== confirmPassword) {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
-		} else if (!email.includes('@')) {
-			setError([
-				"Enter Valid Email"
-			])
-		} else if (username.length > 30){
-			setErrors([
-				"Username too long"
-			])
 		}
 	};
 
 	const handleOnClick = async () => {
-	const email = "demoo@aa.io"
-	const password = "password"
-	const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    } else {
-        closeModal()
-    }
+		const email = "demoo@aa.io"
+		const password = "password"
+		const data = await dispatch(login(email, password));
+		if (data) {
+			setErrors(data);
+		} else {
+			closeModal()
+		}
 	}
 
 
@@ -63,48 +68,48 @@ function SignupFormModal() {
 					))}
 				</ul>
 				<div>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
+					<label>
+						Email
+						<input
+							type="text"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							required
+						/>
+					</label>
 				</div>
 				<div>
-				<label>
-					Username
-					<input
-						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</label>
+					<label>
+						Username
+						<input
+							type="text"
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+							required
+						/>
+					</label>
 				</div>
 				<div>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
+					<label>
+						Password
+						<input
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+					</label>
 				</div>
 				<div>
-				<label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
+					<label>
+						Confirm Password
+						<input
+							type="password"
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+							required
+						/>
+					</label>
 				</div>
 				<button className="modalbtn" type="submit">Sign Up</button>
 			</form>

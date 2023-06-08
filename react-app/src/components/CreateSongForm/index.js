@@ -36,8 +36,16 @@ function CreateSongForm() {
             setError('Title is required')
             return
         }
+        if (title.length > 100) {
+            setError('Length of title must be at most 100 characters')
+            return
+        }
         if (!artist) {
             setError('Artist is required')
+            return
+        }
+        if (artist.length > 100) {
+            setError('Length of the artist must be at most 100 characters')
             return
         }
         if (file === null) {
