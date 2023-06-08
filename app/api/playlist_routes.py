@@ -165,3 +165,21 @@ def edit_comment(commentId):
 
         return playlist.to_dict()
     return form.errors
+
+@playlist_routes.route('/comments/<int:commentId>', methods=['DELETE'])
+@login_required
+def delete_comment(commentId):
+    """
+    queries for comment and its playlist
+    deletes comment, filters playlist comments
+    and returns playlist in a dictionary
+    """
+    comment = PlaylistComment.query.get(commentId)
+    playlistId = comment.playlist_id
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    playlist = Playlist.query.get(playlistId)
+
+    return playlist.to_dict()
