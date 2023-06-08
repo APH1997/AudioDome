@@ -30,7 +30,7 @@ function SplashPage() {
 
   return (
     <div>
-      
+
     <div className="splash-page">
       <div className="splashScreenButtons">
         <div className="loginBtnSplash">

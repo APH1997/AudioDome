@@ -10,6 +10,7 @@ playlist_routes = Blueprint('playlist',__name__)
 
 @playlist_routes.route('/')
 def get_all_playlists():
+    """Queries the backend to fetch all songs and returns them in a jsonified list"""
     playlist = Playlist.query.all()
     playlist_list = [pl.to_dict() for pl in playlist]
     return jsonify(playlist_list)
@@ -17,12 +18,14 @@ def get_all_playlists():
 
 @playlist_routes.route('/<int:id>')
 def get_playlist_by_id(id):
+    """Queries the backend to fetch a single song and returns it jsonified """
     playlist = Playlist.query.get(id)
     return playlist.to_dict()
 
 @playlist_routes.route('/new', methods=['POST'])
 @login_required
 def create_playlist():
+    """Makes sure there is a user logged in, attempts to upload any images to aws. If its successful then it appends the new song, and adds it to the db. If it fails then it returns a message stating bad data"""
     form = PlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -58,6 +61,7 @@ def create_playlist():
 
 @playlist_routes.route('/<int:id>', methods=['PUT'])
 def edit_playlist_by_id(id):
+    """Queries the database for a specific playlist. Sends any new files to aws. Afterwards make any necessary changes and commit and return the playlist as a dictionary."""
     playlist = Playlist.query.get(id)
     form = EditPlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -82,6 +86,7 @@ def edit_playlist_by_id(id):
 @playlist_routes.route('/add', methods=['PUT'])
 @login_required
 def add_song_to_playlists():
+    """Adds songs to playlist"""
     form = AddSongToPlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -98,6 +103,7 @@ def add_song_to_playlists():
 @playlist_routes.route('/<int:playlist_id>/delete/<int:song_id>', methods=['DELETE'])
 @login_required
 def remove_song_from_playlist(playlist_id, song_id):
+    """Queries for a certain song in the playlist, then removes it"""
     playlist = Playlist.query.get(playlist_id)
     playlist.playlist_songs = [songs for songs in playlist.playlist_songs if songs.id != song_id]
     db.session.commit()
@@ -109,6 +115,7 @@ def remove_song_from_playlist(playlist_id, song_id):
 @playlist_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_playlist_by_id(id):
+    """Queries for a certain playlist. Deletes that playlist"""
 
     playlist = Playlist.query.get(id)
 
