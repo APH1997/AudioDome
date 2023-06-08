@@ -23,7 +23,7 @@ def seed():
         undo_users()
     users = seed_users()
     songs = seed_songs(users)
-    seed_playlist(users, songs)
+    playlists = seed_playlist(users, songs)
     # Add other seed functions here
 
 
