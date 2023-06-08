@@ -145,3 +145,23 @@ def create_comment(playlistId, userId):
         return playlist.to_dict()
 
     return form.errors
+
+@playlist_routes.route('/comments/<int:commentId>', methods=['PUT'])
+@login_required
+def edit_comment(commentId):
+    """
+    Queries for comment by id
+    Validates form data and overwrites comment content
+    returns playlist in a dictionary with updated comments
+    """
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment = PlaylistComment.query.get(commentId)
+        comment.content = form.data['content']
+        db.session.commit()
+
+        playlist = Playlist.query.get(comment.playlist_id)
+
+        return playlist.to_dict()
+    return form.errors
