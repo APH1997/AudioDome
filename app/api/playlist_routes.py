@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, redirect, request
-from app.models import Playlist, db, User, Song
-from app.forms import PlaylistForm, EditPlaylistForm, AddSongToPlaylistForm
+from app.models import Playlist, db, User, Song, PlaylistComment
+from app.forms import PlaylistForm, EditPlaylistForm, AddSongToPlaylistForm, CommentForm
 from flask_login import login_required
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
@@ -99,7 +99,6 @@ def add_song_to_playlists():
 @login_required
 def remove_song_from_playlist(playlist_id, song_id):
     playlist = Playlist.query.get(playlist_id)
-    song = Song.query.get(song_id)
     playlist.playlist_songs = [songs for songs in playlist.playlist_songs if songs.id != song_id]
     db.session.commit()
 
@@ -120,3 +119,29 @@ def delete_playlist_by_id(id):
     return jsonify({
         'message': 'Playlist successfully deleted'
     })
+
+@playlist_routes.route('/<int:id>/user/<int:id>', methods=['POST'])
+@login_required
+def create_comment(playlistId, userId):
+    """
+    Takes comment form data and creates comment
+    Returns the playlist in a dictionary with updated comments
+    """
+    playlist = Playlist.query.get(playlistId)
+    user = User.query.get(userId)
+
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        new_comment = PlaylistComment(
+            user = user,
+            playlist = playlist,
+            content = form.data['content']
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+
+        return playlist.to_dict()
+    
+    return form.errors
