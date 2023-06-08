@@ -3,6 +3,10 @@
     color: teal;
     border:none;
 }
+
+.userbuttonnav:hover{
+    cursor: pointer;
+}
 .LogOutBtn{
     background-color: black;
     color: teal;

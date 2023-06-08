@@ -36,10 +36,8 @@ def create_song_by_id():
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
-            print('errorrr song ================>', upload['errors'])
             return upload["errors"]
         if "url" not in uploadpic:
-            print('errorrr image ================>', upload['errors'])
             return upload["errors"]
         song_pic = uploadpic["url"]
         aws_url = upload["url"]
@@ -51,12 +49,12 @@ def create_song_by_id():
             song_image = song_pic,
             uploader_id = form.data['uploader_id']
         )
-        print(new_song,'new song <========================')
+
         db.session.add(new_song)
         db.session.commit()
         return jsonify(new_song.to_dict())
     else:
-        return "Bad Data"
+        return jsonify({"error":"Bad Data"})
 
 @song_routes.route('/<int:id>', methods=['PUT'])
 def edit_song_by_id(id):
@@ -69,7 +67,7 @@ def edit_song_by_id(id):
         db.session.commit()
         return song.to_dict()
     else:
-        return "Bad Data"
+        return jsonify({"error":"Bad Data"})
 
 
 
@@ -82,10 +80,6 @@ def delete_song_by_id(id):
     song = Song.query.get(id)
     db.session.delete(song)
     db.session.commit()
-
-    if not 1 <= song.id <= 3:
-        remove_file_from_s3(song.aws_url)
-        print('Song Deleted from AWS bucket')
 
 
     return jsonify({

@@ -22,7 +22,6 @@ function LikedSongs() {
 
     function toggleWasThereAClick() {
         setWasThereAClick(!wasThereAClick)
-        console.log("I HEARD A CLICK!")
     }
 
     if (allSongs.songs === null) return null

@@ -8,6 +8,7 @@ const UpdateSongForm = () => {
     const { songId } = useParams()
     const history = useHistory()
     const song = useSelector(state => state.songs)
+    const user = useSelector(state => state.session.user)
     const allSongs = useSelector(state => state.songs)
     const dispatch = useDispatch()
 
@@ -39,13 +40,11 @@ const UpdateSongForm = () => {
             title: title,
             artist: artist,
         }
-        console.log("REACT FORM SUBMIT SONGINFO", songInfo)
         await dispatch(editSongThunk(songInfo, songId))
         await dispatch(getSongsThunk())
-        console.log("all songs ==================================>",allSongs)
-        history.push('/')
+        history.push(`/users/${user.id}`)
     }
-    console.log(song);
+
 
     if (!song[songId]) return null
 

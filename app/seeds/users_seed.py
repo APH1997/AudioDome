@@ -29,21 +29,39 @@ def seed_users():
         email='bobbie@aa.io',
         password='password')
     demoo = User(
-        username='demoo',
+        username='Demo User',
         first_name='Demoo',
         last_name='User',
-        bio='Hello, I am the demoo user',
+        bio='Hello, I am the demo user',
         profile_image='',
         email='demoo@aa.io',
+        password='password')
+    Prince = User (
+        username='Prince',
+        first_name='Domenik',
+        last_name='Moody',
+        bio='Domenik Moody, aka Prince/Dom, is a gamer and music lover. He enjoys R&B, drawing, and was part of the team that built this site.',
+        profile_image='https://audiodome-songs.s3.us-east-2.amazonaws.com/6e914103ce8248ef978db5cc493e6d00.jpg',
+        email='Prince@aa.io',
+        password='password')
+    Francis = User (
+        username='ReverseFades',
+        first_name='Francis',
+        last_name='Huynh',
+        bio='',
+        profile_image='',
+        email='Francis@aa.io',
         password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(demoo)
+    db.session.add(Prince)
+    db.session.add(Francis)
     db.session.commit()
 
-    return [demo, marnie, bobbie, demoo]
+    return [demo, marnie, bobbie, demoo, Prince, Francis]
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

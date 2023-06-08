@@ -7,6 +7,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
+}
+
+#modal div{
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center
+}
+
+#modal ul{
+  padding: 0;
 }
 
 #modal-background {

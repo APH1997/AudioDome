@@ -5,21 +5,25 @@ import SongCard from "../SongCard"
 import { getSongsThunk } from "../../store/songs"
 import { useHistory } from "react-router-dom"
 import "./CreatePlaylistForm.css"
+
 const PlaylistForm = () => {
     const user = useSelector(state => state.session.user)
     const allSongsObj = useSelector(state => state.songs)
     const history = useHistory()
     const dispatch = useDispatch()
     const [checked, setChecked] = useState([])
-    // console.log(checked,'work ~~~~~~~~~~~~~~');
     const [name, setName] = useState('')
     const [imgFile, setImageFile] = useState(null)
     const [error, setError] = useState(null)
+    const [isUploading, setIsUploading] = useState(false)
+
     const allSongs = Object.values(allSongsObj)
+
 
     useEffect(() => {
         dispatch(getSongsThunk())
     }, [dispatch])
+
 
     if (!allSongs) {
         return null
@@ -44,6 +48,8 @@ const PlaylistForm = () => {
             return
         }
 
+        setIsUploading(true)
+
         const formData = new FormData()
 
         formData.append('user_id', user.id)
@@ -52,6 +58,9 @@ const PlaylistForm = () => {
         formData.append('playlist_songs', checked.join(','))
 
         await dispatch(createPlaylistThunk(formData))
+
+        setTimeout(() => setIsUploading(false), 3000)
+
         history.push('/')
 
     }
@@ -68,9 +77,10 @@ const PlaylistForm = () => {
         }
     }
 
+
     return (
         <div className="wholepage">
-            <form onSubmit={handleSubmit}>
+            <form className="create-playlist-form" onSubmit={handleSubmit}>
                 {error &&
                     <div className="error">
                         {error}
@@ -116,7 +126,7 @@ const PlaylistForm = () => {
                         </div>)}
                 </div>
                 <div className='SubmitPlaylistBtn'>
-                    <button className="create-playlist-button" type="submit">Create Playlist</button>
+                    <button isabled={isUploading} className="create-playlist-button" type="submit">{isUploading ? "Creating playlist...": "Create Playlist" }</button>
                 </div>
             </form>
         </div>

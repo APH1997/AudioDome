@@ -11,7 +11,7 @@ function PlaylistShow() {
     useEffect(() => {
         dispatch(getOnePlaylistThunk(playlistId))
     }, [dispatch])
-    console.log(playlistId);
+
 
     if (Object.values(singlePlaylistObj).length === 0){
         return null

@@ -8,6 +8,7 @@ import OpenModalButton from "../OpenModalButton"
 import { useEffect } from "react"
 import { getUserByIdThunk } from "../../store/session"
 import './userpage.css'
+import GetAllSongs from "../GetAllSongs"
 
 const UserPage = () => {
     const { userId } = useParams()
@@ -15,7 +16,7 @@ const UserPage = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const pageUser = useSelector(state => state.session.userPage)
-    console.log(pageUser);
+    
 
     useEffect(() => {
         dispatch(getUserByIdThunk(userId))
@@ -49,7 +50,9 @@ const UserPage = () => {
                 </h1>
             </div>
             <div className="username">
-                {pageUser?.playlists?.length === 0 ? 'ADD SOME PLAYLIST TO YOUR ACCOUNT TO SPICE IT UP' : 'PLAYLIST'}
+                <h3>
+                    {pageUser?.playlists?.length === 0 ? 'CREATE SOME PLAYLISTS TO SPICE THINGS UP' : 'PLAYLISTS'}
+                </h3>
             </div>
 
             <div className="playlist-area">
@@ -61,6 +64,11 @@ const UserPage = () => {
                     </div>
                 ))}
             </div>
+            <div className="uploaded-songs-area">
+                <h3>YOUR UPLOADS</h3>
+                <GetAllSongs fromLib={true} pageUser={pageUser?.username}/>
+            </div>
+
         </div>
     )
 }

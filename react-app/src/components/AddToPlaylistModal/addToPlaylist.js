@@ -13,7 +13,6 @@ function AddToPlaylist({ song }) {
     const user = useSelector(state => state.session.user)
     const [checked, setChecked] = useState([])
     const history = useHistory()
-    const {playlistId} = useParams()
 
     const { closeModal } = useModal()
 
@@ -42,23 +41,26 @@ function AddToPlaylist({ song }) {
 
         dispatch(addSongToPlaylistThunk(playlist_ids, song_id))
         closeModal()
-        history.push(`/playlist/${playlistId}`)
+        history.push(`/users/${user.id}`)
     }
+
     useEffect(() => {
         dispatch(getUserByIdThunk(user.id))
     }, [dispatch])
 
     return (
-        <div className="modal">
-            <h2>Select a playlist</h2>
+        <div className="add-to-playlist-modal">
+            <h2>Add {song.title} to one of your playlists:</h2>
             <form onSubmit={handleSubmit} method="PUT">
                 {user.playlists.map(playlist =>
-                    isSongInPlaylist(playlist.songs, song) && <div
-                        className="select_playlist">{playlist.name}
-                        <input type="checkbox" value={playlist.id} onChange={handelCheckBox}></input>
-                    </div>
+                    isSongInPlaylist(playlist.songs, song) && <div id="add-to-playlist-input-and-label"><label
+                        className="select_playlist">
+                            {playlist.name}
+                        </label>
+                        <input id="playlist-checkbox" type="checkbox" value={playlist.id} onChange={handelCheckBox}></input>
+                        </div>
                 )}
-                <button type="submit">Submit</button>
+                <button className="SubmitAddtoPlaylist" type="submit">Submit</button>
             </form>
         </div>
     )

@@ -10,13 +10,15 @@ function GetAllPlaylist() {
     const history = useHistory()
     const allPlaylistsObj = useSelector(state => state.playlist.allPlaylists)
     const allPlaylists = Object.values(allPlaylistsObj)
-    console.log(allPlaylists);
+    
 
     useEffect(() => {
         dispatch(getAllPlaylistThunk())
     }, [dispatch])
 
     return (
+        <div className="wholepageplaylist">
+            <h1>PLAYLIST ARCHIVE</h1>
         <div className="containerforHomePage">
             {allPlaylists.map(playlist => (
                 <div key={playlist.id} className="playlistCardContainer" onClick={(e) => history.push(`/playlist/${playlist.id}`)}>
@@ -27,6 +29,7 @@ function GetAllPlaylist() {
                     </div>
                 </div>
             ))}
+        </div>
         </div>
     )
 }

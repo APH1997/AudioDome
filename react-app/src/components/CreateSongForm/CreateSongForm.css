@@ -68,3 +68,22 @@
 label div {
     margin-bottom: 10px;
 }
+
+.create-song-form {
+    width: 500px;
+    background-color: rgb(61, 61, 61);
+    padding: 15px;
+    border-radius: 5px;
+}
+.create-song-form input{
+    width: 60%;
+}
+
+.create-song-form label > div{
+    margin: 0;
+}
+
+.uploadbutton:hover{
+    color: rgb(236, 130, 91);
+    cursor: pointer;
+}

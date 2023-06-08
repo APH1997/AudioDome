@@ -6,10 +6,11 @@ import SongCard from '../SongCard';
 import { getPlaylistSongsThunk, playOneSongThunk} from '../../store/currentSong';
 
 
-function GetAllSongs() {
+function GetAllSongs({fromLib, pageUser}) {
     const allSongs = useSelector(state => state.songs)
     const allSongsLength = Object.values(allSongs).length
     const dispatch = useDispatch()
+
 
     useEffect(() => {
         dispatch(getSongsThunk())
@@ -21,10 +22,13 @@ function GetAllSongs() {
     }
 
     if (allSongs.songs === null) return null
+
+    const filterUploaded = Object.values(allSongs).filter(song => song.uploader === pageUser)
+
     return (
         <div className='all-songs-container'>
             <div className='titleforBrowse'>
-                <h1>WELCOME TO THE AUDIO ARCHIVE</h1>
+               {!fromLib && <h1>WELCOME TO THE AUDIO ARCHIVE</h1> }
             </div>
             <table className='all-songs-container-headers'>
 
@@ -37,11 +41,18 @@ function GetAllSongs() {
                         <th colSpan={3}>Uploaded By</th>
                     </tr>
                 </thead>
-                <tbody>
+                {!fromLib && <tbody>
                     {Object.values(allSongs).length > 0 && Object.values(allSongs).map((song, index) =>
                         <tr onClick={e => handelClick(song)} className='number-play'><SongCard song={song} number={index + 1} /></tr>,
                         )}
-                </tbody>
+                </tbody>}
+
+                {fromLib &&
+                    <tbody>
+                    {Object.values(allSongs).length > 0 && filterUploaded.map((song, index) =>
+                        <tr onClick={e => handelClick(song)} className='number-play'><SongCard song={song} number={index + 1} /></tr>,
+                        )}
+                </tbody>}
             </table>
         </div>
     )

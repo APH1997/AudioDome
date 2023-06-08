@@ -1,8 +1,11 @@
 .containerforHomePage{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     margin: 10px;
+    gap: 30px;
+    border-bottom: teal 1px solid;
+    border-top:teal 1px solid;
+    padding: 30px;
 }
 .playlistCardContainer{
     display: flex;

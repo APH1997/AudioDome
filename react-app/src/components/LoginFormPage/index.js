@@ -53,7 +53,7 @@ function LoginFormPage() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="modalbtn" type="submit">Log In</button>
       </form>
     </div>
   );

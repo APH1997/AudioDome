@@ -41,6 +41,7 @@
     font-family: 'Comfortaa', sans-serif;
     padding: 15px;
     border-radius: 30px;
+
 }
 
 .create-playlist-button:hover {
@@ -63,4 +64,26 @@
 .every-song {
     display: flex;
     flex-direction: column;
+}
+
+.create-playlist-form{
+    background-color: rgb(61, 61, 61);
+    padding: 15px;
+    border-radius: 5px;
+    width: 500px;
+}
+
+.create-playlist-form input {
+    width: 620px;
+}
+
+.SubmitPlaylistBtn{
+    display: flex;
+    justify-content: center;
+}
+
+
+.upload-button:hover{
+    color: rgb(236, 130, 91);
+    cursor: pointer;
 }

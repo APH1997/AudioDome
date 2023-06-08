@@ -6,7 +6,7 @@
 }
 
 .username {
-    margin-left: 40px;
+    margin-left: 0px;
     margin-bottom: 15px;
 }
 
@@ -33,4 +33,26 @@
 .banner{
     display: flex;
     justify-content: space-between;
+}
+
+.deleteUserModal {
+    height: 150px;
+    padding: 15px;
+}
+
+.deleteUserModalButtons{
+    display: flex;
+    gap: 15px;
+}
+ .uploaded-songs-area {
+    padding-top: 50px;
+ }
+
+#modal-content .deleteUserModal{
+    padding: 100px;
+    padding-top: 0;
+    display: flex;
+    flex-flow: column;
+    border-radius: 3px;
+
 }

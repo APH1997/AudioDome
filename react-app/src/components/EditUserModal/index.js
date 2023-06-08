@@ -29,6 +29,11 @@ const UserProileModal = () => {
 
     const handelSubmit = (e) => {
         e.preventDefault()
+        if (user.id === 4){
+            closeModal()
+            alert("Sign Up for an account to unlock profile feature!")
+            return
+        }
         if (!username) {
             setError('Username is required')
             return
