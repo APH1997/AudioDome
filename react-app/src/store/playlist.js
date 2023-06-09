@@ -141,6 +141,7 @@ const commentAction = (playlist) => {
 
 
 export const createCommentThunk = (playlistId, userId, content) => async (dispatch) => {
+    console.log("HERE IT IS", playlistId, userId, content)
     const res = await fetch(`/playlists/${playlistId}/user/${userId}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -156,12 +157,13 @@ export const createCommentThunk = (playlistId, userId, content) => async (dispat
 }
 
 export const updateCommentThunk = (commentId, content) => async (dispatch) => {
+    console.log("DEBUGERRRRRRRR", commentId)
     const res = await fetch(`/playlists/comments/${commentId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({content})
     })
-    //res should be the playlist who's comment was edited
+    console.log("AFTER THE FETCH")
     const data = await res.json()
     if (res.ok){
         dispatch(commentAction(data))
