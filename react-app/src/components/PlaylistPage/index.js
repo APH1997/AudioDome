@@ -9,8 +9,10 @@ import { BsThreeDots } from 'react-icons/bs';
 import PlaylistMenu from "../PlaylistMenuModal";
 import { getPlaylistSongsThunk, playOneSongThunk } from "../../store/currentSong";
 import { IoPlay } from 'react-icons/io5';
+import EditCommentModal from "../EditCommentModal";
 import "../SongCard/songcards.css";
-
+import DeleteCommentModal from "../DeleteCommentModal";
+import { createCommentThunk } from "../../store/playlist";
 function PlaylistPage() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -43,6 +45,12 @@ function PlaylistPage() {
             setComments(inputComments);
         }
     };
+    const handleCommentSubmit = async (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+        await dispatch(createCommentThunk(playlistId, user.user.id, comments));
+        setComments("");
+    };
+
     const remainingCharacters = maxCharacters - comments.length;
     const getCharacterCountClass = () => {
         if (remainingCharacters >= 175) {
@@ -74,13 +82,30 @@ function PlaylistPage() {
                                 />
                             </div>
                             <div>{comment.content}</div>
+                            {comment.author.id === user.user.id && (
+                                <div className="comment-buttons">
+                                    <div>
+                                        <OpenModalButton
+                                            buttonText="Edit"
+                                            modalComponent={<EditCommentModal comment={comment} />}
+                                        />
+                                    </div>
+                                    <div>
+                                        <OpenModalButton
+                                            buttonText="Delete"
+                                            modalComponent={<DeleteCommentModal comment={comment} />}
+                                        />
+                                    </div>
+
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
             </div>
             <div className="titleplaylistandComment">
                 <div className="playlistName">{singlePlaylistObj.name}</div>
-                <form className="submitCommentSection">
+                <form className="submitCommentSection" onSubmit={handleCommentSubmit}>
                     <div className="submitComment">
                         <label className="labelcomment">
                             <textarea
@@ -96,14 +121,18 @@ function PlaylistPage() {
                         </label>
                         <div className="characterCounter">
                             <div>
-                                Remaining characters: <span className={getCharacterCountClass()}>{remainingCharacters}</span>
+                                Remaining characters:{" "}
+                                <span className={getCharacterCountClass()}>{remainingCharacters}</span>
                             </div>
                             <div>
-                                <button type="submit" className="commentButton">Comment</button>
+                                <button type="submit" className="commentButton">
+                                    Comment
+                                </button>
                             </div>
                         </div>
                     </div>
                 </form>
+
             </div>
 
 
