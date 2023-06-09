@@ -9,6 +9,10 @@ song_routes = Blueprint('song',__name__)
 
 @song_routes.route('/')
 def get_all_song():
+    """
+    Queries for all songs
+    returns songs in a dictionary
+    """
     songs = Song.query.all()
     songs_list = [song.to_dict() for song in songs]
     return jsonify(songs_list)
@@ -16,12 +20,23 @@ def get_all_song():
 
 @song_routes.route('/<int:id>')
 def get_song_by_id(id):
+    """
+    Queries for songs by id
+    returns song in a dictionary
+    """
     song = Song.query.get(id)
     return song.to_dict()
 
 @song_routes.route('/new', methods=['POST'])
 @login_required
 def create_song_by_id():
+    """
+    creates new form for song creation
+    Validates form data
+    sends image and song to aws s3 bucket
+    validates url
+    returns song in a dictionary
+    """
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -58,6 +73,11 @@ def create_song_by_id():
 
 @song_routes.route('/<int:id>', methods=['PUT'])
 def edit_song_by_id(id):
+    """
+    Queries for song by id
+    Validates form data and overwrites song content
+    returns song in a dictionary with updated info
+    """
     song = Song.query.get(id)
     form = EditSongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -89,6 +109,11 @@ def delete_song_by_id(id):
 @song_routes.route('/<int:id>/likes/users/<int:userId>',methods=["POST"])
 @login_required
 def like_song_by_id(id, userId):
+    """
+    Queries for song by id
+    Queries for user by id
+    appends a song to the user liked array
+    """
     song = Song.query.get(id)
     user = User.query.get(userId)
     song.song_likes.append(user)
@@ -102,6 +127,11 @@ def like_song_by_id(id, userId):
 @song_routes.route('/<int:id>/likes/users/<int:userId>',methods=["DELETE"])
 @login_required
 def unlike_song_by_id(id, userId):
+    """
+    Queries for song by id
+    Queries for user by id
+    (unappends/filters out) a song to the user liked array
+    """
     song = Song.query.get(id)
     user = User.query.get(userId)
     song.song_likes = [user for user in song.song_likes if user.id != userId]

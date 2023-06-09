@@ -11,12 +11,13 @@ function SplashPage() {
   const dispatch = useDispatch();
   const allSongs = useSelector((state) => state.songs);
   const songIds = Object.keys(allSongs);
-  const [counter, setCounter] = useState(0);
+  const randomNumber = Math.floor(Math.random() * songIds.length) + 1;
+  const [counter, setCounter] = useState(randomNumber);
 
   useEffect(() => {
     dispatch(getSongsThunk());
     const intervalId = setInterval(() => {
-      setCounter((prevCounter) => (prevCounter + 1) % songIds.length);
+      setCounter((prevCounter) => (prevCounter + randomNumber) % songIds.length);
     }, 4750);
     return () => clearInterval(intervalId);
   }, [dispatch, songIds.length]);
@@ -28,15 +29,9 @@ function SplashPage() {
   };
 
   return (
-    <>
-      <div className="TitleStuff">
-        <h1 className="TitleSplashpage">AUDIODOME</h1>
-        <h2 className="slogan">Amplify your listening experience.</h2>
-      </div>
+    <div>
 
-      <div className="RotatingPic">
-        <img src={`${allSongs[songIds[counter]]?.songImage}`} alt="Song Cover" className="PicOnSplash" />
-      </div>
+    <div className="splash-page">
       <div className="splashScreenButtons">
         <div className="loginBtnSplash">
           <div>
@@ -46,6 +41,15 @@ function SplashPage() {
             <OpenModalButton buttonText="Login" modalComponent={<LoginFormModal />} className="button" />
           </div>
         </div>
+      <div className="RotatingPic">
+      <div className="TitleStuff">
+        <h1 className="TitleSplashpage">AUDIODOME</h1>
+        <h2 className="slogan">Amplify your listening experience.</h2>
+      </div>
+      <div className="TitleStuff">
+        <img src={`${allSongs[songIds[counter]]?.songImage}`} alt="Song Cover" className="PicOnSplash" />
+      </div>
+      </div>
         <div className="signupBtnSplash">
           <div>
             <h2 className="Logincard">If you do not have a profile Sign Up here</h2>
@@ -60,11 +64,10 @@ function SplashPage() {
               </button>
             </div>
           </div>
-
         </div>
-
       </div>
-    </>
+    </div>
+    </div>
   );
 }
 

@@ -15,6 +15,7 @@ function EditPlaylistForm() {
 
     const [name, setName] = useState(playlist.name)
     const [imageFile, setImageFile] = useState(null)
+    const [errors, setErrors] = useState({})
 
     useEffect(() => {
         dispatch(getOnePlaylistThunk(playlistId))
@@ -28,16 +29,22 @@ function EditPlaylistForm() {
 
 
     const handleSubmit = async (e) => {
+        const errorObj = {}
         e.preventDefault()
         setIsUploading(true)
+        if(name.length > 100){
+          errorObj.name = "Length of name must be at most 100 characters."
+        }
         const formData = new FormData()
         formData.append("name",name)
         if (imageFile){
             formData.append("playlist_image", imageFile)
         }
-
-
-
+        if(Object.values(errorObj).length > 0){
+            setIsUploading(false)
+            setErrors(errorObj)
+            return
+        }
         await dispatch(updatePlaylistThunk(formData, playlistId))
 
         setTimeout(() => setIsUploading(false), 3000)
@@ -50,6 +57,7 @@ function EditPlaylistForm() {
     return (
         <>
             <form id="edit-playlist-form" method="PUT" onSubmit={handleSubmit}>
+                <p className="errors">{errors.name}</p>
                 <label>
                     Name
                     <input

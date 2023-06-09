@@ -15,6 +15,7 @@ import EditPlaylistForm from "./components/EditPlaylistForm";
 import UserPage from "./components/UserPage";
 import LikedSongs from "./components/LikedSongs";
 import SplashPage from "./components/SplashPage";
+import UhOh from "./components/UhOhPage";
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
               <h1>Here are your liked songs</h1>
               <LikedSongs />
             </Route>
+            <UhOh />
           </Switch>
         )}
         {isLoaded && !user && (

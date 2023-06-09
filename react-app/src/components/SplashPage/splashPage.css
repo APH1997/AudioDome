@@ -25,10 +25,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 .PicOnSplash{
-    width: 700px;
-    height: 700px;
+    width: 50vh;
+    height: 35vh;
+    overflow: hidden;
+    object-fit: cover;
     border-radius: 30%;
     box-shadow: 0 4px 8px 0 teal, 0 6px 20px 0 teal;
 }
@@ -36,12 +39,15 @@
     display: flex;
     justify-content: space-around;
     margin-top: 40px;
+    align-items: center;
+    min-width: 1000px;
 }
 .loginBtnSplash{
     border: black 1px transparent;
     box-shadow: 0 4px 8px 0 teal, 0 6px 20px 0 teal;
     padding: 10px;
     border-radius: 20px;
+    height: fit-content;
 }
 .signupBtnSplash{
     display: flex;
@@ -50,6 +56,7 @@
     box-shadow: 0 4px 8px 0 teal, 0 6px 20px 0 teal;
     padding: 10px;
     border-radius: 20px;
+    height: fit-content;
 }
 .Logincard{
     font-size: 12pt;
@@ -61,4 +68,10 @@
 .signupbuttondiv{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.splash-page{
+    display: flex;
+    align-items: center;
 }

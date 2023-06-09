@@ -85,21 +85,25 @@ def seed_playlist(seeded_users, seeded_songs):
         playlist_songs = sample(seeded_songs, randint(0, len(seeded_songs)))
     )
 
-
-    db.session.add(Playlist1)
-    db.session.add(Playlist2)
-    db.session.add(Playlist3)
-    db.session.add(Playlist4)
-    db.session.add(Playlist5)
-    db.session.add(Playlist6)
-    db.session.add(Playlist7)
-    db.session.add(Playlist8)
-    db.session.add(Playlist9)
-    db.session.add(Playlist10)
-    db.session.add(Playlist11)
-    db.session.add(Playlist12)
-    db.session.add(Playlist13)
+    all_playlists = [
+    Playlist1,
+    Playlist2,
+    Playlist3,
+    Playlist4,
+    Playlist5,
+    Playlist6,
+    Playlist7,
+    Playlist8,
+    Playlist9,
+    Playlist10,
+    Playlist11,
+    Playlist12,
+    Playlist13
+    ]
+    added = [db.session.add(playlist) for playlist in all_playlists]
     db.session.commit()
+
+    return all_playlists
 
 def undo_playlist():
     if environment == "production":

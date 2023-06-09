@@ -2,7 +2,7 @@ from flask.cli import AppGroup
 from .users_seed import seed_users, undo_users
 from .song_seed import seed_songs, undo_songs
 from .playlist_seed import seed_playlist, undo_playlist
-
+from .comment_seed import seed_comments, undo_comments
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -23,13 +23,15 @@ def seed():
         undo_users()
     users = seed_users()
     songs = seed_songs(users)
-    seed_playlist(users, songs)
+    playlists = seed_playlist(users, songs)
+    seed_comments(users, playlists)
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_comments()
     undo_playlist()
     undo_songs()
     undo_users()

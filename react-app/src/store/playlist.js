@@ -2,7 +2,10 @@ const GET_ALL_PLAYLIST = 'playlists/GetAllPlaylist';
 const GET_ONE_PLAYLIST = 'playlists/GetOnePlaylist';
 const CREATE_PLAYLIST = 'playlists/CreatePlaylist';
 const DELETE_PLAYLIST = 'playlists/DeletePlaylist';
-const DELETE_SONG_FROM_PLAYLIST = 'playlists/DeleteSongFromPlaylist'
+const DELETE_SONG_FROM_PLAYLIST = 'playlists/DeleteSongFromPlaylist';
+const CREATE_COMMENT = 'playlist/CreateComment';
+const UPDATE_COMMENT = 'playlist/UpdateComment';
+const DELETE_COMMENT = 'playlist/DeleteComment';
 
 export const DeletePlaylistAction = (playlistId) => {
     return {
@@ -129,6 +132,58 @@ export const addSongToPlaylistThunk = (playlist_ids, song_id) => async(dispatch)
     }
 }
 
+const commentAction = (playlist) => {
+    return {
+        type: CREATE_COMMENT,
+        payload: playlist
+    }
+}
+
+
+export const createCommentThunk = (playlistId, userId, content) => async (dispatch) => {
+    console.log("HERE IT IS", playlistId, userId, content)
+    const res = await fetch(`/playlists/${playlistId}/user/${userId}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({content})
+    })
+    //res should be the playlist who's comment was edited
+    const data = await res.json()
+    if (res.ok){
+        dispatch(commentAction(data))
+    } else {
+        return data
+    }
+}
+
+export const updateCommentThunk = (commentId, content) => async (dispatch) => {
+    console.log("DEBUGERRRRRRRR", commentId)
+    const res = await fetch(`/playlists/comments/${commentId}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({content})
+    })
+    console.log("AFTER THE FETCH")
+    const data = await res.json()
+    if (res.ok){
+        dispatch(commentAction(data))
+    } else {
+        return data
+    }
+}
+export const deleteCommentThunk = (commentId) => async (dispatch) => {
+    const res = await fetch(`/playlists/comments/${commentId}`, {
+        method: 'DELETE',
+    })
+    //res should be the playlist who's comment was edited
+    const data = await res.json()
+    if (res.ok){
+        dispatch(commentAction(data))
+    } else {
+        return data
+    }
+}
+
 const initialState = { allPlaylists:{}, singlePlaylist:{}, singleSong:{} }
 
 const playlistReducer = (state = initialState, action) =>{
@@ -161,6 +216,13 @@ const playlistReducer = (state = initialState, action) =>{
                     newState.singlePlaylist.songs.splice(i,1)
                 }
             }
+            return newState
+        }
+        case CREATE_COMMENT: {
+            const newState = {allPlaylists: {...state.allPlaylists}, singlePlaylist: {...state.singlePlaylist}, singleSong: {...state.singleSong}}
+            newState.allPlaylists[action.payload.id] = action.payload
+            newState.singlePlaylist = action.payload
+
             return newState
         }
         default:

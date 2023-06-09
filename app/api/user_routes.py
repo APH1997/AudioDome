@@ -30,6 +30,12 @@ def user(id):
 @user_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def user_edit(id):
+    """
+    Queries for user by id
+    validates form data
+    if form had image data, data get send to aws s3 bucket
+    return form with updated user info
+    """
     user = User.query.get(id)
     form = EditUserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -61,6 +67,10 @@ def user_edit(id):
 @user_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_user(id):
+    """
+    Queries for user by id
+    Deleted user from database
+    """
     user = User.query.get(id)
     db.session.delete(user)
     db.session.commit()

@@ -52,7 +52,7 @@ export const getUserByIdThunk = (id) => async dispatch => {
 
 		const data = await res.json()
 		dispatch(getUser(data))
-		return data
+		console.log(data, 'inside the thunk');
 	}
 }
 
@@ -159,7 +159,7 @@ export default function reducer(state = initialState, action) {
 			return { user: null };
 		case GET_USER_BY_ID: {
 			const newState = {...state, user:{...state.user, playlists: action.payload.playlists, likes: action.payload.likes}, userPage: action.payload}
-
+			console.log(newState,'what is it');
 			return newState
 		}
 		case UPDATE_USER: {
