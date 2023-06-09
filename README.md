@@ -1,6 +1,7 @@
 # AudioDome
       
-Mangterest is a clone of Pinterest what mainly posts anything related to manga covers or art of that sort.
+Buckle up, buckaroo, you're about to venture into the AUDIODOME
+
 
 Check out [AudioDome](https://audiodome.onrender.com/)
 
