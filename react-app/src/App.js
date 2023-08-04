@@ -16,7 +16,7 @@ import UserPage from "./components/UserPage";
 import LikedSongs from "./components/LikedSongs";
 import SplashPage from "./components/SplashPage";
 import UhOh from "./components/UhOhPage";
-
+import ReactParticles from "./components/ReactParticles";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +65,9 @@ function App() {
             <Route exact path='/users/:userId/liked'>
               <h1>Here are your liked songs</h1>
               <LikedSongs />
+            </Route>
+            <Route exact path='/particles'>
+              <ReactParticles/>
             </Route>
             <UhOh />
           </Switch>
