@@ -37,14 +37,19 @@
 }
 .splashScreenButtons{
     display: flex;
+    flex-flow: column;
     justify-content: space-around;
     margin-top: 40px;
     align-items: center;
     min-width: 1000px;
 }
+.SplashBottomContainer{
+    display: flex;
+    align-items: center;
+}
 .loginBtnSplash{
     border: black 1px transparent;
-    box-shadow: 0 4px 8px 0 teal, 0 6px 20px 0 teal;
+    box-shadow: 0 4px 4px 0 teal, 0 6px 20px 0 teal;
     padding: 10px;
     border-radius: 20px;
     height: fit-content;

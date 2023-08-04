@@ -31,42 +31,44 @@ function SplashPage() {
   return (
     <div>
 
-    <div className="splash-page">
-      <div className="splashScreenButtons">
-        <div className="loginBtnSplash">
-          <div>
-            <h2 className="Logincard">If you have already signed up before Login Here</h2>
+      <div className="splash-page">
+        <div className="splashScreenButtons">
+          <div className="TitleStuff">
+            <h1 className="TitleSplashpage">AUDIODOME</h1>
+            <h2 className="slogan">Amplify your listening experience.</h2>
           </div>
-          <div>
-            <OpenModalButton buttonText="Login" modalComponent={<LoginFormModal />} className="button" />
+          <div className="SplashBottomContainer">
+            <div className="loginBtnSplash">
+              <div>
+                <h2 className="Logincard">If you have already signed up before Login Here</h2>
+              </div>
+              <div>
+                <OpenModalButton buttonText="Login" modalComponent={<LoginFormModal />} className="button" />
+              </div>
+            </div>
+            <div className="RotatingPic">
+              <div className="TitleStuff">
+                <img src={`${allSongs[songIds[counter]]?.songImage}`} alt="Song Cover" className="PicOnSplash" />
+              </div>
+            </div>
+            <div className="signupBtnSplash">
+              <div>
+                <h2 className="Logincard">If you do not have a profile Sign Up here</h2>
+              </div>
+              <div className="signupbuttondiv">
+                <div >
+                  <OpenModalButton buttonText="Signup" modalComponent={<SignupFormModal />} className="button" />
+                </div>
+                <div>
+                  <button onClick={handleOnClick} className="DemoUser">
+                    Demo User
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      <div className="RotatingPic">
-      <div className="TitleStuff">
-        <h1 className="TitleSplashpage">AUDIODOME</h1>
-        <h2 className="slogan">Amplify your listening experience.</h2>
       </div>
-      <div className="TitleStuff">
-        <img src={`${allSongs[songIds[counter]]?.songImage}`} alt="Song Cover" className="PicOnSplash" />
-      </div>
-      </div>
-        <div className="signupBtnSplash">
-          <div>
-            <h2 className="Logincard">If you do not have a profile Sign Up here</h2>
-          </div>
-          <div className="signupbuttondiv">
-            <div >
-              <OpenModalButton buttonText="Signup" modalComponent={<SignupFormModal />} className="button" />
-            </div>
-            <div>
-              <button onClick={handleOnClick} className="DemoUser">
-                Demo User
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     </div>
   );
 }
