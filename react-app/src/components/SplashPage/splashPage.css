@@ -53,6 +53,7 @@
     padding: 10px;
     border-radius: 20px;
     height: fit-content;
+    width: 350px;
 }
 .signupBtnSplash{
     display: flex;
@@ -62,6 +63,7 @@
     padding: 10px;
     border-radius: 20px;
     height: fit-content;
+    width: 350px;
 }
 .Logincard{
     font-size: 12pt;

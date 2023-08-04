@@ -39,10 +39,10 @@ function SplashPage() {
           </div>
           <div className="SplashBottomContainer">
             <div className="loginBtnSplash">
-              <div>
-                <h2 className="Logincard">If you have already signed up before Login Here</h2>
+              <div style={{textAlign: "center"}}>
+                <h2 className="Logincard">If you have already signed up, Login Here</h2>
               </div>
-              <div>
+              <div style={{textAlign: "center"}}>
                 <OpenModalButton buttonText="Login" modalComponent={<LoginFormModal />} className="button" />
               </div>
             </div>
@@ -52,11 +52,11 @@ function SplashPage() {
               </div>
             </div>
             <div className="signupBtnSplash">
-              <div>
-                <h2 className="Logincard">If you do not have a profile Sign Up here</h2>
+              <div style={{textAlign: "center"}}>
+                <h2 className="Logincard">Don't have an account? Signup or select Demo</h2>
               </div>
               <div className="signupbuttondiv">
-                <div >
+                <div style={{textAlign: "center"}}>
                   <OpenModalButton buttonText="Signup" modalComponent={<SignupFormModal />} className="button" />
                 </div>
                 <div>
