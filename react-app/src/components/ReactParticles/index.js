@@ -23,6 +23,7 @@ const ReactParticles = () => {
             init={particlesInit}
             loaded={particlesLoaded}
             options={{
+                zLayers: 1,
                 background: {
                     color: {
                         value: "transparent",

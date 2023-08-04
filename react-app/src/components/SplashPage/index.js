@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormPage";
 import SignupFormModal from "../SignupFormModal";
 import "./splashPage.css";
+import ReactParticles from "../ReactParticles";
 
 function SplashPage() {
   const dispatch = useDispatch();
@@ -30,7 +31,6 @@ function SplashPage() {
 
   return (
     <div>
-
       <div className="splash-page">
         <div className="splashScreenButtons">
           <div className="TitleStuff">
@@ -69,6 +69,7 @@ function SplashPage() {
           </div>
         </div>
       </div>
+      <ReactParticles />
     </div>
   );
 }

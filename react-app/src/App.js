@@ -66,9 +66,6 @@ function App() {
               <h1>Here are your liked songs</h1>
               <LikedSongs />
             </Route>
-            <Route exact path='/particles'>
-              <ReactParticles/>
-            </Route>
             <UhOh />
           </Switch>
         )}

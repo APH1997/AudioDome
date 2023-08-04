@@ -61,6 +61,7 @@
     border-radius: 20px;
     height: fit-content;
     width: 350px;
+    background-color: rgba(0, 0, 0, 0.600);
 }
 .signupBtnSplash{
     display: flex;
@@ -71,6 +72,7 @@
     border-radius: 20px;
     height: fit-content;
     width: 350px;
+    background-color: rgba(0, 0, 0, 0.600);
 }
 .Logincard{
     font-size: 12pt;
@@ -88,4 +90,7 @@
 .splash-page{
     display: flex;
     align-items: center;
+    z-index: 10;
+    position: absolute;
+    margin: 0 auto;
 }
