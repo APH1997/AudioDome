@@ -61,7 +61,7 @@ function SplashPage() {
                 </div>
                 <div>
                   <button onClick={handleOnClick} className="DemoUser">
-                    Demo User
+                    Demo
                   </button>
                 </div>
               </div>
