@@ -39,8 +39,8 @@
     overflow: hidden;
     object-fit: cover;
     border-radius: 15%;
-    box-shadow: 0px 0px 5px 5px teal;
-    
+    box-shadow: 0px 0px 5px 5px #008080;
+
 }
 .splashScreenButtons{
     display: flex;

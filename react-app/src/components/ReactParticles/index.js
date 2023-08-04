@@ -25,7 +25,7 @@ const ReactParticles = () => {
             options={{
                 background: {
                     color: {
-                        value: "#0d47a1",
+                        value: "transparent",
                     },
                 },
                 fpsLimit: 120,
@@ -43,17 +43,17 @@ const ReactParticles = () => {
                     },
                     modes: {
                         push: {
-                            quantity: 4,
+                            quantity: 5,
                         },
                         repulse: {
-                            distance: 200,
-                            duration: 0.4,
+                            distance: 100,
+                            duration: 1,
                         },
                     },
                 },
                 particles: {
                     color: {
-                        value: "#ffffff",
+                        value: "#008080",
                     },
                     links: {
                         color: "#ffffff",
@@ -69,7 +69,7 @@ const ReactParticles = () => {
                             default: "bounce",
                         },
                         random: false,
-                        speed: 6,
+                        speed: 1,
                         straight: false,
                     },
                     number: {
