@@ -47,8 +47,8 @@ const ReactParticles = () => {
                             quantity: 5,
                         },
                         repulse: {
-                            distance: 100,
-                            duration: 1,
+                            distance: 50,
+                            duration: 100,
                         },
                     },
                 },
