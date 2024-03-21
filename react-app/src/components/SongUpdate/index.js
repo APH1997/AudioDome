@@ -41,7 +41,7 @@ const UpdateSongForm = () => {
             artist: artist,
         }
         await dispatch(editSongThunk(songInfo, songId))
-        await dispatch(getSongsThunk())
+        // await dispatch(getSongsThunk())
         history.push(`/users/${user.id}`)
     }
 
