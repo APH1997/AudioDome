@@ -68,7 +68,8 @@ function CreateSongForm() {
         formData.append('song_image', imgFile)
         await dispatch(createSongThunk(formData))
 
-        setTimeout(() => setIsUploading(false), 3000)
+        // setTimeout(() => setIsUploading(false), 3000)
+        setIsUploading(false)
 
         history.push('/songs/all')
 

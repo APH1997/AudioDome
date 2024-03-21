@@ -59,7 +59,7 @@ export const editSongThunk = (song, id) => async (dispatch) => {
     })
     if (response.ok) {
         const data = response.json()
-        // await dispatch(getSongs())
+        await dispatch(getSongsThunk())
         return song
     }
 }
